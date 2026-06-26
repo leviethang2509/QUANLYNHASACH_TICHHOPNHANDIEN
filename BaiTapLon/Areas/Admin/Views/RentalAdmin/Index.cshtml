@@ -1,0 +1,232 @@
+﻿@using System.Linq
+@model IEnumerable<BaiTapLon.Areas.Admin.Controllers.RentalAdminController.RentalAdminItem>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var status = ViewBag.Status as string;
+    var items = Model ?? Enumerable.Empty<BaiTapLon.Areas.Admin.Controllers.RentalAdminController.RentalAdminItem>();
+    Func<string, string> displayStatus = itemStatus =>
+    {
+        switch (itemStatus)
+        {
+            case "Pending": return "Chờ xác nhận";
+            case "Approved": return "Đã xác nhận";
+            case "Borrowed":
+            case "Borrowing": return "Đang mượn";
+            case "Returned": return "Đã trả";
+            case "Rejected": return "Từ chối";
+            case "Cancelled": return "Đã hủy";
+            case "Overdue": return "Quá hạn";
+            default: return string.IsNullOrWhiteSpace(itemStatus) ? "Không rõ" : itemStatus;
+        }
+    };
+    Func<string, string> statusClass = itemStatus =>
+    {
+        switch (itemStatus)
+        {
+            case "Pending": return "badge badge-warning";
+            case "Borrowed":
+            case "Borrowing":
+            case "Approved": return "badge badge-primary";
+            case "Returned": return "badge badge-success";
+            case "Rejected":
+            case "Cancelled": return "badge badge-secondary";
+            case "Overdue": return "badge badge-danger";
+            default: return "badge badge-light";
+        }
+    };
+}
+
+<h2>Quản lý mượn sách</h2>
+
+@using (Html.BeginForm("SendOverdueReminders", "RentalAdmin", FormMethod.Post, new { style = "display:inline" }))
+{
+    <button class="btn btn-warning btn-sm mb-3" type="submit">Gửi email nhắc quá hạn</button>
+}
+
+@if (TempData["RentalAdminMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["RentalAdminMessage"]</div>
+}
+@if (TempData["RentalAdminError"] != null)
+{
+    <div class="alert alert-danger">@TempData["RentalAdminError"]</div>
+}
+
+<div class="row mb-3">
+    <div class="col-md-3 mb-2">
+        <div class="border rounded p-3 bg-light">
+            <div class="text-muted small">Chờ xác nhận</div>
+            <strong>@ViewBag.PendingCount</strong>
+        </div>
+    </div>
+    <div class="col-md-3 mb-2">
+        <div class="border rounded p-3 bg-light">
+            <div class="text-muted small">Đang mượn</div>
+            <strong>@ViewBag.BorrowingCount</strong>
+        </div>
+    </div>
+    <div class="col-md-3 mb-2">
+        <div class="border rounded p-3 bg-light">
+            <div class="text-muted small">Đã trả</div>
+            <strong>@ViewBag.ReturnedCount</strong>
+        </div>
+    </div>
+    <div class="col-md-3 mb-2">
+        <div class="border rounded p-3 bg-light">
+            <div class="text-muted small">Quá hạn</div>
+            <strong>@ViewBag.OverdueCount</strong>
+        </div>
+    </div>
+</div>
+
+<form method="get" class="form-inline mb-3">
+    <select class="form-control mr-2 mb-2" name="status">
+        <option value="">Tất cả trạng thái</option>
+        <option value="Pending" @(status == "Pending" ? "selected" : "")>Chờ xác nhận</option>
+        <option value="Borrowing" @(status == "Borrowing" ? "selected" : "")>Đang mượn</option>
+        <option value="Returned" @(status == "Returned" ? "selected" : "")>Đã trả</option>
+        <option value="Rejected" @(status == "Rejected" ? "selected" : "")>Từ chối</option>
+        <option value="Cancelled" @(status == "Cancelled" ? "selected" : "")>Đã hủy</option>
+        <option value="Overdue" @(status == "Overdue" ? "selected" : "")>Quá hạn</option>
+    </select>
+    <button class="btn btn-primary mb-2" type="submit">Lọc</button>
+    <a class="btn btn-outline-secondary mb-2 ml-2" href="@Url.Action("Index")">Xóa lọc</a>
+</form>
+
+@if (!items.Any())
+{
+    <div class="alert alert-info">Không có yêu cầu mượn sách phù hợp.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th style="width:70px;">Mã</th>
+                    <th>Sách</th>
+                    <th>Khách hàng</th>
+                    <th style="width:95px;">Số lượng</th>
+                    <th style="width:95px;">Tồn kho</th>
+                    <th style="width:130px;">Trạng thái</th>
+                    <th style="width:130px;">Ngày yêu cầu</th>
+                    <th style="width:120px;">Số ngày mượn</th>
+                    <th style="width:140px;">Ngày dự kiến trả</th>
+                    <th style="width:150px;">Thời điểm duyệt</th>
+                    <th style="width:150px;">Thời điểm trả</th>
+                    <th style="width:170px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in items)
+            {
+                var isOverdueByDate = item.Status != "Returned" && item.ExpectedReturnDate.Date < DateTime.Today;
+                <tr class="@(isOverdueByDate ? "table-warning" : "")">
+                    <td>@item.ID</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            @if (!string.IsNullOrWhiteSpace(item.ProductImage))
+                            {
+                                <img src="@item.ProductImage" alt="@item.ProductName" style="width:44px;height:62px;object-fit:cover;" class="mr-2" />
+                            }
+                            <div>
+                                <div class="font-weight-bold">@(!string.IsNullOrWhiteSpace(item.ProductName) ? item.ProductName : "Không tìm thấy sách")</div>
+                                <div class="text-muted small">Mã sách: @item.ProductID</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="font-weight-bold">@(!string.IsNullOrWhiteSpace(item.CustomerName) ? item.CustomerName : item.UserName)</div>
+                        <div class="text-muted small">Mã khách: @item.UserID</div>
+                        @if (!string.IsNullOrWhiteSpace(item.CustomerPhone))
+                        {
+                            <div class="text-muted small">@item.CustomerPhone</div>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.IdentityNumber))
+                        {
+                            <div class="text-muted small">CMND/CCCD: @item.IdentityNumber</div>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(item.IdentityCardImagePath))
+                        {
+                            <div class="small">
+                                <a href="/@item.IdentityCardImagePath" target="_blank">Xem giấy tờ</a>
+                                @if (item.IdentityFaceConfidence.HasValue)
+                                {
+                                    <span class="text-muted">(@item.IdentityFaceConfidence.Value.ToString("0.##"))</span>
+                                }
+                            </div>
+                        }
+                    </td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        <span class="@(item.Stock <= 0 ? "text-danger font-weight-bold" : "")">@item.Stock</span>
+                    </td>
+                    <td>
+                        <span class="@statusClass(item.Status)">@displayStatus(item.Status)</span>
+                    </td>
+                    <td>@item.RequestDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.BorrowDays</td>
+                    <td>@item.ExpectedReturnDate.ToString("dd/MM/yyyy")</td>
+                    <td>@(item.ApprovedAt.HasValue ? item.ApprovedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
+                    <td>@(item.ReturnedAt.HasValue ? item.ReturnedAt.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
+                    <td>
+                        @if (item.Status == "Pending")
+                        {
+                            using (Html.BeginForm("UpdateStatus", "RentalAdmin", FormMethod.Post, new { style = "display:inline" }))
+                            {
+                                @Html.Hidden("id", item.ID)
+                                @Html.Hidden("status", "Approve")
+                                <button class="btn btn-success btn-sm mb-1" type="submit" @(item.Stock < item.Quantity ? "disabled" : "")>Duyệt</button>
+                            }
+                            using (Html.BeginForm("UpdateStatus", "RentalAdmin", FormMethod.Post, new { style = "display:inline" }))
+                            {
+                                @Html.Hidden("id", item.ID)
+                                @Html.Hidden("status", "Reject")
+                                <button class="btn btn-danger btn-sm mb-1" type="submit">Từ chối</button>
+                            }
+                        }
+                        @if (item.Status == "Borrowed" || item.Status == "Borrowing" || item.Status == "Overdue")
+                        {
+                            using (Html.BeginForm("UpdateStatus", "RentalAdmin", FormMethod.Post, new { style = "display:inline" }))
+                            {
+                                @Html.Hidden("id", item.ID)
+                                @Html.Hidden("status", "Return")
+                                <button class="btn btn-primary btn-sm mb-1" type="submit">Trả sách</button>
+                            }
+                            if (item.Status == "Borrowed" || item.Status == "Borrowing")
+                            {
+                                using (Html.BeginForm("UpdateStatus", "RentalAdmin", FormMethod.Post, new { style = "display:inline" }))
+                                {
+                                    @Html.Hidden("id", item.ID)
+                                    @Html.Hidden("status", "Overdue")
+                                    <button class="btn btn-warning btn-sm mb-1" type="submit">Quá hạn</button>
+                                }
+                            }
+                        }
+                        @if (item.Status == "Returned" || item.Status == "Rejected" || item.Status == "Cancelled")
+                        {
+                            <span class="text-muted">Không có thao tác</span>
+                        }
+                    </td>
+                </tr>
+                if (!string.IsNullOrWhiteSpace(item.Details) || !string.IsNullOrWhiteSpace(item.RejectReason))
+                {
+                    <tr>
+                        <td></td>
+                        <td colspan="11">
+                            @if (!string.IsNullOrWhiteSpace(item.Details))
+                            {
+                                <div><strong>Ghi chú:</strong> @item.Details</div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.RejectReason))
+                            {
+                                <div><strong>Lý do từ chối:</strong> @item.RejectReason</div>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+}

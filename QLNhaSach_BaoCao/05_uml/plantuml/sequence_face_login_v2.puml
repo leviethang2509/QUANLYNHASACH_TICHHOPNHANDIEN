@@ -1,0 +1,36 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+actor "Người dùng" as User
+participant "Login View" as View
+participant "UsersController" as Users
+participant "FaceAuthController" as FaceCtrl
+participant "FaceAuthApiClient" as Client
+participant "Flask API\n/verify|/authenticate|/action-check" as Flask
+database "FaceAuthLogs" as Logs
+
+User -> View : Nhập tài khoản/mật khẩu
+View -> Users : POST Login
+Users -> Users : UserDraw.LoginHomeUser
+alt EnableFaceMFA = true
+  Users --> View : tạo FACE_MFA_SESSION, chuyển LoginMFA
+  View -> FaceCtrl : CreateChallenge("MFA")
+  FaceCtrl --> View : token + action instruction
+  User -> View : Thực hiện hành động khuôn mặt
+  View -> FaceCtrl : CheckChallengeAction(token, image)
+  FaceCtrl -> Client : CheckActionAsync(actionCode)
+  Client -> Flask : POST /api/face/action-check
+  Flask --> Client : action_matched
+  Client --> FaceCtrl : FaceAuthResponse
+  User -> View : Chụp ảnh xác thực
+  View -> FaceCtrl : AuthenticateFace(image, token)
+  FaceCtrl -> Client : AuthenticateAsync(image, userId)
+  Client -> Flask : POST /api/face/authenticate
+  Flask --> Client : success, confidence, request_id
+  FaceCtrl -> Logs : AddFaceAuthLog
+  FaceCtrl -> FaceCtrl : CompletePendingMfaSession
+  FaceCtrl --> View : success
+else không bật MFA
+  Users -> Users : tạo USER_SESSION
+  Users --> View : vào trang chủ
+end
+@enduml

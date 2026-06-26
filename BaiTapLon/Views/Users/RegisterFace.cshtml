@@ -1,0 +1,38 @@
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var userId = ViewBag.FaceUserId ?? "";
+}
+
+<div class="container py-6">
+    <h2>Xác thực khuôn mặt</h2>
+    <p class="mb-4">Vui lòng nhìn thẳng vào camera, sau đó bấm xác thực để hoàn tất đăng ký tài khoản.</p>
+    <video id="faceVideo" class="face-auth-video" autoplay muted playsinline></video>
+    <div class="mt-3">
+        <button id="captureBtn" type="button" class="btn btn-primary rounded-0">Xác thực khuôn mặt</button>
+    </div>
+    <div id="faceStatus" class="mt-2"></div>
+</div>
+
+<script src="/Scripts/FaceCapture.js"></script>
+<script>
+    FaceCapture.init({
+        videoId: 'faceVideo',
+        buttonId: 'captureBtn',
+        statusId: 'faceStatus',
+        uploadUrl: '/FaceAuth/RegisterFace',
+        fields: { userId: '@userId', user_id: '@userId', purpose: 'Register' },
+        onResult: function (result) {
+            var status = document.getElementById('faceStatus');
+            if (result && result.success === true) {
+                status.className = 'mt-2 text-success';
+                status.textContent = result.message || 'Đăng ký tài khoản và khuôn mặt thành công.';
+                setTimeout(function () {
+                    window.location.href = '/Home/TrangChu';
+                }, 1500);
+            } else {
+                status.className = 'mt-2 text-danger';
+                status.textContent = (result && (result.error || result.message)) || 'Xác thực khuôn mặt thất bại. Vui lòng thử lại.';
+            }
+        }
+    });
+</script>

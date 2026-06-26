@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="427" viewBox="0 0 640 427">
+  <rect width="640" height="427" fill="#ffffff"/>
+  <rect x="24" y="24" width="592" height="379" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="40" y="62" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#111827">Search Engine nội bộ</text>
+  <text x="40" y="88" font-family="Arial, sans-serif" font-size="17" fill="#374151">Tìm sách bằng LINQ/Entity Framework trên dữ liệu SQL Server</text>
+  <rect x="40" y="102" width="560" height="46" rx="8" fill="#ffffff" stroke="#ea580c" /><text x="62" y="131" font-size="20" fill="#1f2937">ProductController.ListName trả gợi ý autocomplete</text><rect x="40" y="160" width="560" height="46" rx="8" fill="#ffffff" stroke="#ea580c" /><text x="62" y="189" font-size="20" fill="#1f2937">ProductController.Search nhận keyWord, page, pagesize</text><rect x="40" y="218" width="560" height="46" rx="8" fill="#ffffff" stroke="#ea580c" /><text x="62" y="247" font-size="20" fill="#1f2937">SanphamDraw.getByKeyWord lọc tên sách, tác giả, thể loại</text><rect x="40" y="276" width="560" height="46" rx="8" fill="#ffffff" stroke="#ea580c" /><text x="62" y="305" font-size="20" fill="#1f2937">X.PagedList phân trang 20 sản phẩm/trang</text><rect x="40" y="334" width="560" height="46" rx="8" fill="#ffffff" stroke="#ea580c" /><text x="62" y="363" font-size="20" fill="#1f2937">View hiển thị kết quả, gợi ý sách mới và danh mục</text>
+</svg>

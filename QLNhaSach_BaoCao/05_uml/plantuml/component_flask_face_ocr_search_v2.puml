@@ -1,0 +1,37 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam componentStyle rectangle
+
+component "ASP.NET MVC\nBaiTapLon" as Web {
+  [UsersController]
+  [ProductController]
+  [FaceAuthController]
+  [RentalController]
+  [GeofenceController]
+  [FaceAuthApiClient]
+}
+
+component "Flask Face API\nface_auth_api/app.py" as Flask {
+  [OpenCV decode/preprocess]
+  [MediaPipe landmarks]
+  [Face descriptor + profile JSON]
+  [pytesseract OCR]
+  [Action classifier]
+}
+
+component "Mood.Draw" as Draw
+database "QuanLySachDBContext\nSQL Server" as Db
+database "LogDbContext\nFaceAuthLogs/GeofenceLogs/RentalLogs" as Logs
+folder "face_profiles" as Profiles
+component "GmailNotificationService" as Gmail
+
+[ProductController] --> Draw : tìm kiếm/sản phẩm
+Draw --> Db : Entity Framework
+[FaceAuthController] --> [FaceAuthApiClient]
+[FaceAuthApiClient] --> Flask : HTTP multipart
+Flask --> Profiles : lưu/đọc mẫu mặt
+[FaceAuthController] --> Logs : ghi nhật ký xác thực
+[GeofenceController] --> Logs : ghi geofence
+[RentalController] --> Logs : ghi mượn/trả
+[RentalController] --> Gmail : thông báo trạng thái
+@enduml

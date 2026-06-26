@@ -1,0 +1,26 @@
+﻿@model List<Mood.EF2.Menu>
+@using BaiTapLon.Common;
+<div class="d-none d-md-block ml-md-auto secondary-navigation">
+    @{
+        var session = (UserLogin)Session[Constant.USER_SESSION];
+
+    }
+    @if (session != null)
+    {
+        var activeRentalCount = ViewBag.ActiveRentalCount == null ? 0 : (int)ViewBag.ActiveRentalCount;
+        <ul class="nav">
+            <li class="nav-item"><a href="/thong-tin-ca-nhan-@session.userId" class="nav-link link-black-100 mx-2 px-0 py-3 font-weight-medium">Xin Chào: @session.name</a></li>
+            <li class="nav-item">
+                <a href="/Rental/MyRentals" class="nav-link link-black-100 mx-2 px-0 py-3 font-weight-medium">
+                    Sách đang mượn
+                    <span id="activeRentalCountBadge" class="badge badge-primary ml-1 @(activeRentalCount > 0 ? "" : "d-none")">@activeRentalCount</span>
+                </a>
+            </li>
+            <li class="nav-item"><a href="/Users/Logout" class="nav-link link-black-100 mx-2 px-0 py-3 font-weight-medium"><i class="flaticon-exit"></i></a></li>
+        </ul>
+    }
+    
+
+</div>
+
+

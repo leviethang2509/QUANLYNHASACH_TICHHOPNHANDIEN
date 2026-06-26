@@ -1,0 +1,130 @@
+﻿@model IList<BaiTapLon.Areas.Admin.Controllers.ThongKeController.RentalTopicStat>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var pendingTotal = ViewBag.PendingTotal ?? 0;
+    var borrowingTotal = ViewBag.BorrowingTotal ?? 0;
+    var returnedTotal = ViewBag.ReturnedTotal ?? 0;
+    var overdueTotal = ViewBag.OverdueTotal ?? 0;
+}
+
+<h2>Thống kê chủ đề mượn trả sách</h2>
+
+<form method="get" class="form-inline mb-3">
+    <input class="form-control mr-2 mb-2" type="date" name="fromDate" value="@ViewBag.FromDate" />
+    <input class="form-control mr-2 mb-2" type="date" name="toDate" value="@ViewBag.ToDate" />
+    <select class="form-control mr-2 mb-2" name="status">
+        <option value="">Tất cả trạng thái</option>
+        <option value="Pending" @(ViewBag.Status == "Pending" ? "selected" : "")>Chờ duyệt</option>
+        <option value="Approved" @(ViewBag.Status == "Approved" ? "selected" : "")>Đã duyệt</option>
+        <option value="Borrowed" @(ViewBag.Status == "Borrowed" ? "selected" : "")>Đang mượn</option>
+        <option value="Returned" @(ViewBag.Status == "Returned" ? "selected" : "")>Đã trả</option>
+        <option value="Overdue" @(ViewBag.Status == "Overdue" ? "selected" : "")>Quá hạn</option>
+        <option value="Rejected" @(ViewBag.Status == "Rejected" ? "selected" : "")>Từ chối</option>
+        <option value="Cancelled" @(ViewBag.Status == "Cancelled" ? "selected" : "")>Đã hủy</option>
+    </select>
+    <button class="btn btn-primary mb-2" type="submit">Lọc</button>
+    <a class="btn btn-outline-secondary mb-2 ml-2" href="@Url.Action("MuonTraChuDe")">Xóa lọc</a>
+</form>
+
+<div class="row mb-4">
+    <div class="col-md-3 mb-2"><div class="border rounded p-3 bg-light"><div class="text-muted small">Chờ duyệt</div><strong>@pendingTotal</strong></div></div>
+    <div class="col-md-3 mb-2"><div class="border rounded p-3 bg-light"><div class="text-muted small">Đang mượn</div><strong>@borrowingTotal</strong></div></div>
+    <div class="col-md-3 mb-2"><div class="border rounded p-3 bg-light"><div class="text-muted small">Đã trả</div><strong>@returnedTotal</strong></div></div>
+    <div class="col-md-3 mb-2"><div class="border rounded p-3 bg-light"><div class="text-muted small">Quá hạn</div><strong>@overdueTotal</strong></div></div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-lg-6 mb-3">
+        <div class="border rounded p-3">
+            <h5>Lượt mượn theo chủ đề</h5>
+            <canvas id="categoryBorrowChart" height="160"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-3">
+        <div class="border rounded p-3">
+            <h5>Tỷ lệ trạng thái</h5>
+            <canvas id="statusChart" height="160"></canvas>
+        </div>
+    </div>
+    <div class="col-12 mb-3">
+        <div class="border rounded p-3">
+            <h5>Xu hướng mượn theo ngày</h5>
+            <canvas id="trendChart" height="90"></canvas>
+        </div>
+    </div>
+</div>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Chưa có dữ liệu mượn trả theo bộ lọc.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Chủ đề</th>
+                    <th>Tổng lượt</th>
+                    <th>Số lượng sách</th>
+                    <th>Chờ duyệt</th>
+                    <th>Đang mượn</th>
+                    <th>Đã trả</th>
+                    <th>Quá hạn</th>
+                    <th>Tỷ lệ quá hạn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var overdueRate = item.Total > 0 ? (item.Overdue * 100.0 / item.Total) : 0;
+                    <tr>
+                        <td>@item.CategoryName</td>
+                        <td>@item.Total</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Pending</td>
+                        <td>@item.Borrowing</td>
+                        <td>@item.Returned</td>
+                        <td>@item.Overdue</td>
+                        <td>@overdueRate.ToString("0.##")%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@section jsFooter {
+    <script src="~/Content/Client/vendor/chart.js/Chart.min.js"></script>
+    <script>
+        (function () {
+            var labels = @Html.Raw(Json.Encode(ViewBag.Labels));
+            var borrowTotals = @Html.Raw(Json.Encode(ViewBag.BorrowTotals));
+            var trendLabels = @Html.Raw(Json.Encode(ViewBag.TrendLabels));
+            var trendTotals = @Html.Raw(Json.Encode(ViewBag.TrendTotals));
+            var statusLabels = ['Chờ duyệt', 'Đang mượn', 'Đã trả', 'Quá hạn'];
+            var statusTotals = [@pendingTotal, @borrowingTotal, @returnedTotal, @overdueTotal];
+
+            function createChart(id, type, data, options) {
+                var el = document.getElementById(id);
+                if (!el || !window.Chart) return;
+                new Chart(el.getContext('2d'), { type: type, data: data, options: options || {} });
+            }
+
+            createChart('categoryBorrowChart', 'bar', {
+                labels: labels,
+                datasets: [{ label: 'Lượt mượn', data: borrowTotals, backgroundColor: '#2f80ed' }]
+            }, { legend: { display: false }, scales: { yAxes: [{ ticks: { beginAtZero: true, precision: 0 } }] } });
+
+            createChart('statusChart', 'doughnut', {
+                labels: statusLabels,
+                datasets: [{ data: statusTotals, backgroundColor: ['#f2c94c', '#2f80ed', '#27ae60', '#eb5757'] }]
+            });
+
+            createChart('trendChart', 'line', {
+                labels: trendLabels,
+                datasets: [{ label: 'Lượt mượn', data: trendTotals, borderColor: '#27ae60', backgroundColor: 'rgba(39,174,96,.12)', fill: true }]
+            }, { scales: { yAxes: [{ ticks: { beginAtZero: true, precision: 0 } }] } });
+        })();
+    </script>
+}

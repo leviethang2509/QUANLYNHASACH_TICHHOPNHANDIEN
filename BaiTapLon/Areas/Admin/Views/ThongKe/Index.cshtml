@@ -1,0 +1,31 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Thống kê mượn sách</h2>
+<canvas id="muonChart" width="800" height="300"></canvas>
+<canvas id="topBooksChart" width="800" height="300"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+fetch('/Admin/ThongKe/MuonTheoNgay?days=30')
+  .then(r => r.json())
+  .then(data => {
+    const labels = data.map(d => new Date(d.Day).toLocaleDateString());
+    const counts = data.map(d => d.Count);
+    new Chart(document.getElementById('muonChart'), {
+      type: 'line',
+      data: { labels, datasets: [{ label: 'Số lượt mượn', data: counts, borderColor: 'blue', fill:false }] }
+    });
+  });
+
+fetch('/Admin/ThongKe/TopBooks?top=10')
+  .then(r => r.json())
+  .then(data => {
+    const labels = data.map(d => 'Book ' + d.BookId);
+    const counts = data.map(d => d.Count);
+    new Chart(document.getElementById('topBooksChart'), {
+      type: 'bar',
+      data: { labels, datasets: [{ label: 'Số lượt mượn', data: counts, backgroundColor: 'green' }] }
+    });
+  });
+</script>

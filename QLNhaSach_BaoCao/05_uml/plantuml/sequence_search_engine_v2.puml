@@ -1,0 +1,27 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+actor "Khách/Người dùng" as User
+participant "Search View" as View
+participant "ProductController" as Controller
+participant "SanphamDraw" as Draw
+database "SQL Server\nSanphams/Categories" as Db
+
+User -> View : Nhập từ khóa
+alt autocomplete
+  View -> Controller : GET ListName(q)
+  Controller -> Draw : ListName(q)
+  Draw -> Db : Truy vấn tên sách phù hợp
+  Db --> Draw : Danh sách gợi ý
+  Draw --> Controller : data
+  Controller --> View : JSON {data, status=true}
+else tìm kiếm đầy đủ
+  View -> Controller : GET Search(keyWord, page, pagesize)
+  Controller -> Draw : getByKeyWord(keyWord, page, pagesize)
+  Draw -> Db : LINQ Contains + phân trang
+  Db --> Draw : Danh sách SanPhamModel
+  Draw --> Controller : IPagedList
+  Controller -> Draw : listSanphamnew(5), ListCount()
+  Controller --> View : Model + ViewBag.totalKq/keyWord/listGoiY
+end
+View --> User : Hiển thị kết quả và danh mục
+@enduml

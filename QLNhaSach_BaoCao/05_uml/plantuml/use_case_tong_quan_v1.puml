@@ -1,0 +1,57 @@
+@startuml
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam handwritten false
+
+actor "Khach vang lai" as Guest
+actor "Nguoi dung" as User
+actor "Quan tri vien" as Admin
+actor "Face API" as FaceApi
+actor "Gmail Service" as Gmail
+
+rectangle "Website quan ly nha sach QLNhaSach" {
+  usecase "Xem/tim kiem sach" as UC_ViewBooks
+  usecase "Dang ky tai khoan" as UC_Register
+  usecase "Dang nhap" as UC_Login
+  usecase "Xac thuc khuon mat" as UC_Face
+  usecase "Cap nhat ho so CMND/CCCD" as UC_Profile
+  usecase "Them/xem sach yeu thich" as UC_Favorite
+  usecase "Dat hang" as UC_Order
+  usecase "Kiem tra vi tri" as UC_Geofence
+  usecase "Gui yeu cau muon sach" as UC_Rental
+  usecase "Quan ly san pham/danh muc" as UC_AdminProduct
+  usecase "Quan ly don hang" as UC_AdminOrder
+  usecase "Duyet muon/tra sach" as UC_AdminRental
+  usecase "Xem nhat ky" as UC_Logs
+  usecase "Thong ke bao cao" as UC_Stats
+  usecase "Gui thong bao email" as UC_Email
+}
+
+Guest --> UC_ViewBooks
+Guest --> UC_Register
+Guest --> UC_Login
+Guest --> UC_Favorite
+
+User --> UC_ViewBooks
+User --> UC_Login
+User --> UC_Profile
+User --> UC_Favorite
+User --> UC_Order
+User --> UC_Geofence
+User --> UC_Rental
+
+Admin --> UC_AdminProduct
+Admin --> UC_AdminOrder
+Admin --> UC_AdminRental
+Admin --> UC_Logs
+Admin --> UC_Stats
+
+UC_Login ..> UC_Face : <<include>>
+UC_Rental ..> UC_Geofence : <<include>>
+UC_Rental ..> UC_Face : <<include>>
+UC_Rental ..> UC_Email : <<include>>
+UC_AdminRental ..> UC_Email : <<include>>
+
+FaceApi --> UC_Face
+Gmail --> UC_Email
+@enduml

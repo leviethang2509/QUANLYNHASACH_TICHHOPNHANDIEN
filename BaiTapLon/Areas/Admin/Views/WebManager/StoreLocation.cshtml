@@ -1,0 +1,241 @@
+﻿@model Mood.EF2.StoreLocation
+@using System.Collections.Generic
+@using System.Linq
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var stores = ViewBag.Stores as IEnumerable<Mood.EF2.StoreLocation> ?? Enumerable.Empty<Mood.EF2.StoreLocation>();
+    var iconPath = string.IsNullOrWhiteSpace(Model.IconPath) ? "/assets/img/imgbook/anhlogo.jpg" : Model.IconPath;
+    var bannerPath = string.IsNullOrWhiteSpace(Model.BannerPath) ? "/assets/img/1920x600/back_ground.jpg" : Model.BannerPath;
+    var mapUrl = "https://www.openstreetmap.org/export/embed.html?bbox="
+        + ((double)Model.Longitude - 0.02).ToString(System.Globalization.CultureInfo.InvariantCulture) + "%2C"
+        + ((double)Model.Latitude - 0.02).ToString(System.Globalization.CultureInfo.InvariantCulture) + "%2C"
+        + ((double)Model.Longitude + 0.02).ToString(System.Globalization.CultureInfo.InvariantCulture) + "%2C"
+        + ((double)Model.Latitude + 0.02).ToString(System.Globalization.CultureInfo.InvariantCulture)
+        + "&layer=mapnik&marker="
+        + ((double)Model.Latitude).ToString(System.Globalization.CultureInfo.InvariantCulture) + "%2C"
+        + ((double)Model.Longitude).ToString(System.Globalization.CultureInfo.InvariantCulture);
+}
+
+<h2>Quản lý thông tin hiển thị</h2>
+
+@if (TempData["StoreLocationMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["StoreLocationMessage"]</div>
+}
+@Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+
+<div class="row">
+    <div class="col-lg-3 mb-3">
+        <div class="card">
+            <div class="card-header">Danh sách cấu hình</div>
+            <div class="list-group list-group-flush">
+                @foreach (var store in stores)
+                {
+                    <a class="list-group-item list-group-item-action @(store.ID == Model.ID ? "active" : "")" href="@Url.Action("StoreLocation", new { id = store.ID })">
+                        <div class="font-weight-bold">@store.StoreName</div>
+                        <div class="small">@store.Address</div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        @using (Html.BeginForm("StoreLocation", "WebManager", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.ID)
+            <div class="card mb-3">
+                <div class="card-header">Nội dung giới thiệu</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Tên hiển thị</label>
+                            @Html.TextBoxFor(x => x.StoreName, new { @class = "form-control", maxlength = "200" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Tiêu đề giới thiệu</label>
+                            @Html.TextBoxFor(x => x.WelcomeTitle, new { @class = "form-control", maxlength = "300" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Lời chào</label>
+                        @Html.TextAreaFor(x => x.WelcomeMessage, new { @class = "form-control js-rich-editor", rows = "4", maxlength = "1000" })
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung chính</label>
+                        @Html.TextAreaFor(x => x.AboutContent, new { @class = "form-control js-rich-editor", rows = "8" })
+                    </div>
+                    <div class="form-group">
+                        <label>Mục tiêu / thông điệp</label>
+                        @Html.TextAreaFor(x => x.MissionContent, new { @class = "form-control js-rich-editor", rows = "8" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Ảnh và thông tin liên hệ</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Icon / logo</label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.IconPath, new { @class = "form-control", maxlength = "500", id = "txtIconPath" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary js-select-image" type="button" data-target="#txtIconPath" data-preview="#iconPreview">Chọn ảnh</button>
+                                </div>
+                            </div>
+                            <img id="iconPreview" src="@Url.Content(iconPath)" alt="@Model.StoreName" class="mt-2 border" style="max-height:72px;max-width:180px;" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Ảnh banner trang giới thiệu</label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.BannerPath, new { @class = "form-control", maxlength = "500", id = "txtBannerPath" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary js-select-image" type="button" data-target="#txtBannerPath" data-preview="#bannerPreview">Chọn ảnh</button>
+                                </div>
+                            </div>
+                            <img id="bannerPreview" src="@Url.Content(bannerPath)" alt="@Model.StoreName" class="mt-2 border" style="width:100%;max-height:120px;object-fit:cover;" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Địa chỉ</label>
+                            @Html.TextBoxFor(x => x.Address, new { @class = "form-control", maxlength = "500" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Số điện thoại</label>
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", maxlength = "50" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Email</label>
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", maxlength = "200", type = "email" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Bản đồ và bán kính mượn sách</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Tìm vị trí trên bản đồ</label>
+                        <div class="input-group">
+                            <input id="mapSearchKeyword" class="form-control" type="text" value="@Model.Address" />
+                            <div class="input-group-append">
+                                <button id="btnSearchMap" class="btn btn-outline-primary" type="button">Tìm</button>
+                            </div>
+                        </div>
+                        <select id="mapSearchResults" class="form-control mt-2" style="display:none;"></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Vĩ độ</label>
+                            @Html.TextBox("Latitude", Model.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture), new { @class = "form-control", type = "number", step = "0.000001", min = "-90", max = "90" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Kinh độ</label>
+                            @Html.TextBox("Longitude", Model.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture), new { @class = "form-control", type = "number", step = "0.000001", min = "-180", max = "180" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Bán kính mượn (km)</label>
+                            @Html.TextBox("GeofenceRadius", Model.GeofenceRadius.ToString(System.Globalization.CultureInfo.InvariantCulture), new { @class = "form-control", type = "number", step = "0.1", min = "0.1", max = "100" })
+                        </div>
+                    </div>
+                    <iframe id="storeMapFrame" title="Bản đồ vị trí" src="@mapUrl" style="width:100%;height:360px;border:0;" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Trạng thái</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Thứ tự</label>
+                            @Html.TextBoxFor(x => x.SortOrder, new { @class = "form-control", type = "number" })
+                        </div>
+                        <div class="form-group col-md-6 d-flex align-items-end">
+                            <div class="form-check">
+                                @Html.CheckBoxFor(x => x.IsActive, new { @class = "form-check-input" })
+                                <label class="form-check-label">Đang dùng làm cấu hình chính</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Lưu thông tin</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section jsFooter{
+    <script>
+        (function () {
+            function updateMap(lat, lon) {
+                var latitude = parseFloat(lat);
+                var longitude = parseFloat(lon);
+                if (isNaN(latitude) || isNaN(longitude)) return;
+                var bbox = [
+                    (longitude - 0.02).toFixed(6),
+                    (latitude - 0.02).toFixed(6),
+                    (longitude + 0.02).toFixed(6),
+                    (latitude + 0.02).toFixed(6)
+                ].join('%2C');
+                document.getElementById('storeMapFrame').src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + bbox + '&layer=mapnik&marker=' + latitude.toFixed(6) + '%2C' + longitude.toFixed(6);
+            }
+
+            $('.js-select-image').on('click', function () {
+                var target = $(this).data('target');
+                var preview = $(this).data('preview');
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $(target).val(url);
+                    $(preview).attr('src', url);
+                };
+                finder.popup();
+            });
+
+            $('.js-rich-editor').each(function () {
+                CKEDITOR.replace(this.id, {
+                    customConfig: '/Content/Client/js/Plugins/ckfinder/config.js',
+                    height: 180
+                });
+            });
+
+            $('#Latitude, #Longitude').on('change', function () {
+                updateMap($('#Latitude').val(), $('#Longitude').val());
+            });
+
+            $('#btnSearchMap').on('click', function () {
+                var keyword = $('#mapSearchKeyword').val();
+                var results = $('#mapSearchResults');
+                if (!keyword) return;
+                results.hide().empty();
+                fetch('https://nominatim.openstreetmap.org/search?format=json&limit=8&q=' + encodeURIComponent(keyword))
+                    .then(function (response) { return response.json(); })
+                    .then(function (items) {
+                        if (!items || !items.length) {
+                            results.append($('<option>').text('Không tìm thấy vị trí phù hợp'));
+                            results.show();
+                            return;
+                        }
+                        items.forEach(function (item) {
+                            results.append($('<option>')
+                                .val(item.lat + ',' + item.lon)
+                                .text(item.display_name)
+                                .data('address', item.display_name));
+                        });
+                        results.show().trigger('change');
+                    });
+            });
+
+            $('#mapSearchResults').on('change', function () {
+                var selected = $(this).find(':selected');
+                var parts = ($(this).val() || '').split(',');
+                if (parts.length !== 2) return;
+                $('#Latitude').val(parseFloat(parts[0]).toFixed(6));
+                $('#Longitude').val(parseFloat(parts[1]).toFixed(6));
+                $('#Address').val(selected.data('address'));
+                updateMap(parts[0], parts[1]);
+            });
+        })();
+    </script>
+}

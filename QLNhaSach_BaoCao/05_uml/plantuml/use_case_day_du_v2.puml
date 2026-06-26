@@ -1,0 +1,119 @@
+@startuml
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Khách vãng lai" as Guest
+actor "Người dùng" as User
+actor "Quản trị viên" as Admin
+actor "Flask Face API" as FaceApi
+actor "Gmail Service" as Gmail
+actor "SQL Server" as Db
+
+rectangle "QLNhaSach - Website quản lý nhà sách" {
+  package "Tra cứu và mua sách" {
+    usecase "Xem trang chủ/danh mục" as UC01
+    usecase "Tìm kiếm sách" as UC02
+    usecase "Gợi ý tên sách" as UC03
+    usecase "Xem chi tiết sách" as UC04
+    usecase "Xem/tải file đọc thử" as UC05
+    usecase "Đánh giá sách" as UC06
+    usecase "Quản lý yêu thích" as UC07
+    usecase "Giỏ hàng" as UC08
+    usecase "Đặt hàng/thanh toán" as UC09
+  }
+
+  package "Tài khoản và bảo mật" {
+    usecase "Đăng ký tài khoản" as UC10
+    usecase "Đăng nhập mật khẩu" as UC11
+    usecase "MFA khuôn mặt" as UC12
+    usecase "Đăng ký mẫu khuôn mặt" as UC13
+    usecase "Challenge liveness" as UC14
+    usecase "OCR CMND/CCCD" as UC15
+    usecase "Cập nhật hồ sơ mượn sách" as UC16
+  }
+
+  package "Mượn/trả sách" {
+    usecase "Kiểm tra tồn kho" as UC17
+    usecase "Kiểm tra vị trí geofence" as UC18
+    usecase "Xác thực mặt trước khi mượn" as UC19
+    usecase "Gửi yêu cầu mượn" as UC20
+    usecase "Hủy yêu cầu đang chờ" as UC21
+    usecase "Xem lịch sử mượn" as UC22
+  }
+
+  package "Quản trị" {
+    usecase "Quản lý sách/danh mục" as UC23
+    usecase "Quản lý đơn hàng" as UC24
+    usecase "Duyệt mượn/trả" as UC25
+    usecase "Nhắc quá hạn" as UC26
+    usecase "Quản lý người dùng" as UC27
+    usecase "Quản lý nhập hàng/NCC" as UC28
+    usecase "Quản lý tọa độ nhà sách" as UC29
+    usecase "Xem nhật ký hệ thống" as UC30
+    usecase "Thống kê báo cáo" as UC31
+  }
+
+  usecase "Gửi email thông báo" as UC32
+  usecase "Ghi log face/geofence/rental" as UC33
+}
+
+Guest --> UC01
+Guest --> UC02
+Guest --> UC03
+Guest --> UC04
+Guest --> UC07
+Guest --> UC10
+Guest --> UC11
+
+User --> UC01
+User --> UC02
+User --> UC04
+User --> UC05
+User --> UC06
+User --> UC07
+User --> UC08
+User --> UC09
+User --> UC11
+User --> UC12
+User --> UC13
+User --> UC15
+User --> UC16
+User --> UC17
+User --> UC18
+User --> UC19
+User --> UC20
+User --> UC21
+User --> UC22
+
+Admin --> UC23
+Admin --> UC24
+Admin --> UC25
+Admin --> UC26
+Admin --> UC27
+Admin --> UC28
+Admin --> UC29
+Admin --> UC30
+Admin --> UC31
+
+UC12 ..> UC14 : <<include>>
+UC15 ..> UC33 : <<include>>
+UC18 ..> UC33 : <<include>>
+UC19 ..> UC14 : <<include>>
+UC19 ..> UC33 : <<include>>
+UC20 ..> UC17 : <<include>>
+UC20 ..> UC18 : <<include>>
+UC20 ..> UC19 : <<include>>
+UC20 ..> UC32 : <<include>>
+UC25 ..> UC32 : <<include>>
+UC25 ..> UC33 : <<include>>
+
+FaceApi --> UC12
+FaceApi --> UC13
+FaceApi --> UC14
+FaceApi --> UC15
+FaceApi --> UC19
+Gmail --> UC32
+Db --> UC33
+@enduml

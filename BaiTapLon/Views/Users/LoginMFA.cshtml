@@ -1,0 +1,178 @@
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var userId = ViewBag.FaceUserId ?? "";
+}
+
+<div class="container py-6">
+    <h2>Xac thuc khuon mat</h2>
+    <p class="mb-4">Vui long lam dung hanh dong duoc yeu cau, sau do he thong se xac thuc khuon mat.</p>
+    <video id="faceVideo" class="face-auth-video" autoplay muted playsinline></video>
+    <div class="mt-3">
+        <button id="captureBtn" type="button" class="btn btn-primary rounded-0">Xac thuc</button>
+    </div>
+    <div id="faceStatus" class="mt-2"></div>
+</div>
+
+<script src="/Scripts/FaceCapture.js"></script>
+<script>
+    (function () {
+        var video = document.getElementById('faceVideo');
+        var button = document.getElementById('captureBtn');
+        var status = document.getElementById('faceStatus');
+        var stream = null;
+        var challengeToken = null;
+        var challengeInstruction = '';
+        var actionMatched = false;
+        var actionTimer = null;
+        var actionAttempts = 0;
+
+        function setStatus(message, isError) {
+            status.className = isError ? 'mt-2 text-danger' : 'mt-2 text-success';
+            status.textContent = message || '';
+        }
+
+        function clearActionTimer() {
+            if (actionTimer) {
+                clearTimeout(actionTimer);
+                actionTimer = null;
+            }
+        }
+
+        function createChallenge() {
+            var form = new FormData();
+            form.append('purpose', 'MFA');
+            return fetch('/FaceAuth/CreateChallenge', {
+                method: 'POST',
+                body: form,
+                credentials: 'same-origin'
+            }).then(function (response) { return response.json(); })
+                .then(function (result) {
+                    if (!result || !result.success) {
+                        throw new Error('Khong the tao yeu cau xac thuc.');
+                    }
+
+                    challengeToken = result.token;
+                    challengeInstruction = result.instruction || '';
+                    actionMatched = result.actionRequired === false;
+                    setStatus(actionMatched ? 'Camera da san sang.' : 'Yeu cau: ' + challengeInstruction + '.', false);
+                });
+        }
+
+        function checkActionFrame() {
+            return FaceCapture.captureBlob(video)
+                .then(function (blob) {
+                    return FaceCapture.uploadFace('/FaceAuth/CheckChallengeAction', blob, {
+                        purpose: 'MFA',
+                        challengeToken: challengeToken
+                    });
+                });
+        }
+
+        function startActionCheckLoop() {
+            clearActionTimer();
+            actionAttempts = 0;
+            actionMatched = false;
+            button.disabled = true;
+
+            function tick() {
+                if (!stream || !challengeToken) return;
+                actionAttempts += 1;
+                setStatus('Yeu cau: ' + challengeInstruction + '. Dang kiem tra hanh dong...', false);
+                checkActionFrame()
+                    .then(function (result) {
+                        if (result && result.actionMatched) {
+                            actionMatched = true;
+                            button.disabled = false;
+                            setStatus('Da nhan dien dung hanh dong. Giu mat trong khung roi bam Xac thuc.', false);
+                            return;
+                        }
+
+                        if (actionAttempts >= 15) {
+                            button.disabled = false;
+                            setStatus('Chua nhan dien dung hanh dong. Vui long lam lai roi bam xac thuc.', true);
+                            return;
+                        }
+
+                        actionTimer = setTimeout(tick, 700);
+                    })
+                    .catch(function () {
+                        if (actionAttempts >= 15) {
+                            button.disabled = false;
+                            setStatus('Khong the kiem tra hanh dong. Vui long thu lai.', true);
+                            return;
+                        }
+
+                        actionTimer = setTimeout(tick, 900);
+                    });
+            }
+
+            actionTimer = setTimeout(tick, 800);
+        }
+
+        function refreshChallenge() {
+            challengeToken = null;
+            challengeInstruction = '';
+            actionMatched = false;
+            return createChallenge().then(startActionCheckLoop);
+        }
+
+        function authenticateFace() {
+            if (!actionMatched) {
+                startActionCheckLoop();
+                return;
+            }
+
+            clearActionTimer();
+            button.disabled = true;
+            setStatus('Dang xac thuc khuon mat...', false);
+            FaceCapture.captureBlob(video)
+                .then(function (blob) {
+                    return FaceCapture.uploadFace('/FaceAuth/AuthenticateFace', blob, {
+                        userId: '@userId',
+                        challengeToken: challengeToken
+                    });
+                })
+                .then(function (result) {
+                    if (result && result.success) {
+                        setStatus('Xac thuc thanh cong.', false);
+                        FaceCapture.stopCamera(stream);
+                        window.location.href = '/';
+                        return;
+                    }
+
+                    setStatus((result && (result.error || result.message)) || 'Xac thuc that bai.', true);
+                    button.disabled = false;
+                })
+                .catch(function () {
+                    setStatus('Khong the chup hoac gui anh khuon mat.', true);
+                })
+                .then(function () {
+                    button.disabled = false;
+                });
+        }
+
+        button.disabled = true;
+        setStatus('Dang mo camera...', false);
+        FaceCapture.startCamera(video, status)
+            .then(function (cameraStream) {
+                stream = cameraStream;
+                return createChallenge();
+            })
+            .then(function () {
+                if (actionMatched) {
+                    button.disabled = false;
+                    return;
+                }
+
+                startActionCheckLoop();
+            })
+            .catch(function () {
+                setStatus('Khong the mo camera hoac tao yeu cau xac thuc.', true);
+            });
+
+        button.addEventListener('click', authenticateFace);
+        window.addEventListener('beforeunload', function () {
+            FaceCapture.stopCamera(stream);
+        });
+    })();
+</script>

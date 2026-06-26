@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+actor "Người dùng" as User
+participant "Razor View\nHồ sơ" as View
+participant "FaceAuthController" as Controller
+participant "FaceAuthApiClient" as Client
+participant "Flask API\n/api/face/ocr-cmnd" as Flask
+database "Users" as Users
+
+User -> View : Tải ảnh mặt trước/mặt sau CMND/CCCD
+View -> Controller : POST OcrCmnd(front_file, back_file)
+Controller -> Controller : ValidateIdentityFile, lưu DataImage/IdentityCards
+Controller -> Client : OcrIdentityCardAsync(front, back, userId)
+Client -> Flask : multipart form-data
+Flask -> Flask : OpenCV tiền xử lý ảnh
+Flask -> Flask : pytesseract OCR vie+eng
+Flask -> Flask : parse_identity_fields()
+Flask -> Flask : compare_identity_face() nếu có user_id
+Flask --> Client : JSON fields, face_confidence, request_id
+Client --> Controller : JObject
+Controller -> Users : Cập nhật IdentityNumber, FullName, Address...
+Controller --> View : JSON success + fields
+View --> User : Hiển thị thông tin đã đọc
+@enduml

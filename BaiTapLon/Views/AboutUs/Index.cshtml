@@ -1,0 +1,70 @@
+﻿@model Mood.EF2.StoreLocation
+@{
+    ViewBag.Title = "Giới thiệu";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var storeName = string.IsNullOrWhiteSpace(Model.StoreName) ? "Nhà sách" : Model.StoreName;
+    var iconPath = string.IsNullOrWhiteSpace(Model.IconPath) ? "/assets/img/imgbook/anhlogo.jpg" : Model.IconPath;
+    var bannerPath = string.IsNullOrWhiteSpace(Model.BannerPath) ? "/assets/img/1920x600/back_ground.jpg" : Model.BannerPath;
+    var welcomeTitle = string.IsNullOrWhiteSpace(Model.WelcomeTitle) ? "Chào mừng bạn đến với " + storeName : Model.WelcomeTitle;
+    var welcomeMessage = string.IsNullOrWhiteSpace(Model.WelcomeMessage)
+        ? "Chào mừng bạn đến với " + storeName + "."
+        : Model.WelcomeMessage;
+    var aboutContent = string.IsNullOrWhiteSpace(Model.AboutContent)
+        ? storeName
+        : Model.AboutContent;
+    var missionContent = string.IsNullOrWhiteSpace(Model.MissionContent)
+        ? storeName
+        : Model.MissionContent;
+}
+
+<main id="content">
+    <div class="mb-5 space-bottom-lg-3">
+        <div class="py-3 py-lg-7">
+            <h6 class="font-weight-medium font-size-7 text-center my-1">Giới thiệu</h6>
+        </div>
+        <img class="img-fluid" src="@Url.Content(bannerPath)" width="1920" height="650" alt="@storeName">
+        <div class="container">
+            <div class="mb-lg-8">
+                <div class="col-lg-9 mx-auto">
+                    <div class="bg-white mt-n10 mt-md-n13 pt-5 pt-lg-7 px-3 px-md-5 pl-xl-10 pr-xl-4">
+                        <div class="mb-4 mb-lg-7 ml-xl-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <img src="@Url.Content(iconPath)" alt="@storeName" style="max-height:72px;max-width:180px;" class="mr-3" />
+                                <h6 class="font-weight-medium font-size-10 mb-0">@welcomeTitle</h6>
+                            </div>
+                            <div class="font-weight-medium font-italic">@Html.Raw(welcomeMessage)</div>
+                        </div>
+                        <div class="mb-4 pb-xl-1 ml-xl-4">
+                            <h6 class="font-weight-medium font-size-4 mb-4">Giới thiệu</h6>
+                            <div class="font-size-2">@Html.Raw(aboutContent)</div>
+                        </div>
+                        <div class="ml-xl-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="font-weight-medium font-size-4">Mục tiêu</h6>
+                                    <div class="font-size-2">@Html.Raw(missionContent)</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="font-weight-medium font-size-4">Thông tin</h6>
+                                    <p class="font-size-2">Tên: @storeName</p>
+                                    @if (!string.IsNullOrWhiteSpace(Model.Address))
+                                    {
+                                        <p class="font-size-2">Địa chỉ: @Model.Address</p>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(Model.Email))
+                                    {
+                                        <a href="mailto:@Model.Email" class="font-size-2 d-block link-black-100 mb-1">Email: @Model.Email</a>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(Model.Phone))
+                                    {
+                                        <a href="tel:@Model.Phone" class="font-size-2 d-block link-black-100">Số điện thoại: @Model.Phone</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

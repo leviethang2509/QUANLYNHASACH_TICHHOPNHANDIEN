@@ -1,0 +1,17 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+start
+:Người dùng nhập từ khóa;
+if (Cần autocomplete?) then (Có)
+  :Gọi ProductController.ListName(q);
+  :SanphamDraw.ListName truy vấn SQL;
+  :Trả JSON gợi ý;
+else (Không)
+  :Gọi ProductController.Search(keyWord,page,pagesize);
+  :SanphamDraw.getByKeyWord lọc Contains;
+  :Phân trang bằng X.PagedList;
+  :Nạp danh mục và sách gợi ý;
+  :Render view kết quả;
+endif
+stop
+@enduml

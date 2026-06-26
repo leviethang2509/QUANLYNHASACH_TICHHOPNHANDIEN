@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="427" viewBox="0 0 640 427">
+  <rect width="640" height="427" fill="#ffffff"/>
+  <rect x="24" y="24" width="592" height="379" rx="14" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+  <text x="40" y="62" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#111827">Kiến trúc QLNhaSach</text>
+  <text x="40" y="88" font-family="Arial, sans-serif" font-size="17" fill="#374151">ASP.NET MVC kết hợp SQL Server, Flask Face API và Gmail</text>
+  <rect x="40" y="102" width="560" height="46" rx="8" fill="#ffffff" stroke="#475569" /><text x="62" y="131" font-size="20" fill="#1f2937">Razor View và JavaScript xử lý tương tác người dùng</text><rect x="40" y="160" width="560" height="46" rx="8" fill="#ffffff" stroke="#475569" /><text x="62" y="189" font-size="20" fill="#1f2937">Controller điều phối tài khoản, sản phẩm, mượn sách</text><rect x="40" y="218" width="560" height="46" rx="8" fill="#ffffff" stroke="#475569" /><text x="62" y="247" font-size="20" fill="#1f2937">Service gọi Face API, Gmail, geofence</text><rect x="40" y="276" width="560" height="46" rx="8" fill="#ffffff" stroke="#475569" /><text x="62" y="305" font-size="20" fill="#1f2937">Mood.Draw/Mood.EF2 truy vấn Entity Framework</text><rect x="40" y="334" width="560" height="46" rx="8" fill="#ffffff" stroke="#475569" /><text x="62" y="363" font-size="20" fill="#1f2937">LogDbContext lưu face/geofence/rental logs</text>
+</svg>

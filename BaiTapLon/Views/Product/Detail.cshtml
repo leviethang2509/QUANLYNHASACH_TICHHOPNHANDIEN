@@ -1,0 +1,1086 @@
+﻿@model Mood.EF2.Sanpham
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var category = (Mood.EF2.Category)ViewBag.sanPhamCategory;
+    var splienquan = (List<Mood.EF2.Sanpham>)ViewBag.sanPhamLienquan;
+    var productReviews = (List<Mood.EF2.ProductReview>)ViewBag.ProductReviews ?? new List<Mood.EF2.ProductReview>();
+    var reviewCount = (int)(ViewBag.ProductReviewCount ?? 0);
+    var averageRating = (double)(ViewBag.ProductAverageRating ?? 0D);
+    var youtubeEmbedUrl = (ViewBag.YoutubeEmbedUrl as string) ?? "";
+}
+@if (Model != null)
+{
+    <!-- ====== MAIN CONTENT ====== -->
+    <div class="page-header border-bottom">
+        <div class="container">
+            <div class="d-md-flex justify-content-between align-items-center py-4">
+                <h1 class="page-title font-size-3 font-weight-medium mb-md-0 text-lh-lg">THÔNG TIN SẢN PHẨM</h1>
+                <nav class="woocommerce-breadcrumb font-size-2">
+                    <a href="/trang-chu" class="h-primary">Trang Chủ</a>
+                    <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                    <a href="/san-pham" class="h-primary">Sản Phẩm</a>
+                    <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                    @if (category != null)
+                    {
+                        <a href="/danh-muc/@category.MetaTitle-@category.IDCategory" class="h-primary">@category.TenTheloai</a>
+                        <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                    }
+                    @Model.Name
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main ">
+            <div class="product">
+                <div class="container mb-6">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-3 woocommerce-product-gallery woocommerce-product-gallery--with-images images">
+                            <figure class="woocommerce-product-gallery__wrapper pt-8 mb-0">
+                                <div class="js-slick-carousel u-slick"
+                                     data-autoplay="true"
+                                     data-autoplay-speed="5000"
+                                     data-pagi-classes="text-center u-slick__pagination my-4">
+                                    <div class="js-slide">
+                                        <img src="@Model.Images" width="300" height="452" alt="Image Description" class="mx-auto img-fluid">
+                                    </div>
+                                    <div class="js-slide">
+                                        <img src="@Model.Images" width="300" height="452" alt="Image Description" class="mx-auto img-fluid">
+                                    </div>
+                                    <div class="js-slide">
+                                        <img src="@Model.Images" width="300" height="452" alt="Image Description" class="mx-auto img-fluid">
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-md-8 col-lg-5 pl-0 summary entry-summary">
+                            <div class="space-top-2 pl-4 pl-wd-6 px-wd-7 pb-5">
+                                <h1 class="product_title entry-title font-size-7 mb-3">@Model.Name</h1>
+                                <div class="font-size-2 mb-4">
+                                    <span class="text-yellow-darker">
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span>
+                                    </span>
+                                    @if (Model.Soluong != 0)
+                                    {
+                                        <span class="ml-3">(Còn @Model.Soluong sản phẩm)</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="ml-3">(Tạm hết hàng)</span>
+                                    }
+                                    <span class="ml-3 font-weight-medium">Bởi (Tác Giả)</span>
+                                    <span class="ml-2 text-gray-600">@Model.TacGia</span>
+                                </div>
+                                <div class="woocommerce-product-details__short-description font-size-2 mb-5">
+                                    <p class="mb-0">@Model.Mota</p>
+
+                                </div>
+
+                                <ul class="list-unstyled my-0 list-features d-xl-flex align-items-center">
+                                    <li class="list-feature mb-6 mb-xl-0 mr-xl-4 mr-wd-6">
+                                        <div class="media">
+                                            <div class="feature__icon font-size-46 text-primary text-lh-xs">
+                                                <i class="glyph-icon flaticon-delivery"></i>
+                                            </div>
+                                            <div class="media-body ml-4">
+                                                <h6 class="feature__title">Miễn phí</h6>
+                                                <p class="feature__subtitle m-0"> Giao cho đơn trên 200k</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-feature mb-6 mb-xl-0">
+                                        <div class="media">
+                                            <div class="feature__icon font-size-46 text-primary text-lh-xs">
+                                                <i class="glyph-icon flaticon-credit"></i>
+                                            </div>
+                                            <div class="media-body ml-4">
+                                                <h6 class="feature__title">Thanh Toán</h6>
+                                                <p class="feature__subtitle m-0">100% Thanh Toán An Toàn</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="border mt-md-8">
+                                <div class="bg-white-100 py-4 px-5">
+                                    <p class="price font-size-22 font-weight-medium mb-0">
+                                        @{
+                                            var price_saleList = 0;
+                                            var price_dealList = 0;
+                                            var price_tietkiem = 0;
+                                            if (Model.PriceSale != null)
+                                            {
+                                                price_saleList = (int)Model.PriceSale;
+                                                price_dealList = (Model.GiaTien - Model.GiaTien / 100 * (price_saleList));
+                                                price_tietkiem = (int)(Model.GiaTien - price_dealList);
+                                            }
+                                        }
+                                        @if (price_saleList > 0)
+                                        {
+                                            <span class="woocommerce-Price-amount amount">
+                                                @price_dealList.ToString("N0")đ <span class="font-size-1 font-weight-regular text-red-1"><span class="woocommerce-Price-amount amount">Tiết kiệm @price_tietkiem.ToString("N0")đ</span></span>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="woocommerce-Price-amount amount">
+                                                @Model.GiaTien.ToString("N0") đ
+                                            </span>
+                                        }
+                                    </p>
+                                </div>
+                                <div class="py-4 px-5">
+
+
+
+                                    <form class="cart mb-4" method="post" enctype="multipart/form-data">
+                                        <label class="form-label font-size-2 font-weight-medium">Số Lượng</label>
+                                        <div class="quantity mb-4 d-flex align-items-center">
+                                            <!-- Quantity -->
+                                            <div class="border px-3 w-100">
+                                                <div class="js-quantity">
+                                                    <div class="d-flex align-items-center">
+
+                                                        <label class="screen-reader-text sr-only">Số Lượng</label>
+                                                        <a class="js-minus text-dark" href="javascript:;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="1px">
+                                                                <path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M-0.000,-0.000 L10.000,-0.000 L10.000,1.000 L-0.000,1.000 L-0.000,-0.000 Z" />
+                                                            </svg>
+                                                        </a>
+                                                        <input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+                                                        <a class="js-plus text-dark" href="javascript:;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="10px">
+                                                                <path fill-rule="evenodd" fill="rgb(22, 22, 25)" d="M10.000,5.000 L6.000,5.000 L6.000,10.000 L5.000,10.000 L5.000,5.000 L-0.000,5.000 L-0.000,4.000 L5.000,4.000 L5.000,-0.000 L6.000,-0.000 L6.000,4.000 L10.000,4.000 L10.000,5.000 Z" />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Quantity -->
+                                        </div>
+
+                                        <a href="javascript:void(0)" onclick="addcartHome(@Model.IDContent)" name="add-to-cart" value="7145" class="btn btn-block btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt">Thêm vào giỏ</a>
+                                        <button id="borrowBookBtn" type="button" class="btn btn-block btn-primary border-0 rounded-0 p-3 mt-3" disabled data-product-id="@Model.IDContent">Mượn sách</button>
+                                        <div id="borrowBookStatus" class="font-size-2 mt-2 text-gray-600">Đang kiểm tra vị trí...</div>
+                                    </form>
+
+                                    <div id="rentalRequestPanel" class="border p-4 mt-4" style="display:none;">
+                                        <h3 class="font-size-3 mb-3">Thông tin mượn sách</h3>
+                                        <div class="form-group">
+                                            <label for="rentalRequestDate">Ngày yêu cầu</label>
+                                            <input id="rentalRequestDate" type="date" class="form-control rounded-0" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rentalBorrowDays">Số ngày mượn</label>
+                                            <input id="rentalBorrowDays" type="number" min="1" max="30" value="7" class="form-control rounded-0" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rentalIdentityNumber">Số CMND/CCCD</label>
+                                            <input id="rentalIdentityNumber" type="text" class="form-control rounded-0 bg-light" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rentalIdentityFullName">Họ tên trên CMND/CCCD</label>
+                                            <input id="rentalIdentityFullName" type="text" class="form-control rounded-0 bg-light" readonly />
+                                        </div>
+                                        <div class="d-flex">
+                                            <button id="confirmRentalInfoBtn" type="button" class="btn btn-primary rounded-0 mr-2">Xác nhận</button>
+                                            <button id="cancelRentalInfoBtn" type="button" class="btn btn-outline-dark rounded-0">Hủy</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="rentalProfilePanel" class="face-auth-modal" hidden>
+                                        <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="rentalProfileTitle">
+                                            <div class="face-auth-header">
+                                                <h3 id="rentalProfileTitle" class="face-auth-title">Cập nhật thông tin mượn sách</h3>
+                                                <button id="closeRentalProfileBtn" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+                                            </div>
+                                            <div class="face-auth-body">
+                                                <div class="form-group">
+                                                    <label for="rentalProfileEmail">Gmail nhận thông báo</label>
+                                                    <input id="rentalProfileEmail" type="email" class="form-control rounded-0" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rentalProfileIdentityNumber">Số CMND/CCCD</label>
+                                                    <input id="rentalProfileIdentityNumber" type="text" class="form-control rounded-0" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rentalProfileIdentityFullName">Họ tên trên CMND/CCCD</label>
+                                                    <input id="rentalProfileIdentityFullName" type="text" class="form-control rounded-0" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rentalProfileIdentityFrontFile">Ảnh CMND/CCCD mặt trước</label>
+                                                    <input id="rentalProfileIdentityFrontFile" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="form-control rounded-0" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rentalProfileIdentityBackFile">Ảnh CMND/CCCD mặt sau</label>
+                                                    <input id="rentalProfileIdentityBackFile" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="form-control rounded-0" />
+                                                </div>
+                                                <div class="font-size-2 mb-3 text-gray-600">Ảnh CMND/CCCD và OCR không bắt buộc. Nếu máy chủ chưa có Tesseract, bạn vẫn có thể nhập tay số giấy tờ và họ tên rồi lưu.</div>
+                                                <div id="rentalProfileStatus" class="font-size-2 mb-3 text-gray-600"></div>
+                                                <div class="face-auth-actions">
+                                                    <button id="ocrRentalProfileBtn" type="button" class="btn btn-outline-dark rounded-0">Đọc CMND/CCCD</button>
+                                                    <button id="saveRentalProfileBtn" type="button" class="btn btn-primary rounded-0">Lưu và tiếp tục</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="rentalFacePanel" class="face-auth-modal" hidden>
+                                        <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="rentalFaceTitle">
+                                            <div class="face-auth-header">
+                                                <h3 id="rentalFaceTitle" class="face-auth-title">Xác nhận khuôn mặt</h3>
+                                                <button id="closeRentalFaceBtn" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+                                            </div>
+                                            <div class="face-auth-body">
+                                                <video id="rentalFaceVideo" class="face-auth-video" autoplay muted playsinline></video>
+                                                <div id="rentalFaceStatus" class="font-size-2 mt-2 text-gray-600"></div>
+                                                <div class="face-auth-actions">
+                                                    <button id="captureRentalFaceBtn" type="button" class="btn btn-primary rounded-0">Nhận diện và xác nhận</button>
+                                                    <button id="cancelRentalFaceBtn" type="button" class="btn btn-outline-dark rounded-0">Đóng</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ul class="list-unstyled nav d-block d-md-flex justify-content-center">
+                                        <li class="mr-md-4 mb-4 mb-md-0">
+                                            <button type="button" class="btn btn-link h-primary p-0 js-favorite-toggle" data-icon-only="true" data-product-id="@Model.IDContent" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="flaticon-heart font-size-4"></i></button>
+                                        </li>
+                                        <li class="mr-md-4 mb-4 mb-md-0">
+                                            @if (!string.IsNullOrWhiteSpace(Model.ReviewFilePath))
+                                            {
+                                                <button type="button" class="btn btn-link h-primary p-0" data-toggle="modal" data-target="#bookReviewFileModal"><i class="fas fa-file-alt mr-2"></i> Xem review sách</button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-link text-muted p-0" disabled><i class="fas fa-file-alt mr-2"></i> Hiện chưa được xem review</button>
+                                            }
+                                        </li>
+                                        <li class="">
+                                            <a href="#" class="h-primary"><i class="flaticon-share mr-2"></i> Chia Sẻ</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.ReviewFilePath))
+                {
+                    <div class="modal fade" id="bookReviewFileModal" tabindex="-1" role="dialog" aria-labelledby="bookReviewFileTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content rounded-0">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="bookReviewFileTitle">Review sách: @Model.Name</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body p-0">
+                                    <iframe src="@Url.Action("ReviewFilePreview", "Product", new { id = Model.IDContent })" title="Review sách" style="width:100%;height:75vh;border:0;"></iframe>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="@Url.Action("ReviewFilePreview", "Product", new { id = Model.IDContent })" target="_blank" class="btn btn-outline-dark rounded-0">Mở trang xem</a>
+                                    <a href="@Url.Action("ReviewFileDownload", "Product", new { id = Model.IDContent })" class="btn btn-dark rounded-0">Tải file</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!-- Features Section -->
+                <div class="woocommerce-tabs wc-tabs-wrapper mb-10">
+                    <!-- Nav Classic -->
+                    <ul class="tabs wc-tabs nav border-bottom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble" id="pills-tab" role="tablist">
+                        <li class="flex-shrink-0 flex-md-shrink-1 nav-item">
+                            <a class="py-4 nav-link font-weight-medium active" id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="true">
+                                Mô Tả Ngắn
+                            </a>
+                        </li>
+                        <li class="flex-shrink-0 flex-md-shrink-1 nav-item">
+                            <a class="py-4 nav-link font-weight-medium" id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="false">
+                                Chi Tiết
+                            </a>
+                        </li>
+                        <li class="flex-shrink-0 flex-md-shrink-1 nav-item">
+                            <a class="py-4 nav-link font-weight-medium" id="pills-three-example1-tab" data-toggle="pill" href="#pills-three-example1" role="tab" aria-controls="pills-three-example1" aria-selected="false">
+                                Videos
+                            </a>
+                        </li>
+                        <li class="flex-shrink-0 flex-md-shrink-1 nav-item">
+                            <a class="py-4 nav-link font-weight-medium" id="pills-four-example1-tab" data-toggle="pill" href="#pills-four-example1" role="tab" aria-controls="pills-four-example1" aria-selected="false">
+                                Đánh Giá
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Nav Classic -->
+                    <!-- Tab Content -->
+                    <div class="tab-content container" id="pills-tabContent">
+                        <div class="woocommerce-Tabs-panel panel col-xl-8 offset-xl-2 entry-content wc-tab tab-pane fade pt-9 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab">
+                            <!-- Mockup Block -->
+                            <p class="mb-0">@Model.ChiTiet</p>
+
+                            <!-- End Mockup Block -->
+                        </div>
+                        <div class="woocommerce-Tabs-panel panel col-xl-8 offset-xl-2 entry-content wc-tab tab-pane fade pt-9" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab">
+                            <!-- Mockup Block -->
+                            <div class="table-responsive mb-4">
+                                <table class="table table-hover table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <th class="px-4 px-xl-5">Định Dạng: </th>
+                                            <td class="">Bìa Cứng | 384 trang</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="px-4 px-xl-5">Thông số</th>
+                                            <td>9126 x 194 x 28mm | 301g</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="px-4 px-xl-5">Ngày xuất bản: </th>
+                                            <td>20 Dec 2020</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="px-4 px-xl-5">Số lượng:</th>
+                                            <td>@Model.Soluong tác phẩm</td>
+                                        </tr>
+
+                                       
+                                        <tr>
+                                            <th class="px-4 px-xl-5">Ngôn Ngữ:</th>
+                                            <td>Tiếng Việt</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Mockup Block -->
+                        </div>
+                       
+                        <div class="woocommerce-Tabs-panel panel col-xl-8 offset-xl-2 entry-content wc-tab tab-pane fade pt-9" id="pills-three-example1" role="tabpanel" aria-labelledby="pills-three-example1-tab">
+                            @if (!string.IsNullOrWhiteSpace(youtubeEmbedUrl))
+                            {
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="@youtubeEmbedUrl" allowfullscreen title="Video @Model.Name"></iframe>
+                                </div>
+                            }
+                            else
+                            {
+                                <p class="text-gray-700">Sản phẩm này chưa có video.</p>
+                            }
+                        </div>
+
+                        <div class="woocommerce-Tabs-panel panel col-xl-8 offset-xl-2 entry-content wc-tab tab-pane fade pt-9" id="pills-four-example1" role="tabpanel" aria-labelledby="pills-four-example1-tab">
+                            <h4 class="font-size-3">Khách hàng đánh giá</h4>
+                            <div class="row mb-8">
+                                <div class="col-md-6 mb-6 mb-md-0">
+                                    <div class="d-flex  align-items-center mb-4">
+                                        <span class="font-size-15 font-weight-bold">@averageRating.ToString("0.0")</span>
+                                        <div class="ml-3 h6 mb-0">
+                                            <span class="font-weight-normal">@reviewCount lượt</span>
+                                            <div class="text-yellow-darker">
+                                                @for (var i = 1; i <= 5; i++)
+                                                {
+                                                    <small class="@(i <= Math.Round(averageRating) ? "fas" : "far") fa-star"></small>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <form id="productReviewForm">
+                                        <input type="hidden" name="productId" value="@Model.IDContent" />
+                                        <div class="form-group">
+                                            <label>Số sao</label>
+                                            <select name="rating" class="form-control rounded-0">
+                                                <option value="5">5 sao</option>
+                                                <option value="4">4 sao</option>
+                                                <option value="3">3 sao</option>
+                                                <option value="2">2 sao</option>
+                                                <option value="1">1 sao</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Bình luận</label>
+                                            <textarea name="comment" rows="4" class="form-control rounded-0" maxlength="1000"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-dark rounded-0">Gửi đánh giá</button>
+                                        <div id="productReviewStatus" class="font-size-2 mt-2 text-gray-700"></div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <h4 class="font-size-3 mb-4">Bình luận gần đây</h4>
+
+                            <ul class="list-unstyled mb-8">
+                                @if (productReviews.Any())
+                                {
+                                    foreach (var review in productReviews)
+                                    {
+                                        <li class="mb-4 pb-4 border-bottom">
+                                            <div class="d-flex justify-content-between">
+                                                <strong>@review.UserName</strong>
+                                                <span class="text-yellow-darker">
+                                                    @for (var i = 1; i <= 5; i++)
+                                                    {
+                                                        <small class="@(i <= review.Rating ? "fas" : "far") fa-star"></small>
+                                                    }
+                                                </span>
+                                            </div>
+                                            <div class="font-size-2 text-gray-700 mb-2">@review.CreatedAt.ToString("dd/MM/yyyy HH:mm")</div>
+                                            <p class="mb-0">@review.Comment</p>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="mb-4 pb-5 border-bottom">Chưa có bình luận nào cho sách này.</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Tab Content -->
+                </div>
+                <!-- End Features Section -->
+
+
+                <section class="space-bottom-3">
+                    <div class="container">
+                        <header class="mb-5 d-md-flex justify-content-between align-items-center">
+                            <h2 class="font-size-7 mb-3 mb-md-0">Sách Liên Quan</h2>
+                        </header>
+
+                        <div class="js-slick-carousel products no-gutters border-top border-left border-right"
+                             data-arrows-classes="u-slick__arrow u-slick__arrow-centered--y"
+                             data-autoplay="true"
+                             data-autoplay-speed="5000"
+                             data-arrow-left-classes="fas fa-chevron-left u-slick__arrow-inner u-slick__arrow-inner--left ml-lg-n10"
+                             data-arrow-right-classes="fas fa-chevron-right u-slick__arrow-inner u-slick__arrow-inner--right mr-lg-n10"
+                             data-slides-show="5"
+                             data-responsive='[{
+                               "breakpoint": 1500,
+                               "settings": {
+                                 "slidesToShow": 4
+                               }
+                            },{
+                               "breakpoint": 1199,
+                               "settings": {
+                                 "slidesToShow": 3
+                               }
+                            }, {
+                               "breakpoint": 992,
+                               "settings": {
+                                 "slidesToShow": 2
+                               }
+                            }, {
+                               "breakpoint": 554,
+                               "settings": {
+                                 "slidesToShow": 2
+                               }
+                            }]'>
+                            @foreach (var item in splienquan)
+                            {
+                                var price_salecategory = 0;
+                                if (item.PriceSale != null)
+                                {
+                                    price_salecategory = (int)item.PriceSale;
+                                }
+
+                                var price_dealList_category = (item.GiaTien - item.GiaTien / 100 * (price_saleList));
+                                var url = "/chi-tiet/" + item.MetaTitle + "-" + item.IDContent;
+                                <div class="product">
+                                    <div class="product__inner overflow-hidden p-3 p-md-4d875">
+                                        <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
+                                            <div class="woocommerce-loop-product__thumbnail">
+                                                <a href="@url" class="d-block"><img src="@item.Images" width="120" height="180" class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid" alt="image-description"></a>
+                                                @if (price_salecategory > 0)
+                                                {
+                                                    <span class="badge badge-md badge-primary-green position-absolute badge-pos--top-right text-white rounded-circle d-flex flex-column align-items-center justify-content-center">
+                                                        -@price_salecategory%
+                                                    </span>
+                                                }
+                                            </div>
+                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                                <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
+                                                <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
+                                                <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@item.TacGia</a></div>
+                                                <div class="price d-flex align-items-center font-weight-medium font-size-3">
+                                                    @if (price_salecategory > 0)
+                                                    {
+                                                        <ins class="text-decoration-none mr-2">@price_dealList_category.ToString("N0")</ins>
+                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                    }
+                                                    else
+                                                    {
+                                                        <ins class="text-decoration-none mr-2">@item.GiaTien.ToString("N0")đ</ins>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="product__hover d-flex align-items-center">
+                                                <a href="javascript:void(0)" onclick="addcartHome(@item.IDContent)" class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
+                                                    <span class="product__add-to-cart">Thêm Vào Giỏ</span>
+                                                    <span class="product__add-to-cart-icon font-size-4"><i class="flaticon-icon-126515"></i></span>
+                                                </a>
+                                                <a href="@url" class="mr-1 h-p-bg btn btn-outline-primary border-0">
+                                                    <i class="flaticon-switch"></i>
+                                                </a>
+                                                <a href="@url" class="h-p-bg btn btn-outline-primary border-0">
+                                                    <i class="flaticon-heart"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <!-- ====== END MAIN CONTENT ====== -->
+    <script src="/Scripts/FaceCapture.js"></script>
+    <script>
+        (function () {
+            var reviewForm = document.getElementById('productReviewForm');
+            var reviewStatus = document.getElementById('productReviewStatus');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    reviewStatus.textContent = 'Đang lưu đánh giá...';
+                    fetch('/Product/AddReview', {
+                        method: 'POST',
+                        body: new FormData(reviewForm),
+                        credentials: 'same-origin'
+                    }).then(function (response) { return response.json(); })
+                        .then(function (result) {
+                            reviewStatus.textContent = (result && result.message) || 'Không thể lưu đánh giá.';
+                            if (result && result.requireLogin) {
+                                setTimeout(function () { window.location.href = '/dang-nhap'; }, 900);
+                            } else if (result && result.success) {
+                                setTimeout(function () { window.location.reload(); }, 900);
+                            }
+                        }).catch(function () {
+                            reviewStatus.textContent = 'Không thể lưu đánh giá.';
+                        });
+                });
+            }
+
+            var borrowButton = document.getElementById('borrowBookBtn');
+            var status = document.getElementById('borrowBookStatus');
+            var requestPanel = document.getElementById('rentalRequestPanel');
+            var facePanel = document.getElementById('rentalFacePanel');
+            var requestDate = document.getElementById('rentalRequestDate');
+            var borrowDays = document.getElementById('rentalBorrowDays');
+            var identityNumber = document.getElementById('rentalIdentityNumber');
+            var identityFullName = document.getElementById('rentalIdentityFullName');
+            var rentalProfilePanel = document.getElementById('rentalProfilePanel');
+            var closeRentalProfileBtn = document.getElementById('closeRentalProfileBtn');
+            var rentalProfileEmail = document.getElementById('rentalProfileEmail');
+            var rentalProfileIdentityNumber = document.getElementById('rentalProfileIdentityNumber');
+            var rentalProfileIdentityFullName = document.getElementById('rentalProfileIdentityFullName');
+            var rentalProfileIdentityFrontFile = document.getElementById('rentalProfileIdentityFrontFile');
+            var rentalProfileIdentityBackFile = document.getElementById('rentalProfileIdentityBackFile');
+            var rentalProfileStatus = document.getElementById('rentalProfileStatus');
+            var ocrRentalProfileBtn = document.getElementById('ocrRentalProfileBtn');
+            var saveRentalProfileBtn = document.getElementById('saveRentalProfileBtn');
+            var confirmInfoButton = document.getElementById('confirmRentalInfoBtn');
+            var cancelInfoButton = document.getElementById('cancelRentalInfoBtn');
+            var captureFaceButton = document.getElementById('captureRentalFaceBtn');
+            var cancelFaceButton = document.getElementById('cancelRentalFaceBtn');
+            var closeFaceButton = document.getElementById('closeRentalFaceBtn');
+            var faceVideo = document.getElementById('rentalFaceVideo');
+            var faceStatus = document.getElementById('rentalFaceStatus');
+            var faceStream = null;
+            var rentalChallengeToken = null;
+            var rentalChallengeInstruction = null;
+            var rentalActionCheckTimer = null;
+            var rentalActionCheckAttempts = 0;
+            var rentalActionMatched = false;
+            var activeStoreName = 'nha sach';
+            if (!borrowButton || !status) return;
+
+            function setStatus(message, isError) {
+                status.textContent = message;
+                status.className = isError ? 'font-size-2 mt-2 text-danger' : 'font-size-2 mt-2 text-success';
+            }
+
+            function setFaceStatus(message, isError) {
+                if (!faceStatus) return;
+                faceStatus.textContent = message;
+                faceStatus.className = isError ? 'font-size-2 mt-2 text-danger' : 'font-size-2 mt-2 text-success';
+            }
+
+            function updateRentalBadge(count) {
+                var badge = document.getElementById('activeRentalCountBadge');
+                if (!badge || count === undefined || count === null) return;
+                badge.textContent = count;
+                if (count > 0) {
+                    badge.classList.remove('d-none');
+                } else {
+                    badge.classList.add('d-none');
+                }
+            }
+
+            function setRentalProfileStatus(message, isError) {
+                if (!rentalProfileStatus) return;
+                rentalProfileStatus.textContent = message || '';
+                rentalProfileStatus.className = isError ? 'font-size-2 mb-3 text-danger' : 'font-size-2 mb-3 text-success';
+            }
+
+            function openRentalProfilePanel(profile) {
+                profile = profile || {};
+                rentalProfileEmail.value = profile.notificationEmail || '';
+                rentalProfileIdentityNumber.value = profile.identityNumber || '';
+                rentalProfileIdentityFullName.value = profile.identityFullName || '';
+                rentalProfilePanel.hidden = false;
+                document.body.classList.add('face-auth-modal-open');
+                setRentalProfileStatus('Vui lòng cập nhật Gmail nhận thông báo, số CMND/CCCD và họ tên trước khi mượn.', false);
+            }
+
+            function closeRentalProfilePanel() {
+                rentalProfilePanel.hidden = true;
+                document.body.classList.remove('face-auth-modal-open');
+            }
+
+            function openRentalRequestPanel() {
+                requestDate.value = today();
+                requestPanel.style.display = 'block';
+                facePanel.hidden = true;
+                setStatus('Thông tin mượn sách đã lấy từ hồ sơ. Bạn chỉ thay đổi được số ngày mượn.', false);
+            }
+
+            function checkRentalProfileBeforeBorrow() {
+                return fetch('/Rental/RentalProfileStatus', {
+                    method: 'GET',
+                    credentials: 'same-origin'
+                }).then(function (response) { return response.json(); })
+                    .then(function (profile) {
+                        if (!profile || !profile.success) {
+                            setStatus((profile && profile.error) || 'Không thể kiểm tra hồ sơ mượn sách.', true);
+                            return;
+                        }
+
+                        if (profile.requireUpdate) {
+                            openRentalProfilePanel(profile);
+                            return;
+                        }
+
+                        if (identityNumber) identityNumber.value = profile.identityNumber || '';
+                        if (identityFullName) identityFullName.value = profile.identityFullName || '';
+                        openRentalRequestPanel();
+                    });
+            }
+
+            function openFacePanel() {
+                facePanel.hidden = false;
+                document.body.classList.add('face-auth-modal-open');
+            }
+
+            function closeFacePanel(showRequestPanel) {
+                clearRentalActionCheckTimer();
+                if (window.FaceCapture) FaceCapture.stopCamera(faceStream);
+                faceStream = null;
+                rentalChallengeToken = null;
+                rentalChallengeInstruction = null;
+                rentalActionMatched = false;
+                facePanel.hidden = true;
+                document.body.classList.remove('face-auth-modal-open');
+                if (showRequestPanel) {
+                    requestPanel.style.display = 'block';
+                    setStatus('Đã hủy xác nhận khuôn mặt.', true);
+                }
+            }
+
+            function clearRentalActionCheckTimer() {
+                if (rentalActionCheckTimer) {
+                    clearTimeout(rentalActionCheckTimer);
+                    rentalActionCheckTimer = null;
+                }
+            }
+
+            function loadRentalChallenge() {
+                var form = new FormData();
+                form.append('purpose', 'Rental');
+                return fetch('/FaceAuth/CreateChallenge', {
+                    method: 'POST',
+                    body: form,
+                    credentials: 'same-origin'
+                }).then(function (response) { return response.json(); })
+                    .then(function (result) {
+                        if (!result || !result.success) {
+                            throw new Error('Không thể tạo yêu cầu xác thực.');
+                        }
+
+                        rentalChallengeToken = result.token;
+                        rentalChallengeInstruction = result.instruction;
+                        rentalActionMatched = false;
+                        setFaceStatus('Yêu cầu: ' + rentalChallengeInstruction + '.', false);
+                    });
+            }
+
+            function checkRentalActionFrame() {
+                return FaceCapture.captureBlob(faceVideo)
+                    .then(function (blob) {
+                        return FaceCapture.uploadFace('/FaceAuth/CheckChallengeAction', blob, {
+                            purpose: 'Rental',
+                            challengeToken: rentalChallengeToken
+                        });
+                    });
+            }
+
+            function startRentalActionCheckLoop() {
+                clearRentalActionCheckTimer();
+                rentalActionCheckAttempts = 0;
+                rentalActionMatched = false;
+                captureFaceButton.disabled = true;
+
+                function tick() {
+                    if (!faceStream || !rentalChallengeToken) return;
+                    rentalActionCheckAttempts += 1;
+                    setFaceStatus('Yêu cầu: ' + rentalChallengeInstruction + '. Đang tự kiểm tra hành động...', false);
+                    checkRentalActionFrame()
+                        .then(function (result) {
+                            if (result && result.actionMatched) {
+                                rentalActionMatched = true;
+                                captureFaceButton.disabled = false;
+                                setFaceStatus('Đã nhận diện đúng hành động. Giữ mặt trong khung rồi bấm Nhận diện và xác nhận.', false);
+                                return;
+                            }
+
+                            if (rentalActionCheckAttempts >= 15) {
+                                captureFaceButton.disabled = false;
+                                setFaceStatus('Chưa nhận diện đúng hành động. Vui lòng làm lại hoặc bấm nhận diện để thử tiếp.', true);
+                                return;
+                            }
+
+                            rentalActionCheckTimer = setTimeout(tick, 700);
+                        })
+                        .catch(function () {
+                            if (rentalActionCheckAttempts >= 15) {
+                                captureFaceButton.disabled = false;
+                                setFaceStatus('Không thể kiểm tra hành động. Vui lòng thử lại.', true);
+                                return;
+                            }
+
+                            rentalActionCheckTimer = setTimeout(tick, 900);
+                        });
+                }
+
+                rentalActionCheckTimer = setTimeout(tick, 800);
+            }
+
+            function refreshRentalChallengeAfterFailure() {
+                rentalChallengeToken = null;
+                rentalChallengeInstruction = null;
+                rentalActionMatched = false;
+                if (!faceStream) return;
+                loadRentalChallenge()
+                    .then(function () {
+                        setFaceStatus('Yêu cầu mới: ' + rentalChallengeInstruction + '. Hệ thống sẽ tự kiểm tra hành động lại.', false);
+                        startRentalActionCheckLoop();
+                    })
+                    .catch(function () {
+                        setFaceStatus('Không thể tạo yêu cầu xác thực mới. Vui lòng đóng và thử lại.', true);
+                    });
+            }
+
+            function runRentalFaceVerify(isAuto) {
+                var productId = borrowButton.getAttribute('data-product-id');
+                if (!rentalChallengeToken) {
+                    setFaceStatus('Vui lòng mở lại camera để nhận yêu cầu xác thực mới.', true);
+                    return;
+                }
+
+                if (!rentalActionMatched) {
+                    startRentalActionCheckLoop();
+                    return;
+                }
+
+                clearRentalActionCheckTimer();
+                captureFaceButton.disabled = true;
+                setFaceStatus(isAuto ? 'Đang tự xác nhận khuôn mặt...' : 'Đang xác nhận khuôn mặt...', false);
+
+                FaceCapture.captureBlob(faceVideo)
+                    .then(function (blob) {
+                        return FaceCapture.uploadFace('/FaceAuth/VerifyRentalFace', blob, {
+                            productId: productId,
+                            challengeToken: rentalChallengeToken
+                        });
+                    })
+                    .then(function (faceResult) {
+                        if (!faceResult || !faceResult.success) {
+                            setFaceStatus((faceResult && (faceResult.message || faceResult.error)) || 'Xác nhận khuôn mặt thất bại. Vui lòng thử lại.', true);
+                            captureFaceButton.disabled = false;
+                            return null;
+                        }
+
+                        setFaceStatus('Xác nhận khuôn mặt thành công. Đang gửi yêu cầu mượn...', false);
+                        closeFacePanel(false);
+                        borrowButton.disabled = true;
+                        borrowButton.textContent = 'Đang gửi yêu cầu';
+                        setStatus('Đã xác thực khuôn mặt. Đang gửi yêu cầu mượn sách...', false);
+                        return postForm('/Rental/RequestRental', {
+                            productId: productId,
+                            requestDate: requestDate.value,
+                            borrowDays: borrowDays.value,
+                            faceToken: faceResult.faceToken,
+                            details: 'ProductID=' + productId,
+                            identityNumber: identityNumber.value,
+                            identityFullName: identityFullName.value
+                        });
+                    })
+                    .then(function (rentalResult) {
+                        if (!rentalResult) return;
+
+                        if (rentalResult.success) {
+                            updateRentalBadge(rentalResult.activeRentalCount);
+                            markRentalRequested();
+                        } else {
+                            enableBorrow();
+                            setStatus((rentalResult && rentalResult.error) || 'Không thể gửi yêu cầu mượn sách.', true);
+                        }
+                    })
+                    .catch(function () {
+                        setFaceStatus('Không thể chụp hoặc gửi ảnh khuôn mặt.', true);
+                        enableBorrow();
+                        setStatus('Không thể gửi yêu cầu mượn sách sau khi xác thực. Vui lòng thử lại.', true);
+                    })
+                    .then(function () {
+                        captureFaceButton.disabled = false;
+                    });
+            }
+
+            function postForm(url, fields) {
+                var form = new FormData();
+                Object.keys(fields).forEach(function (key) {
+                    if (fields[key] !== undefined && fields[key] !== null) {
+                        form.append(key, fields[key]);
+                    }
+                });
+                return fetch(url, {
+                    method: 'POST',
+                    body: form,
+                    credentials: 'same-origin'
+                }).then(function (response) { return response.json(); });
+            }
+
+            function today() {
+                var d = new Date();
+                return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+            }
+
+            function enableBorrow() {
+                borrowButton.disabled = false;
+                borrowButton.textContent = 'Mượn sách';
+                setStatus('Bạn đang ở trong khu vực hỗ trợ mượn sách tại ' + activeStoreName + '.', false);
+            }
+
+            function disableBorrow(message) {
+                borrowButton.disabled = true;
+                setStatus(message || 'Chỉ hỗ trợ mượn tại cửa hàng.', true);
+            }
+
+            function markAlreadyBorrowing() {
+                borrowButton.disabled = true;
+                borrowButton.textContent = 'Đang mượn sách';
+                setStatus('Bạn đang mượn hoặc đang chờ duyệt cuốn sách này.', true);
+            }
+
+            function markRentalRequested() {
+                borrowButton.disabled = true;
+                borrowButton.textContent = 'Đang chờ duyệt';
+                requestPanel.style.display = 'none';
+                setStatus('Yêu cầu mượn sách đã được gửi. Vui lòng chờ admin xác nhận.', false);
+            }
+
+            if (!navigator.geolocation) {
+                disableBorrow('Trình duyệt không hỗ trợ định vị.');
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                postForm('/Geofence/CheckGeofence', {
+                    lat: position.coords.latitude,
+                    lon: position.coords.longitude
+                }).then(function (result) {
+                    if (result && result.inZone) {
+                        activeStoreName = result.storeName || activeStoreName;
+                        return postForm('/Rental/CheckActiveRental', {
+                            productId: borrowButton.getAttribute('data-product-id')
+                        }).then(function (rentalState) {
+                            if (rentalState && rentalState.hasActiveRental) {
+                                markAlreadyBorrowing();
+                            } else {
+                                enableBorrow();
+                            }
+                        });
+                    } else {
+                        if (result && result.storeName) activeStoreName = result.storeName;
+                        disableBorrow((result && result.error) || ('Chỉ hỗ trợ mượn sách tại ' + activeStoreName + '.'));
+                    }
+                }).catch(function () {
+                    disableBorrow('Không thể kiểm tra vị trí.');
+                });
+            }, function () {
+                disableBorrow('Vui lòng cấp quyền vị trí để mượn sách.');
+            }, {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 60000
+            });
+
+            borrowButton.addEventListener('click', function () {
+                checkRentalProfileBeforeBorrow().catch(function () {
+                    setStatus('Không thể kiểm tra hồ sơ mượn sách.', true);
+                });
+            });
+
+            closeRentalProfileBtn.addEventListener('click', closeRentalProfilePanel);
+
+            rentalProfilePanel.addEventListener('click', function (event) {
+                if (event.target === rentalProfilePanel) {
+                    closeRentalProfilePanel();
+                }
+            });
+
+            ocrRentalProfileBtn.addEventListener('click', function () {
+                var hasFront = rentalProfileIdentityFrontFile.files && rentalProfileIdentityFrontFile.files.length;
+                var hasBack = rentalProfileIdentityBackFile.files && rentalProfileIdentityBackFile.files.length;
+                if (!hasFront && !hasBack) {
+                    setRentalProfileStatus('Vui lòng chọn ảnh CMND/CCCD mặt trước hoặc mặt sau để OCR.', true);
+                    return;
+                }
+
+                ocrRentalProfileBtn.disabled = true;
+                setRentalProfileStatus('Đang đọc CMND/CCCD...', false);
+                postForm('/FaceAuth/OcrCmnd', {
+                    front_file: hasFront ? rentalProfileIdentityFrontFile.files[0] : null,
+                    back_file: hasBack ? rentalProfileIdentityBackFile.files[0] : null
+                }).then(function (result) {
+                    if (!result || !result.success) {
+                        setRentalProfileStatus(((result && result.message) || 'Không thể đọc CMND/CCCD.') + ' Bạn có thể nhập tay và bấm Lưu.', true);
+                        return;
+                    }
+
+                    var fields = result.fields || {};
+                    rentalProfileIdentityNumber.value = fields.identityNumber || rentalProfileIdentityNumber.value;
+                    rentalProfileIdentityFullName.value = fields.fullName || rentalProfileIdentityFullName.value;
+                    setRentalProfileStatus(result.faceMatched ? 'Đã đọc CMND/CCCD và khuôn mặt khớp tài khoản.' : 'Đã đọc CMND/CCCD. Vui lòng kiểm tra dữ liệu.', false);
+                }).catch(function () {
+                    setRentalProfileStatus('Không thể đọc CMND/CCCD.', true);
+                }).then(function () {
+                    ocrRentalProfileBtn.disabled = false;
+                });
+            });
+
+            saveRentalProfileBtn.addEventListener('click', function () {
+                if (!rentalProfileEmail.value.trim() || !rentalProfileIdentityNumber.value.trim() || !rentalProfileIdentityFullName.value.trim()) {
+                    setRentalProfileStatus('Vui lòng nhập Gmail nhận thông báo, số CMND/CCCD và họ tên.', true);
+                    return;
+                }
+
+                saveRentalProfileBtn.disabled = true;
+                setRentalProfileStatus('Đang lưu thông tin...', false);
+                postForm('/Rental/UpdateRentalProfile', {
+                    notificationEmail: rentalProfileEmail.value,
+                    identityNumber: rentalProfileIdentityNumber.value,
+                    identityFullName: rentalProfileIdentityFullName.value,
+                    identityCardFrontFile: rentalProfileIdentityFrontFile.files && rentalProfileIdentityFrontFile.files.length ? rentalProfileIdentityFrontFile.files[0] : null,
+                    identityCardBackFile: rentalProfileIdentityBackFile.files && rentalProfileIdentityBackFile.files.length ? rentalProfileIdentityBackFile.files[0] : null
+                }).then(function (result) {
+                    if (!result || !result.success) {
+                        setRentalProfileStatus((result && result.error) || 'Không thể lưu thông tin mượn sách.', true);
+                        return;
+                    }
+
+                    if (identityNumber) identityNumber.value = rentalProfileIdentityNumber.value;
+                    if (identityFullName) identityFullName.value = rentalProfileIdentityFullName.value;
+                    closeRentalProfilePanel();
+                    openRentalRequestPanel();
+                }).catch(function () {
+                    setRentalProfileStatus('Không thể lưu thông tin mượn sách.', true);
+                }).then(function () {
+                    saveRentalProfileBtn.disabled = false;
+                });
+            });
+
+            cancelInfoButton.addEventListener('click', function () {
+                requestPanel.style.display = 'none';
+                setStatus('Đã hủy thao tác mượn sách.', true);
+            });
+
+            confirmInfoButton.addEventListener('click', function () {
+                var productId = borrowButton.getAttribute('data-product-id');
+                var days = parseInt(borrowDays.value, 10);
+                if (!days || days < 1 || days > 30) {
+                    setStatus('Số ngày mượn phải từ 1 đến 30.', true);
+                    return;
+                }
+                confirmInfoButton.disabled = true;
+                setStatus('Đang kiểm tra tồn kho...', false);
+                postForm('/Rental/CheckStock', {
+                    productId: productId,
+                    quantity: 1
+                }).then(function (stockResult) {
+                    confirmInfoButton.disabled = false;
+                    if (!stockResult || !stockResult.available) {
+                        setStatus('Sách hiện đã hết hàng, không thể gửi yêu cầu mượn.', true);
+                        return;
+                    }
+
+                    requestPanel.style.display = 'none';
+                    openFacePanel();
+                    setFaceStatus('Đang tạo yêu cầu xác thực...', false);
+                    if (window.FaceCapture) {
+                        loadRentalChallenge()
+                            .then(function () {
+                                return FaceCapture.startCamera(faceVideo, faceStatus);
+                            })
+                            .then(function (stream) {
+                                faceStream = stream;
+                                setFaceStatus('Yêu cầu: ' + rentalChallengeInstruction + '. Hệ thống sẽ tự nhận diện khi bạn làm đúng hành động.', false);
+                                startRentalActionCheckLoop();
+                            }).catch(function () {
+                                setFaceStatus('Không thể mở camera hoặc tạo yêu cầu xác thực.', true);
+                            });
+                    }
+                }).catch(function () {
+                    confirmInfoButton.disabled = false;
+                    setStatus('Không thể kiểm tra tồn kho.', true);
+                });
+            });
+
+            cancelFaceButton.addEventListener('click', function () {
+                closeFacePanel(true);
+            });
+
+            closeFaceButton.addEventListener('click', function () {
+                closeFacePanel(true);
+            });
+
+            facePanel.addEventListener('click', function (event) {
+                if (event.target === facePanel) {
+                    closeFacePanel(true);
+                }
+            });
+
+            captureFaceButton.addEventListener('click', function () {
+                runRentalFaceVerify(false);
+            });
+
+            window.addEventListener('beforeunload', function () {
+                if (window.FaceCapture) FaceCapture.stopCamera(faceStream);
+            });
+        })();
+    </script>
+    }else
+    {
+        Url.Action("NotFound");
+    }

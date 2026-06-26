@@ -1,0 +1,201 @@
+# Lịch sử xây dựng hình database
+
+## 2026-05-10 23:44:34 - Xây dựng sơ đồ database draw.io và cập nhật BaoCaoMauSua_Version3
+
+- Kế hoạch: `KeHoach_XayDung_CauTrucBang_DrawIO_Version3.md`.
+- Thư mục draw.io: `database_drawio`.
+- Thư mục PNG export: `database_drawio_exports`.
+- Kết quả Word: `BaoCaoMauSua_Version3.docx` (updated_original).
+- Media đã thay:
+  - `word/media/image18.png` <- `database_drawio_exports/hinh_3_05_chi_tiết_bang_storelocations.png`; source `database_drawio/hinh_3_05_chi_tiết_bang_storelocations.drawio` (Hình 3-5)
+  - `word/media/image17.png` <- `database_drawio_exports/hinh_3_04_chi_tiết_bang_slides.png`; source `database_drawio/hinh_3_04_chi_tiết_bang_slides.drawio` (Hình 3-4)
+  - `word/media/image16.png` <- `database_drawio_exports/hinh_3_03_chi_tiết_bang_rentalrequests.png`; source `database_drawio/hinh_3_03_chi_tiết_bang_rentalrequests.drawio` (Hình 3-3)
+  - `word/media/image15.png` <- `database_drawio_exports/hinh_3_02_chi_tiết_bang_users.png`; source `database_drawio/hinh_3_02_chi_tiết_bang_users.drawio` (Hình 3-2)
+  - `word/media/image19.png` <- `database_drawio_exports/hinh_3_06_chi_tiết_bang_categories.png`; source `database_drawio/hinh_3_06_chi_tiết_bang_categories.drawio` (Hình 3-6)
+  - `word/media/image20.png` <- `database_drawio_exports/hinh_3_07_chi_tiết_bang_productfavorites.png`; source `database_drawio/hinh_3_07_chi_tiết_bang_productfavorites.drawio` (Hình 3-7)
+  - `word/media/image21.png` <- `database_drawio_exports/hinh_3_08_chi_tiết_bang_productreviews.png`; source `database_drawio/hinh_3_08_chi_tiết_bang_productreviews.drawio` (Hình 3-8)
+  - `word/media/image25.png` <- `database_drawio_exports/hinh_3_12_chi_tiết_bang_facesamples.png`; source `database_drawio/hinh_3_12_chi_tiết_bang_facesamples.drawio` (Hình 3-12)
+  - `word/media/image24.png` <- `database_drawio_exports/hinh_3_11_chi_tiết_bang_productfavorites__quan_hệ_user_va_sach.png`; source `database_drawio/hinh_3_11_chi_tiết_bang_productfavorites__quan_hệ_user_va_sach.drawio` (Hình 3-11)
+  - `word/media/image23.png` <- `database_drawio_exports/hinh_3_10_chi_tiết_bang_faceauthlogs.png`; source `database_drawio/hinh_3_10_chi_tiết_bang_faceauthlogs.drawio` (Hình 3-10)
+  - `word/media/image22.png` <- `database_drawio_exports/hinh_3_09_chi_tiết_bang_users__hồ_so_dịnh_danh.png`; source `database_drawio/hinh_3_09_chi_tiết_bang_users__hồ_so_dịnh_danh.drawio` (Hình 3-9)
+  - `word/media/image14.png` <- `database_drawio_exports/hinh_3_01_cấu_truc_database_của_dự_an_sau_khi_thiết_kế.png`; source `database_drawio/hinh_3_01_cấu_truc_database_của_dự_an_sau_khi_thiết_kế.drawio` (Hình 3-1)
+  - `word/media/image26.png` <- `database_drawio_exports/hinh_3_13_chi_tiết_bang_orders.png`; source `database_drawio/hinh_3_13_chi_tiết_bang_orders.drawio` (Hình 3-13)
+  - `word/media/image28.png` <- `database_drawio_exports/hinh_3_15_chi_tiết_bang_sanphams.png`; source `database_drawio/hinh_3_15_chi_tiết_bang_sanphams.drawio` (Hình 3-15)
+  - `word/media/image27.png` <- `database_drawio_exports/hinh_3_14_chi_tiết_bang_orderdetails.png`; source `database_drawio/hinh_3_14_chi_tiết_bang_orderdetails.drawio` (Hình 3-14)
+  - `word/media/image32.png` <- `database_drawio_exports/hinh_3_19_chi_tiết_bang_rentallogs.png`; source `database_drawio/hinh_3_19_chi_tiết_bang_rentallogs.drawio` (Hình 3-19)
+  - `word/media/image31.png` <- `database_drawio_exports/hinh_3_18_chi_tiết_bang_quyens.png`; source `database_drawio/hinh_3_18_chi_tiết_bang_quyens.drawio` (Hình 3-18)
+  - `word/media/image30.png` <- `database_drawio_exports/hinh_3_17_chi_tiết_bang_faceauthlogs__vong_dời_xac_thực.png`; source `database_drawio/hinh_3_17_chi_tiết_bang_faceauthlogs__vong_dời_xac_thực.drawio` (Hình 3-17)
+  - `word/media/image29.png` <- `database_drawio_exports/hinh_3_16_chi_tiết_bang_users__tai_khoan_va_phan_quyền.png`; source `database_drawio/hinh_3_16_chi_tiết_bang_users__tai_khoan_va_phan_quyền.drawio` (Hình 3-16)
+  - `word/media/image33.png` <- `database_drawio_exports/hinh_3_20_chi_tiết_bang_userquyens.png`; source `database_drawio/hinh_3_20_chi_tiết_bang_userquyens.drawio` (Hình 3-20)
+  - `word/media/image35.png` <- `database_drawio_exports/hinh_3_22_chi_tiết_bang_facerentaltokens__vong_dời_token.png`; source `database_drawio/hinh_3_22_chi_tiết_bang_facerentaltokens__vong_dời_token.drawio` (Hình 3-22)
+  - `word/media/image34.png` <- `database_drawio_exports/hinh_3_21_chi_tiết_bang_facerentaltokens.png`; source `database_drawio/hinh_3_21_chi_tiết_bang_facerentaltokens.drawio` (Hình 3-21)
+  - `word/media/image38.png` <- `database_drawio_exports/hinh_3_25_chi_tiết_bang_geofencelogs.png`; source `database_drawio/hinh_3_25_chi_tiết_bang_geofencelogs.drawio` (Hình 3-25)
+  - `word/media/image39.png` <- `database_drawio_exports/hinh_3_26_cấu_truc_database_của_dự_an_sau_khi_da_cai_dặt.png`; source `database_drawio/hinh_3_26_cấu_truc_database_của_dự_an_sau_khi_da_cai_dặt.drawio` (Hình 3-26)
+  - `word/media/image36.png` <- `database_drawio_exports/hinh_3_23_chi_tiết_bang_storelocations__geofence.png`; source `database_drawio/hinh_3_23_chi_tiết_bang_storelocations__geofence.drawio` (Hình 3-23)
+  - `word/media/image37.png` <- `database_drawio_exports/hinh_3_24_chi_tiết_bang_rentallogs__trang_thai_muợn_tra.png`; source `database_drawio/hinh_3_24_chi_tiết_bang_rentallogs__trang_thai_muợn_tra.drawio` (Hình 3-24)
+
+- File draw.io đã sinh:
+  - `database_drawio/hinh_3_01_cấu_truc_database_của_dự_an_sau_khi_thiết_kế.drawio`
+  - `database_drawio/hinh_3_02_chi_tiết_bang_users.drawio`
+  - `database_drawio/hinh_3_03_chi_tiết_bang_rentalrequests.drawio`
+  - `database_drawio/hinh_3_04_chi_tiết_bang_slides.drawio`
+  - `database_drawio/hinh_3_05_chi_tiết_bang_storelocations.drawio`
+  - `database_drawio/hinh_3_06_chi_tiết_bang_categories.drawio`
+  - `database_drawio/hinh_3_07_chi_tiết_bang_productfavorites.drawio`
+  - `database_drawio/hinh_3_08_chi_tiết_bang_productreviews.drawio`
+  - `database_drawio/hinh_3_09_chi_tiết_bang_users__hồ_so_dịnh_danh.drawio`
+  - `database_drawio/hinh_3_10_chi_tiết_bang_faceauthlogs.drawio`
+  - `database_drawio/hinh_3_11_chi_tiết_bang_productfavorites__quan_hệ_user_va_sach.drawio`
+  - `database_drawio/hinh_3_12_chi_tiết_bang_facesamples.drawio`
+  - `database_drawio/hinh_3_13_chi_tiết_bang_orders.drawio`
+  - `database_drawio/hinh_3_14_chi_tiết_bang_orderdetails.drawio`
+  - `database_drawio/hinh_3_15_chi_tiết_bang_sanphams.drawio`
+  - `database_drawio/hinh_3_16_chi_tiết_bang_users__tai_khoan_va_phan_quyền.drawio`
+  - `database_drawio/hinh_3_17_chi_tiết_bang_faceauthlogs__vong_dời_xac_thực.drawio`
+  - `database_drawio/hinh_3_18_chi_tiết_bang_quyens.drawio`
+  - `database_drawio/hinh_3_19_chi_tiết_bang_rentallogs.drawio`
+  - `database_drawio/hinh_3_20_chi_tiết_bang_userquyens.drawio`
+  - `database_drawio/hinh_3_21_chi_tiết_bang_facerentaltokens.drawio`
+  - `database_drawio/hinh_3_22_chi_tiết_bang_facerentaltokens__vong_dời_token.drawio`
+  - `database_drawio/hinh_3_23_chi_tiết_bang_storelocations__geofence.drawio`
+  - `database_drawio/hinh_3_24_chi_tiết_bang_rentallogs__trang_thai_muợn_tra.drawio`
+  - `database_drawio/hinh_3_25_chi_tiết_bang_geofencelogs.drawio`
+  - `database_drawio/hinh_3_26_cấu_truc_database_của_dự_an_sau_khi_da_cai_dặt.drawio`
+## 2026-05-10 23:45:27 - Xây dựng sơ đồ database draw.io và cập nhật BaoCaoMauSua_Version3
+
+- Kế hoạch: `KeHoach_XayDung_CauTrucBang_DrawIO_Version3.md`.
+- Thư mục draw.io: `database_drawio`.
+- Thư mục PNG export: `database_drawio_exports`.
+- Kết quả Word: `BaoCaoMauSua_Version3.docx` (updated_original).
+- Media đã thay:
+  - `word/media/image18.png` <- `database_drawio_exports/hinh_3_05_chi_tiet_bang_storelocations.png`; source `database_drawio/hinh_3_05_chi_tiet_bang_storelocations.drawio` (Hình 3-5)
+  - `word/media/image17.png` <- `database_drawio_exports/hinh_3_04_chi_tiet_bang_slides.png`; source `database_drawio/hinh_3_04_chi_tiet_bang_slides.drawio` (Hình 3-4)
+  - `word/media/image16.png` <- `database_drawio_exports/hinh_3_03_chi_tiet_bang_rentalrequests.png`; source `database_drawio/hinh_3_03_chi_tiet_bang_rentalrequests.drawio` (Hình 3-3)
+  - `word/media/image15.png` <- `database_drawio_exports/hinh_3_02_chi_tiet_bang_users.png`; source `database_drawio/hinh_3_02_chi_tiet_bang_users.drawio` (Hình 3-2)
+  - `word/media/image19.png` <- `database_drawio_exports/hinh_3_06_chi_tiet_bang_categories.png`; source `database_drawio/hinh_3_06_chi_tiet_bang_categories.drawio` (Hình 3-6)
+  - `word/media/image20.png` <- `database_drawio_exports/hinh_3_07_chi_tiet_bang_productfavorites.png`; source `database_drawio/hinh_3_07_chi_tiet_bang_productfavorites.drawio` (Hình 3-7)
+  - `word/media/image21.png` <- `database_drawio_exports/hinh_3_08_chi_tiet_bang_productreviews.png`; source `database_drawio/hinh_3_08_chi_tiet_bang_productreviews.drawio` (Hình 3-8)
+  - `word/media/image25.png` <- `database_drawio_exports/hinh_3_12_chi_tiet_bang_facesamples.png`; source `database_drawio/hinh_3_12_chi_tiet_bang_facesamples.drawio` (Hình 3-12)
+  - `word/media/image24.png` <- `database_drawio_exports/hinh_3_11_chi_tiet_bang_productfavorites__quan_he_user_va_sach.png`; source `database_drawio/hinh_3_11_chi_tiet_bang_productfavorites__quan_he_user_va_sach.drawio` (Hình 3-11)
+  - `word/media/image23.png` <- `database_drawio_exports/hinh_3_10_chi_tiet_bang_faceauthlogs.png`; source `database_drawio/hinh_3_10_chi_tiet_bang_faceauthlogs.drawio` (Hình 3-10)
+  - `word/media/image22.png` <- `database_drawio_exports/hinh_3_09_chi_tiet_bang_users__ho_so_dinh_danh.png`; source `database_drawio/hinh_3_09_chi_tiet_bang_users__ho_so_dinh_danh.drawio` (Hình 3-9)
+  - `word/media/image14.png` <- `database_drawio_exports/hinh_3_01_cau_truc_database_cua_du_an_sau_khi_thiet_ke.png`; source `database_drawio/hinh_3_01_cau_truc_database_cua_du_an_sau_khi_thiet_ke.drawio` (Hình 3-1)
+  - `word/media/image26.png` <- `database_drawio_exports/hinh_3_13_chi_tiet_bang_orders.png`; source `database_drawio/hinh_3_13_chi_tiet_bang_orders.drawio` (Hình 3-13)
+  - `word/media/image28.png` <- `database_drawio_exports/hinh_3_15_chi_tiet_bang_sanphams.png`; source `database_drawio/hinh_3_15_chi_tiet_bang_sanphams.drawio` (Hình 3-15)
+  - `word/media/image27.png` <- `database_drawio_exports/hinh_3_14_chi_tiet_bang_orderdetails.png`; source `database_drawio/hinh_3_14_chi_tiet_bang_orderdetails.drawio` (Hình 3-14)
+  - `word/media/image32.png` <- `database_drawio_exports/hinh_3_19_chi_tiet_bang_rentallogs.png`; source `database_drawio/hinh_3_19_chi_tiet_bang_rentallogs.drawio` (Hình 3-19)
+  - `word/media/image31.png` <- `database_drawio_exports/hinh_3_18_chi_tiet_bang_quyens.png`; source `database_drawio/hinh_3_18_chi_tiet_bang_quyens.drawio` (Hình 3-18)
+  - `word/media/image30.png` <- `database_drawio_exports/hinh_3_17_chi_tiet_bang_faceauthlogs__vong_doi_xac_thuc.png`; source `database_drawio/hinh_3_17_chi_tiet_bang_faceauthlogs__vong_doi_xac_thuc.drawio` (Hình 3-17)
+  - `word/media/image29.png` <- `database_drawio_exports/hinh_3_16_chi_tiet_bang_users__tai_khoan_va_phan_quyen.png`; source `database_drawio/hinh_3_16_chi_tiet_bang_users__tai_khoan_va_phan_quyen.drawio` (Hình 3-16)
+  - `word/media/image33.png` <- `database_drawio_exports/hinh_3_20_chi_tiet_bang_userquyens.png`; source `database_drawio/hinh_3_20_chi_tiet_bang_userquyens.drawio` (Hình 3-20)
+  - `word/media/image35.png` <- `database_drawio_exports/hinh_3_22_chi_tiet_bang_facerentaltokens__vong_doi_token.png`; source `database_drawio/hinh_3_22_chi_tiet_bang_facerentaltokens__vong_doi_token.drawio` (Hình 3-22)
+  - `word/media/image34.png` <- `database_drawio_exports/hinh_3_21_chi_tiet_bang_facerentaltokens.png`; source `database_drawio/hinh_3_21_chi_tiet_bang_facerentaltokens.drawio` (Hình 3-21)
+  - `word/media/image38.png` <- `database_drawio_exports/hinh_3_25_chi_tiet_bang_geofencelogs.png`; source `database_drawio/hinh_3_25_chi_tiet_bang_geofencelogs.drawio` (Hình 3-25)
+  - `word/media/image39.png` <- `database_drawio_exports/hinh_3_26_cau_truc_database_cua_du_an_sau_khi_da_cai_dat.png`; source `database_drawio/hinh_3_26_cau_truc_database_cua_du_an_sau_khi_da_cai_dat.drawio` (Hình 3-26)
+  - `word/media/image36.png` <- `database_drawio_exports/hinh_3_23_chi_tiet_bang_storelocations__geofence.png`; source `database_drawio/hinh_3_23_chi_tiet_bang_storelocations__geofence.drawio` (Hình 3-23)
+  - `word/media/image37.png` <- `database_drawio_exports/hinh_3_24_chi_tiet_bang_rentallogs__trang_thai_muon_tra.png`; source `database_drawio/hinh_3_24_chi_tiet_bang_rentallogs__trang_thai_muon_tra.drawio` (Hình 3-24)
+
+- File draw.io đã sinh:
+  - `database_drawio/hinh_3_01_cau_truc_database_cua_du_an_sau_khi_thiet_ke.drawio`
+  - `database_drawio/hinh_3_02_chi_tiet_bang_users.drawio`
+  - `database_drawio/hinh_3_03_chi_tiet_bang_rentalrequests.drawio`
+  - `database_drawio/hinh_3_04_chi_tiet_bang_slides.drawio`
+  - `database_drawio/hinh_3_05_chi_tiet_bang_storelocations.drawio`
+  - `database_drawio/hinh_3_06_chi_tiet_bang_categories.drawio`
+  - `database_drawio/hinh_3_07_chi_tiet_bang_productfavorites.drawio`
+  - `database_drawio/hinh_3_08_chi_tiet_bang_productreviews.drawio`
+  - `database_drawio/hinh_3_09_chi_tiet_bang_users__ho_so_dinh_danh.drawio`
+  - `database_drawio/hinh_3_10_chi_tiet_bang_faceauthlogs.drawio`
+  - `database_drawio/hinh_3_11_chi_tiet_bang_productfavorites__quan_he_user_va_sach.drawio`
+  - `database_drawio/hinh_3_12_chi_tiet_bang_facesamples.drawio`
+  - `database_drawio/hinh_3_13_chi_tiet_bang_orders.drawio`
+  - `database_drawio/hinh_3_14_chi_tiet_bang_orderdetails.drawio`
+  - `database_drawio/hinh_3_15_chi_tiet_bang_sanphams.drawio`
+  - `database_drawio/hinh_3_16_chi_tiet_bang_users__tai_khoan_va_phan_quyen.drawio`
+  - `database_drawio/hinh_3_17_chi_tiet_bang_faceauthlogs__vong_doi_xac_thuc.drawio`
+  - `database_drawio/hinh_3_18_chi_tiet_bang_quyens.drawio`
+  - `database_drawio/hinh_3_19_chi_tiet_bang_rentallogs.drawio`
+  - `database_drawio/hinh_3_20_chi_tiet_bang_userquyens.drawio`
+  - `database_drawio/hinh_3_21_chi_tiet_bang_facerentaltokens.drawio`
+  - `database_drawio/hinh_3_22_chi_tiet_bang_facerentaltokens__vong_doi_token.drawio`
+  - `database_drawio/hinh_3_23_chi_tiet_bang_storelocations__geofence.drawio`
+  - `database_drawio/hinh_3_24_chi_tiet_bang_rentallogs__trang_thai_muon_tra.drawio`
+  - `database_drawio/hinh_3_25_chi_tiet_bang_geofencelogs.drawio`
+  - `database_drawio/hinh_3_26_cau_truc_database_cua_du_an_sau_khi_da_cai_dat.drawio`
+## 2026-05-10 23:58:25 - Xây dựng sơ đồ database draw.io và cập nhật BaoCaoMauSua_Version3
+
+- Kế hoạch: `KeHoach_XayDung_CauTrucBang_DrawIO_Version3.md`.
+- Thư mục draw.io: `database_drawio`.
+- Thư mục PNG export: `database_drawio_exports`.
+- Kết quả Word: `BaoCaoMauSua_Version3_DatabaseDrawIO.docx` (saved_fallback_because_original_locked).
+- Media đã thay:
+  - `word/media/image18.png` <- `database_drawio_exports/hinh_3_05_chi_tiet_bang_storelocations.png`; source `database_drawio/hinh_3_05_chi_tiet_bang_storelocations.drawio` (Hình 3-5)
+  - `word/media/image17.png` <- `database_drawio_exports/hinh_3_04_chi_tiet_bang_slides.png`; source `database_drawio/hinh_3_04_chi_tiet_bang_slides.drawio` (Hình 3-4)
+  - `word/media/image16.png` <- `database_drawio_exports/hinh_3_03_chi_tiet_bang_rentalrequests.png`; source `database_drawio/hinh_3_03_chi_tiet_bang_rentalrequests.drawio` (Hình 3-3)
+  - `word/media/image15.png` <- `database_drawio_exports/hinh_3_02_chi_tiet_bang_users.png`; source `database_drawio/hinh_3_02_chi_tiet_bang_users.drawio` (Hình 3-2)
+  - `word/media/image19.png` <- `database_drawio_exports/hinh_3_06_chi_tiet_bang_categories.png`; source `database_drawio/hinh_3_06_chi_tiet_bang_categories.drawio` (Hình 3-6)
+  - `word/media/image20.png` <- `database_drawio_exports/hinh_3_07_chi_tiet_bang_productfavorites.png`; source `database_drawio/hinh_3_07_chi_tiet_bang_productfavorites.drawio` (Hình 3-7)
+  - `word/media/image21.png` <- `database_drawio_exports/hinh_3_08_chi_tiet_bang_productreviews.png`; source `database_drawio/hinh_3_08_chi_tiet_bang_productreviews.drawio` (Hình 3-8)
+  - `word/media/image25.png` <- `database_drawio_exports/hinh_3_12_chi_tiet_bang_facesamples.png`; source `database_drawio/hinh_3_12_chi_tiet_bang_facesamples.drawio` (Hình 3-12)
+  - `word/media/image24.png` <- `database_drawio_exports/hinh_3_11_chi_tiet_bang_productfavorites__quan_he_user_va_sach.png`; source `database_drawio/hinh_3_11_chi_tiet_bang_productfavorites__quan_he_user_va_sach.drawio` (Hình 3-11)
+  - `word/media/image23.png` <- `database_drawio_exports/hinh_3_10_chi_tiet_bang_faceauthlogs.png`; source `database_drawio/hinh_3_10_chi_tiet_bang_faceauthlogs.drawio` (Hình 3-10)
+  - `word/media/image22.png` <- `database_drawio_exports/hinh_3_09_chi_tiet_bang_users__ho_so_dinh_danh.png`; source `database_drawio/hinh_3_09_chi_tiet_bang_users__ho_so_dinh_danh.drawio` (Hình 3-9)
+  - `word/media/image14.png` <- `database_drawio_exports/hinh_3_01_cau_truc_database_cua_du_an_sau_khi_thiet_ke.png`; source `database_drawio/hinh_3_01_cau_truc_database_cua_du_an_sau_khi_thiet_ke.drawio` (Hình 3-1)
+  - `word/media/image26.png` <- `database_drawio_exports/hinh_3_13_chi_tiet_bang_orders.png`; source `database_drawio/hinh_3_13_chi_tiet_bang_orders.drawio` (Hình 3-13)
+  - `word/media/image28.png` <- `database_drawio_exports/hinh_3_15_chi_tiet_bang_sanphams.png`; source `database_drawio/hinh_3_15_chi_tiet_bang_sanphams.drawio` (Hình 3-15)
+  - `word/media/image27.png` <- `database_drawio_exports/hinh_3_14_chi_tiet_bang_orderdetails.png`; source `database_drawio/hinh_3_14_chi_tiet_bang_orderdetails.drawio` (Hình 3-14)
+  - `word/media/image32.png` <- `database_drawio_exports/hinh_3_19_chi_tiet_bang_rentallogs.png`; source `database_drawio/hinh_3_19_chi_tiet_bang_rentallogs.drawio` (Hình 3-19)
+  - `word/media/image31.png` <- `database_drawio_exports/hinh_3_18_chi_tiet_bang_quyens.png`; source `database_drawio/hinh_3_18_chi_tiet_bang_quyens.drawio` (Hình 3-18)
+  - `word/media/image30.png` <- `database_drawio_exports/hinh_3_17_chi_tiet_bang_faceauthlogs__vong_doi_xac_thuc.png`; source `database_drawio/hinh_3_17_chi_tiet_bang_faceauthlogs__vong_doi_xac_thuc.drawio` (Hình 3-17)
+  - `word/media/image29.png` <- `database_drawio_exports/hinh_3_16_chi_tiet_bang_users__tai_khoan_va_phan_quyen.png`; source `database_drawio/hinh_3_16_chi_tiet_bang_users__tai_khoan_va_phan_quyen.drawio` (Hình 3-16)
+  - `word/media/image33.png` <- `database_drawio_exports/hinh_3_20_chi_tiet_bang_userquyens.png`; source `database_drawio/hinh_3_20_chi_tiet_bang_userquyens.drawio` (Hình 3-20)
+  - `word/media/image35.png` <- `database_drawio_exports/hinh_3_22_chi_tiet_bang_facerentaltokens__vong_doi_token.png`; source `database_drawio/hinh_3_22_chi_tiet_bang_facerentaltokens__vong_doi_token.drawio` (Hình 3-22)
+  - `word/media/image34.png` <- `database_drawio_exports/hinh_3_21_chi_tiet_bang_facerentaltokens.png`; source `database_drawio/hinh_3_21_chi_tiet_bang_facerentaltokens.drawio` (Hình 3-21)
+  - `word/media/image38.png` <- `database_drawio_exports/hinh_3_25_chi_tiet_bang_geofencelogs.png`; source `database_drawio/hinh_3_25_chi_tiet_bang_geofencelogs.drawio` (Hình 3-25)
+  - `word/media/image39.png` <- `database_drawio_exports/hinh_3_26_cau_truc_database_cua_du_an_sau_khi_da_cai_dat.png`; source `database_drawio/hinh_3_26_cau_truc_database_cua_du_an_sau_khi_da_cai_dat.drawio` (Hình 3-26)
+  - `word/media/image36.png` <- `database_drawio_exports/hinh_3_23_chi_tiet_bang_storelocations__geofence.png`; source `database_drawio/hinh_3_23_chi_tiet_bang_storelocations__geofence.drawio` (Hình 3-23)
+  - `word/media/image37.png` <- `database_drawio_exports/hinh_3_24_chi_tiet_bang_rentallogs__trang_thai_muon_tra.png`; source `database_drawio/hinh_3_24_chi_tiet_bang_rentallogs__trang_thai_muon_tra.drawio` (Hình 3-24)
+
+- File draw.io đã sinh:
+  - `database_drawio/hinh_3_01_cau_truc_database_cua_du_an_sau_khi_thiet_ke.drawio`
+  - `database_drawio/hinh_3_02_chi_tiet_bang_users.drawio`
+  - `database_drawio/hinh_3_03_chi_tiet_bang_rentalrequests.drawio`
+  - `database_drawio/hinh_3_04_chi_tiet_bang_slides.drawio`
+  - `database_drawio/hinh_3_05_chi_tiet_bang_storelocations.drawio`
+  - `database_drawio/hinh_3_06_chi_tiet_bang_categories.drawio`
+  - `database_drawio/hinh_3_07_chi_tiet_bang_productfavorites.drawio`
+  - `database_drawio/hinh_3_08_chi_tiet_bang_productreviews.drawio`
+  - `database_drawio/hinh_3_09_chi_tiet_bang_users__ho_so_dinh_danh.drawio`
+  - `database_drawio/hinh_3_10_chi_tiet_bang_faceauthlogs.drawio`
+  - `database_drawio/hinh_3_11_chi_tiet_bang_productfavorites__quan_he_user_va_sach.drawio`
+  - `database_drawio/hinh_3_12_chi_tiet_bang_facesamples.drawio`
+  - `database_drawio/hinh_3_13_chi_tiet_bang_orders.drawio`
+  - `database_drawio/hinh_3_14_chi_tiet_bang_orderdetails.drawio`
+  - `database_drawio/hinh_3_15_chi_tiet_bang_sanphams.drawio`
+  - `database_drawio/hinh_3_16_chi_tiet_bang_users__tai_khoan_va_phan_quyen.drawio`
+  - `database_drawio/hinh_3_17_chi_tiet_bang_faceauthlogs__vong_doi_xac_thuc.drawio`
+  - `database_drawio/hinh_3_18_chi_tiet_bang_quyens.drawio`
+  - `database_drawio/hinh_3_19_chi_tiet_bang_rentallogs.drawio`
+  - `database_drawio/hinh_3_20_chi_tiet_bang_userquyens.drawio`
+  - `database_drawio/hinh_3_21_chi_tiet_bang_facerentaltokens.drawio`
+  - `database_drawio/hinh_3_22_chi_tiet_bang_facerentaltokens__vong_doi_token.drawio`
+  - `database_drawio/hinh_3_23_chi_tiet_bang_storelocations__geofence.drawio`
+  - `database_drawio/hinh_3_24_chi_tiet_bang_rentallogs__trang_thai_muon_tra.drawio`
+  - `database_drawio/hinh_3_25_chi_tiet_bang_geofencelogs.drawio`
+  - `database_drawio/hinh_3_26_cau_truc_database_cua_du_an_sau_khi_da_cai_dat.drawio`
+
+## 2026-05-11 00:06:46 - Chuyen Chuong 3 sang bang mo ta field
+
+- File nguon: `BaoCaoMauSua_Version3_DatabaseDrawIO.docx`.
+- File ket qua: `BaoCaoMauSua_Version3_TableFields.docx`.
+- Da bo cac hinh draw.io chi tiet tung bang trong Chuong 3.
+- Da viet lai muc 3.2 bang cac bang mo ta field, kieu du lieu, khoa/rang buoc va mo ta.
+- Chi giu lai mot hinh tai muc 3.3: `Quan he cac bang trong co so du lieu`.
+
+## 2026-05-11 00:07:16 - Chuyen Chuong 3 sang bang mo ta field
+
+- File nguon: `BaoCaoMauSua_Version3_DatabaseDrawIO.docx`.
+- File ket qua: `BaoCaoMauSua_Version3_TableFields.docx`.
+- Da bo cac hinh draw.io chi tiet tung bang trong Chuong 3.
+- Da viet lai muc 3.2 bang cac bang mo ta field, kieu du lieu, khoa/rang buoc va mo ta.
+- Chi giu lai mot hinh tai muc 3.3: `Quan he cac bang trong co so du lieu`.

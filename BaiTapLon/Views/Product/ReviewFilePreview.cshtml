@@ -1,0 +1,170 @@
+﻿@{
+    Layout = null;
+    var fileName = (ViewBag.FileName as string) ?? "Review sách";
+    var fileUrl = (ViewBag.FileUrl as string) ?? "";
+    var downloadUrl = (ViewBag.DownloadUrl as string) ?? "";
+    var previewKind = (ViewBag.PreviewKind as string) ?? "unsupported";
+    var textContent = (ViewBag.TextContent as string) ?? "";
+    var previewWarning = (ViewBag.PreviewWarning as string) ?? "";
+    var paragraphs = (ViewBag.DocumentParagraphs as System.Collections.Generic.IEnumerable<string>) ?? new string[0];
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@fileName</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #24292f;
+            background: #f6f8fa;
+        }
+
+        .viewer-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #d0d7de;
+            background: #ffffff;
+        }
+
+        .viewer-title {
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .viewer-actions {
+            display: flex;
+            flex-shrink: 0;
+            gap: 8px;
+        }
+
+        .viewer-actions a,
+        .viewer-actions button {
+            padding: 7px 12px;
+            border: 1px solid #24292f;
+            color: #24292f;
+            text-decoration: none;
+            font-size: 13px;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .viewer-content {
+            height: calc(100vh - 58px);
+            background: #ffffff;
+        }
+
+        iframe,
+        img {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        img {
+            object-fit: contain;
+            background: #f6f8fa;
+        }
+
+        pre {
+            box-sizing: border-box;
+            min-height: 100%;
+            margin: 0;
+            padding: 24px;
+            overflow: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font: 14px/1.55 Consolas, "Courier New", monospace;
+        }
+
+        .viewer-empty {
+            padding: 48px 24px;
+            text-align: center;
+            color: #57606a;
+        }
+
+        .viewer-warning {
+            padding: 10px 16px;
+            border-bottom: 1px solid #f0d98c;
+            color: #6f5200;
+            background: #fff8d8;
+            font-size: 13px;
+        }
+
+        .document-preview {
+            box-sizing: border-box;
+            max-width: 860px;
+            min-height: 100%;
+            margin: 0 auto;
+            padding: 32px 40px;
+            font-size: 16px;
+            line-height: 1.7;
+            background: #ffffff;
+        }
+
+        .document-preview p {
+            margin: 0 0 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewer-toolbar">
+        <h1 class="viewer-title">@fileName</h1>
+        <div class="viewer-actions">
+            <button type="button" onclick="history.length > 1 ? history.back() : window.close();">Quay về</button>
+            <a href="@downloadUrl">Tải file</a>
+        </div>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(previewWarning))
+    {
+        <div class="viewer-warning">@previewWarning</div>
+    }
+    <div class="viewer-content">
+        @if (previewKind == "pdf")
+        {
+            <iframe src="@fileUrl" title="@fileName"></iframe>
+        }
+        else if (previewKind == "image")
+        {
+            <img src="@fileUrl" alt="@fileName" />
+        }
+        else if (previewKind == "text")
+        {
+            <pre>@textContent</pre>
+        }
+        else if (previewKind == "docx")
+        {
+            <div class="document-preview">
+                @{
+                    var hasParagraph = false;
+                }
+                @foreach (var paragraph in paragraphs)
+                {
+                    hasParagraph = true;
+                    <p>@paragraph</p>
+                }
+                @if (!hasParagraph)
+                {
+                    <p>File DOCX này không có nội dung văn bản để hiển thị trực tiếp. Vui lòng tải file để xem bản gốc.</p>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="viewer-empty">
+                Hệ thống chưa tạo được bản xem PDF cho định dạng này. Vui lòng cấu hình LibreOffice hoặc OfficeToPDF, hoặc tải file gốc để xem.
+            </div>
+        }
+    </div>
+</body>
+</html>

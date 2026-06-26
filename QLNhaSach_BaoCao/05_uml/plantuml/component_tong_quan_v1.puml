@@ -1,0 +1,29 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam componentStyle rectangle
+
+actor "Nguoi dung" as User
+actor "Quan tri vien" as Admin
+
+component "ASP.NET MVC Web App\n(BaiTapLon)" as Web
+component "Razor Views\nViews/Areas/Admin" as Views
+component "Controllers" as Controllers
+component "Services" as Services
+component "Draw/Repository Layer\n(Mood.Draw, Common.Repositories)" as Repo
+database "SQL Server LocalDB\nQLNhaSach" as Db
+component "Flask Face API\nface_auth_api" as FaceApi
+component "Gmail Notification" as Gmail
+
+User --> Web
+Admin --> Web
+Web --> Views
+Web --> Controllers
+Controllers --> Services
+Controllers --> Repo
+Services --> Repo
+Repo --> Db
+Services --> FaceApi
+Services --> Gmail
+Controllers --> FaceApi : OCR/Xac thuc khuon mat
+Controllers --> Db : Entity Framework
+@enduml
