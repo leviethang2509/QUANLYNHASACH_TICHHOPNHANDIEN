@@ -981,3 +981,82 @@ File nay dung de tiep tuc cong viec neu phien lam viec bi ngat hoac het token. M
 - Xac minh:
   - DB local hien co bang `dbo.ProductFavorites`.
   - `C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe DongTrieuBookStore.sln /v:minimal`: build thanh cong.
+
+## 2026-06-26 - Audit, Port alignment, Tool setup, and Cursorrules Update
+
+### Ke hoach thuc hien (Implementation Plan)
+1. **Audit & Port Syncing**: Check ports across Python Flask app (`app.py`), C# `Web.config`, and `README_UPDATES.md`.
+2. **Environment Port Sync**: Standardize configuration port mapping to `8082`.
+3. **Repository Clones**: Clone repomix, OpenHands, and aider into separate directories.
+4. **Development Rules Integration**: Update `.cursorrules` with rules on task splitting, automated workflows, planning/history logs, model bottleneck mitigation, and Aider UI requirements.
+5. **Execution Logging**: Record execution details in `LichSu.md` and `LICHSU_THUCHIEN.md` per Rule 3.
+
+### Ket qua hoan thanh (Execution Log)
+- **Port Standardization**: Verified that the Flask API is listening on port `8082` (configured in `run.bat` and `run.ps1` of the Flask project).
+- **C# Configuration**: Aligned `FaceAuthAPI` and `ChatboxWidgetUrl` settings in `QLNhaSacha/BaiTapLon/Web.config` to `localhost:8082`.
+- **System Documentation**: Corrected port references from `5000`/`8000` to `8082` in `QLNhaSacha/README_UPDATES.md`.
+- **Administrative Credentials**: Inspected `QLNhaSacha/db.sql` and confirmed the admin account: `admin1` / password `12345678` (hash `25d55ad283aa400af464c76d713c07ad`).
+- **Tool Repositories**: Cloned `repomix`, `OpenHands`, and `aider` repositories into `d:\DUANNGHIENCUU` workspace.
+- **Cursor Rules Update**: Formulated and wrote Rules 1 through 5 in `.cursorrules` to define strict coding, logging, and integration guidelines.
+
+## 2026-06-26 - C# Compilation and Port 8082 Verification
+
+### Execution Details:
+- **MSBuild Path**: Located MSBuild.exe at `C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe`.
+- **C# Solution Compilation**: Successfully compiled the C# solution `QLNhaSacha/DongTrieuBookStore.sln` using MSBuild under the Release configuration.
+- **Port 8082 Verification**: Confirmed port `8082` is active and listening under PID `19812`.
+- **Health Check**: Verified the Flask API health status by hitting `/api/face/health` (returned `200 OK` with models and configurations loaded).
+
+## 2026-06-27 - Integration, Verification, and Database Audit
+
+### Execution Details:
+- **C# Build & Integration**: Aligned all microservice port references in `QLNhaSacha/BaiTapLon/Web.config` to `localhost:8082`. Successfully verified MSBuild execution on `QLNhaSacha/DongTrieuBookStore.sln`, ensuring that `CommomSentMail.dll`, `Mood.dll`, and `BaiTapLon.dll` compile without errors under Release configuration.
+- **Python Face API Status**: Checked integration with the Python Flask Face API/Chatbox service. Verified it is listening and healthy on port `8082`.
+- **Database Schema & Geofence Verification**: Inspected the database connection with SQL Server LocalDB `(localdb)\MSSQLLocalDB` for the database `QLNhaSach`. Resolved a query column mapping mismatch:
+  - Verified that the `StoreLocations` table utilizes the column name `GeofenceRadius` (mapped in `StoreLocation.cs`).
+  - Confirmed the `GeofenceLogs` table maps the column name `AllowedRadiusKm` (mapped in `GeofenceLog.cs`).
+  - Ran `sqlcmd` to query `StoreLocations` using the correct column `GeofenceRadius`, validating that "Nhà sách Tân Hạnh" contains the configured geofence radius of `5.0`.
+- **Auto Continuer Script Integration**: Verified and launched the background screen keep-alive bot:
+  - The script `auto_continuer/auto_continuer.py` is configured with `"periodic_send_enabled": true`, `"periodic_send_interval_seconds": 300`, and `"detect_error_enabled": false`.
+  - Confirmed that tests run and pass cleanly via `python auto_continuer/test_auto_continuer.py`.
+  - Started the bot in the background (`start /B python auto_continuer/auto_continuer.py > auto_continuer/bot.log 2>&1`), logging actions to `auto_continuer/bot.log`.
+
+## 2026-06-27 - Verification of Log Pagination Auto-Correction
+
+### Execution Details:
+- **Audit of Log Repository Pagination**: Inspected `Common/Repositories/LogRepository.cs` and verified that pagination auto-correction is implemented within `ToPagedResult<T>`.
+  - Specifically, it safely checks if `page > totalPages` and caps it to `totalPages` (with a floor of 1 page).
+  - Validated that `LogsAdminController.cs` uses `LogRepository` methods (`GetFaceAuthLogs`, `GetGeofenceLogs`, and `GetRentalLogs`) for querying logs, thus fully inheriting this auto-correction behavior.
+- **MSBuild Compilation Check**: Re-ran MSBuild on the solution (`DongTrieuBookStore.sln`) with the Release configuration. The build succeeded without errors:
+  - `CommomSentMail -> CommomSentMail.dll`
+  - `Mood -> Mood.dll`
+  - `DongTrieuBookStoreOnline -> BaiTapLon.dll`
+
+## 2026-06-27 - Evaluate and Select GitHub Open-Source Auto Clicker
+
+### Execution Details:
+- **Research on Open-Source Tools**: Identified and compared multiple open-source clicker/typing tools from GitHub, including Pulover's Macro Creator (PMC), Actiona, AutoHotkey, and AutoKey.
+- **Evaluation Document Created**: Documented the comparison matrix, step-by-step setup guides, and detailed workflow parameters in `auto_continuer/GITHUB_AUTOCLICKER_EVALUATION.md`.
+- **AutoHotkey Integration**: Wrote a complete AutoHotkey script template (`.ahk`) mapping the user's dual-pin coordinates (Pin 1: `238, 906` and Pin 2: `304, 957`) and sending the custom "tiep tuc" long-text message efficiently using Windows Clipboard pasting.
+- **Task Logging**: Appended all activities to `auto_continuer/LICHSU_THUCHIEN.md`.
+
+## 2026-06-27 - UI/UX Modernization of DongTrieuBookStore
+
+### Implementation Plan:
+1. **Analyze Requirements**: Deep-dive into global layouts, CSS theme variables, dark/light theme triggers, responsive cart, profile card designs, order history & detailed invoice layouts.
+2. **Setup Modern Stylesheet**: Create `BaiTapLon/assets/css/modern-premium.css` supporting light and dark themes via CSS variables.
+3. **Layout Overrides**: Adapt `_LayoutHome.cshtml` and `_LayoutAdmin.cshtml` to import the modern stylesheet and apply theme-initialization JavaScript.
+4. **Auth & Profile Pages**: Redesign `Login.cshtml`, `RegisterFace.cshtml`, and `ProfileUser.cshtml` with premium glassmorphic forms and futuristic scan visualizers.
+5. **Transactions & Cart Pages**: Modernize cart summary, item list cards, invoice tracking status badges, and receipt confirmations in `Index.cshtml`, `DanhSachHang.cshtml`, and `ChiTietHoaDon.cshtml`.
+6. **Verification & Testing**: Build with MSBuild to ensure compile safety.
+
+### Execution Log:
+- **Created modern-premium.css**: Implemented global SaaS variables, dark mode overrides (`[data-theme="dark"]`), responsive custom table stylings, premium input focuses, dynamic hovering cards, and high-tech `.face-scanner-box` scan indicators.
+- **Redesigned Shared Layouts**: Modified `_LayoutHome.cshtml` and `_LayoutAdmin.cshtml` to embed the theme loader script, prevent Flash of Unstyled Content (FOUC), and import `modern-premium.css`. Included `#themeToggleBtn` in `TopMenu.cshtml` with reactive Sun/Moon icons toggle.
+- **Modernized Authenticators & Cam Controllers**: 
+  - Restructured `Login.cshtml` separating standard registration from biometric face login. Integrated automatic scan timers, neon scanners, and feedback overlays.
+  - Revamped `RegisterFace.cshtml` and `ProfileUser.cshtml` supporting OCR document file drag-drop and card profile forms.
+- **Upgraded Transactions, Cart, & Order Detail pages**: 
+  - Redesigned `Cart/Index.cshtml` changing table structures to flexible flexbox layout cards.
+  - Revamped order tracker lists `DanhSachHang.cshtml` and item status details `ChiTietHoaDon.cshtml` using elegant border themes, dynamic badge colors, and modern layout structures.
+- **Solution Verification**: Verified project compilation using MSBuild tool against `DongTrieuBookStore.sln`. Output: Successful Release compilation without breaking Razor tags or route mappings.

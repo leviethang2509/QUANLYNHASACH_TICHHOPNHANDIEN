@@ -1,0 +1,40 @@
+{
+  "scan_interval_seconds": 5,
+  "error_color_rgb_min": [
+    120,
+    0,
+    0
+  ],
+  "error_color_rgb_max": [
+    255,
+    60,
+    60
+  ],
+  "click_coords_1": [
+    218,
+    901
+  ],
+  "click_coords_2": [
+    165,
+    972
+  ],
+  "chat_input_coords": [
+    165,
+    972
+  ],
+  "error_region": [
+    42,
+    92,
+    380,
+    856
+  ],
+  "consecutive_error_pixels_threshold": 30,
+  "red_pixels_count_threshold": 10,
+  "send_delay_seconds": 1.0,
+  "confidence_required": 0.8,
+  "sidebar_position": "left",
+  "periodic_send_enabled": true,
+  "periodic_send_interval_seconds": 300,
+  "detect_error_enabled": false,
+  "continue_message": "Continue the current task if it is not yet complete. If the current task has already been completed, analyze the project and automatically implement the next meaningful feature that best fits the existing architecture and roadmap. Ensure the new feature is fully integrated, follows the project's coding style, does not break existing functionality, and includes all necessary code, tests, and documentation where applicable. Repeat this workflow until no further meaningful improvements can be identified"
+}

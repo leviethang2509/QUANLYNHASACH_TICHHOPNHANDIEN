@@ -8,152 +8,157 @@
 }
 @if (session != null)
 {
-    <main id="content">
+    <main id="content" class="bg-app text-main py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 border-right">
-                    <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8  mb-5 mb-lg-7">Thông tin tài khoản</h6>
-                    <div class="tab-wrapper">
+                <div class="col-md-3 border-right border-color mb-5">
+                    <h6 class="font-weight-medium font-size-5 pt-3 mb-4 text-main">Thông tin tài khoản</h6>
+                    <div class="tab-wrapper card shadow-sm p-3 bg-card border-color">
                         <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0 active" href="tong-quan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Tổng quan</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="tong-quan-@session.userId">
+                                    <i class="fas fa-th-large mr-2 text-muted"></i>
+                                    <span>Tổng quan</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/danh-sach-don-hang-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Đơn hàng</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded active" href="/danh-sach-don-hang-@session.userId" style="background-color: var(--primary-light) !important;">
+                                    <i class="fas fa-shopping-bag mr-2 text-primary"></i>
+                                    <span class="font-weight-medium text-primary">Đơn hàng</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/tin-nhan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Thông báo (@session.tolMes)</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/tin-nhan-@session.userId">
+                                    <i class="fas fa-bell mr-2 text-muted"></i>
+                                    <span>Thông báo <span class="badge badge-primary badge-pill ml-auto">@session.tolMes</span></span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/phan-hoi-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Phản Hồi (@session.tolRep)</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/phan-hoi-@session.userId">
+                                    <i class="fas fa-comment-alt mr-2 text-muted"></i>
+                                    <span>Phản Hồi <span class="badge badge-info badge-pill ml-auto">@session.tolRep</span></span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/thong-tin-ca-nhan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Thông tin cá nhân</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/thong-tin-ca-nhan-@session.userId">
+                                    <i class="fas fa-user mr-2 text-muted"></i>
+                                    <span>Thông tin cá nhân</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/yeu-thich-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Sách yêu thích</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/yeu-thich-@session.userId">
+                                    <i class="fas fa-heart mr-2 text-muted"></i>
+                                    <span>Sách yêu thích</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/Users/Logout">
-                                    <span class="font-weight-normal text-gray-600">Thoát</span>
+                            <li class="nav-item mx-0 py-1 border-top border-color mt-2 pt-2">
+                                <a class="nav-link d-flex align-items-center px-2 text-danger hover-up rounded" href="/Users/Logout">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>
+                                    <span>Thoát</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9 space-bottom-lg-2 mb-lg-4">
-                        <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">Đơn hàng</h6>
+                    <div class="pl-md-4">
+                        <h6 class="font-weight-medium font-size-6 mb-4 text-main border-bottom pb-2 border-color">Đơn hàng của bạn</h6>
                         @if (Model.Count > 0)
                         {
-                            <table class="table">
-                                <thead>
-                                    <tr class="border">
-                                        <th scope="col" class="py-3 border-bottom-0 font-weight-medium pl-3 pl-lg-5">Mã Đơn</th>
-                                        <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Ngày Lập</th>
-                                        <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Trạng Thái</th>
-                                        <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Thanh Toán</th>
-                                        <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Giao Hàng</th>
-                                        <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Hành Động</th>
-                                    </tr>
-                                </thead>
+                            <div class="card bg-card border-color shadow-sm rounded-md overflow-hidden">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0 text-main">
+                                        <thead class="bg-app">
+                                            <tr>
+                                                <th scope="col" class="py-3 font-weight-medium pl-4 border-0">Mã Đơn</th>
+                                                <th scope="col" class="py-3 font-weight-medium border-0">Ngày Lập</th>
+                                                <th scope="col" class="py-3 font-weight-medium border-0">Trạng Thái</th>
+                                                <th scope="col" class="py-3 font-weight-medium border-0">Thanh Toán</th>
+                                                <th scope="col" class="py-3 font-weight-medium border-0">Giao Hàng</th>
+                                                <th scope="col" class="py-3 font-weight-medium pr-4 text-right border-0">Hành Động</th>
+                                            </tr>
+                                        </thead>
 
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr class="border">
-                                            <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6">#@item.IDOder</th>
-                                            <td class="align-middle py-5">@item.NgayTao</td>
-                                            <td class="align-middle py-5">
-                                                @if (item.Status == 0)
-                                                {
-
-                                                    <span class="badge badge-primary"> Chờ duyệt</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="badge badge-success"> Đã duyệt</span>
-                                                }
-                                            </td>
-                                            <td class="align-middle py-5">
-                                                @item.DeliveryPaymentMethod
-                                            </td>
-                                            <td class="align-middle py-5">
-                                                @if (item.GiaoHang == 2)
-                                                {
-                                                    if (item.NhanHang == 1)
-                                                    {
-
-                                                        <span class="badge badge-success"> Đã hoàn tất</span>
-                                                    }
-                                                    else if (item.NhanHang == 2)
-                                                    {
-                                                        <span class="badge badge-danger"> Trả Lại</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="badge badge-info"> Đang Giao Hàng</span>
-                                                    }
-
-                                                }
-                                                else if (item.GiaoHang == 1)
-                                                {
-                                                    <span class="badge badge-warning"> Chờ xuất kho</span>
-                                                }
-                                                else
-                                                {
-
-                                                    if (item.GiaoHang == 0)
-                                                    {
-                                                        <span class="badge badge-primary"> Chờ đóng gói</span>
-                                                    }
-                                                    if (item.GiaoHang == 2)
-                                                    {
-                                                        <span class="badge badge-info"> Đã Xuất Kho</span>
-                                                    }
-
-                                                }
-                                            </td>
-                                            <td class="align-middle py-5">
-                                                <div class="d-flex justify-content-center">
-                                                    <a href="/chi-tiet-don-hang-@item.IDOder" class="btn btn-dark rounded-0 btn-wide font-weight-medium">
-                                                        Xem
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-
-                            </table>
-                        }else
-                        {
-
-                            <img src="~/DataImage/ic-menu-faq-4.png" width="100" height="100" /><br />
-                            <span>Hiện tại bạn chưa có đơn hàng nào.</span>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td class="pl-4 font-weight-medium align-middle py-4">#@item.IDOder</td>
+                                                    <td class="align-middle py-4">@item.NgayTao</td>
+                                                    <td class="align-middle py-4">
+                                                        @if (item.Status == 0)
+                                                        {
+                                                            <span class="badge badge-primary">Chờ duyệt</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge badge-success">Đã duyệt</span>
+                                                        }
+                                                    </td>
+                                                    <td class="align-middle py-4 font-size-2">
+                                                        @item.DeliveryPaymentMethod
+                                                    </td>
+                                                    <td class="align-middle py-4">
+                                                        @if (item.GiaoHang == 2)
+                                                        {
+                                                            if (item.NhanHang == 1)
+                                                            {
+                                                                <span class="badge badge-success">Đã hoàn tất</span>
+                                                            }
+                                                            else if (item.NhanHang == 2)
+                                                            {
+                                                                <span class="badge badge-danger">Trả Lại</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="badge badge-info">Đang Giao Hàng</span>
+                                                            }
+                                                        }
+                                                        else if (item.GiaoHang == 1)
+                                                        {
+                                                            <span class="badge badge-warning">Chờ xuất kho</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            if (item.GiaoHang == 0)
+                                                            {
+                                                                <span class="badge badge-primary">Chờ đóng gói</span>
+                                                            }
+                                                            if (item.GiaoHang == 2)
+                                                            {
+                                                                <span class="badge badge-info">Đã Xuất Kho</span>
+                                                            }
+                                                        }
+                                                    </td>
+                                                    <td class="align-middle py-4 pr-4 text-right">
+                                                        <a href="/chi-tiet-don-hang-@item.IDOder" class="btn btn-outline-primary btn-sm rounded-md px-3">
+                                                            <i class="far fa-eye mr-1"></i> Xem
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         }
-                        <nav aria-label="Page navigation example">
+                        else
+                        {
+                            <div class="card bg-card border-color shadow-sm rounded-md p-5 text-center my-4">
+                                <img src="~/DataImage/ic-menu-faq-4.png" width="80" height="80" class="opacity-70 mb-3 mx-auto" />
+                                <div class="font-weight-medium text-muted">Hiện tại bạn chưa có đơn hàng nào.</div>
+                            </div>
+                        }
+                        <nav aria-label="Page navigation example" class="mt-4">
                             @Html.PagedListPager(Model, page => Url.Action("DanhSachHang", new { page = page }),
-                    new PagedListRenderOptions
-                    {
-                        UlElementClasses = new string[] { "pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble" },
-                        LiElementClasses = new string[] { "flex-shrink-0 flex-md-shrink-1 page-item" },
-                        LinkToPreviousPageFormat = "Trước",
-                        LinkToNextPageFormat = "Kế Tiếp",
-                        PageClasses = new string[] { "page-link" }
-                    })
+                            new PagedListRenderOptions
+                            {
+                                UlElementClasses = new string[] { "pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble" },
+                                LiElementClasses = new string[] { "flex-shrink-0 flex-md-shrink-1 page-item" },
+                                LinkToPreviousPageFormat = "Trước",
+                                LinkToNextPageFormat = "Kế Tiếp",
+                                PageClasses = new string[] { "page-link" }
+                            })
                         </nav>
                     </div>
                 </div>

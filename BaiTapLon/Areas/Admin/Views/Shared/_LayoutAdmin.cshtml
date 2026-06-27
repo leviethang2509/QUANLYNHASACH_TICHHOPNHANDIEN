@@ -29,43 +29,53 @@
     <!-- Custom styles for this template-->
     
     <link href="~/Content/Client/css/sb-admin.css" rel="stylesheet" />
+    <link href="/assets/css/modern-premium.css" rel="stylesheet" />
     @RenderSection("cssHeader", required: false)
 </head>
 
-<body id="page-top">
+<body id="page-top" class="bg-app text-main">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-card border-bottom border-color static-top py-2 px-3 shadow-sm justify-content-between">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand mr-1 font-weight-bold text-primary" href="/Admin/Homes" style="letter-spacing: 0.5px;">Trang Quản Trị</a>
+            <a class="btn btn-sm btn-outline-primary rounded-md ml-3 px-3 hover-up d-none d-md-inline-block" href="/trang-chu" title="Chuyển sang trang khách hàng">
+                <i class="fas fa-store mr-1"></i> Trang khách hàng
+            </a>
 
-        <a class="navbar-brand mr-1" href="/Admin/Homes">Trang Quản Trị</a>
-        <a class="btn btn-outline-light btn-sm ml-2" href="/trang-chu" title="Chuyển sang trang khách hàng">
-            <i class="fas fa-store"></i> Trang khách hàng
-        </a>
+            <button class="btn btn-link btn-sm text-muted ml-2" id="sidebarToggle" href="#">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
 
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- Right controls (Theme switch, profile menu) -->
+        <div class="d-flex align-items-center" style="gap: 15px;">
+            <!-- Dark/Light theme toggle button inside Admin -->
+            <button id="themeToggleBtn" class="theme-toggle-btn rounded-circle" title="Thay đổi giao diện" type="button" style="width: 38px; height: 38px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-sun font-size-3"></i>
+            </button>
 
-        <!-- Navbar Search -->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
+            <!-- Navbar Search -->
+            <form class="d-none d-lg-inline-block form-inline my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control rounded-md px-3 border-color font-size-2" placeholder="Tìm kiếm..." aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary px-3 rounded-md" type="button" style="border-top-left-radius:0; border-bottom-left-radius:0;">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
-        <!-- Navbar -->
-        @RenderPage("~/Areas/Admin/Views/Shared/_NagvationLayoutAdmin.cshtml")
+            <!-- Navbar -->
+            @RenderPage("~/Areas/Admin/Views/Shared/_NagvationLayoutAdmin.cshtml")
+        </div>
 
     </nav>
 
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="sidebar navbar-nav">
+        <ul class="sidebar navbar-nav bg-card border-right border-color pt-3">
             <li class="nav-item">
                 <a class="nav-link" href="/Admin/Homes">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -200,24 +210,24 @@
             </li>
         </ul>
 
-        <div id="content-wrapper">
+        <div id="content-wrapper" class="bg-app text-main">
 
-            <div class="container-fluid">
-
-               
+            <div class="container-fluid py-4">
 
                 <!-- Page Content -->
-                <h1>@ViewBag.Title</h1>
-                <hr>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h1 class="h3 font-weight-bold mb-0 text-main">@ViewBag.Title</h1>
+                </div>
+                <hr class="border-color mt-0 mb-4">
                 @RenderBody()
 
             </div>
             <!-- /.container-fluid -->
             <!-- Sticky Footer -->
-            <footer class="sticky-footer">
+            <footer class="sticky-footer bg-card border-top border-color py-3">
                 <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Trang quản lý - Nhà Sách Phương Nam</span>
+                    <div class="copyright text-center my-auto text-muted font-size-2">
+                        <span>Trang quản lý - Nhà Sách Phương Nam © 2026</span>
                     </div>
                 </div>
             </footer>
@@ -279,6 +289,40 @@
     <script src="~/Content/libs/commonjs/commonAlias.js"></script>
     <script src="~/Content/libs/commonjs/commonService.js"></script>
     <script src="~/Content/libs/toastr/toastr.js"></script>
+    
+    <!-- Theme management logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var themeBtn = document.getElementById('themeToggleBtn');
+            var rootEl = document.documentElement;
+
+            function applyTheme(theme) {
+                rootEl.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                if (themeBtn) {
+                    var icon = themeBtn.querySelector('i');
+                    if (icon) {
+                        if (theme === 'dark') {
+                            icon.className = 'fas fa-moon text-warning font-size-3';
+                        } else {
+                            icon.className = 'fas fa-sun text-primary font-size-3';
+                        }
+                    }
+                }
+            }
+
+            var savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function() {
+                    var currentTheme = rootEl.getAttribute('data-theme') || 'light';
+                    var nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    applyTheme(nextTheme);
+                });
+            }
+        });
+    </script>
     @RenderSection("jsFooter",required:false)
 </body>
 

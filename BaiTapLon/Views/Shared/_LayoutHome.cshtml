@@ -51,6 +51,40 @@
     <!-- CSS Bookworm Template -->
     <link rel="stylesheet" href="/assets/css/theme.css">
     <link rel="stylesheet" href="/assets/css/face-auth-modal.css">
+    <!-- Antigravity-Modernize UI Framework & Dark Mode Theme -->
+    <link rel="stylesheet" href="/assets/css/modern-premium.css">
+    <style>
+        /* Smooth transitions for theme toggle */
+        body, header, footer, .card, .product-card, .book-card, .table, .modal-content, .dropdown-menu {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Dark Mode overrides for template elements */
+        [data-theme="dark"] .bg-white, 
+        [data-theme="dark"] .bg-light,
+        [data-theme="dark"] .dropdown-menu,
+        [data-theme="dark"] .modal-content,
+        [data-theme="dark"] .list-group-item {
+            background-color: var(--bg-card) !important;
+            color: var(--text-main) !important;
+        }
+        
+        [data-theme="dark"] .text-dark,
+        [data-theme="dark"] .text-black,
+        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, 
+        [data-theme="dark"] h4, [data-theme="dark"] h5, [data-theme="dark"] h6,
+        [data-theme="dark"] .product-name, [data-theme="dark"] .book-title {
+            color: var(--text-main) !important;
+        }
+        
+        [data-theme="dark"] .text-muted, [data-theme="dark"] .text-secondary {
+            color: var(--text-muted) !important;
+        }
+        
+        [data-theme="dark"] border, [data-theme="dark"] .border-bottom, [data-theme="dark"] .border-top, [data-theme="dark"] .border-left, [data-theme="dark"] .border-right {
+            border-color: var(--border-color) !important;
+        }
+    </style>
 </head>
 <body>
     @{Html.RenderAction("Header", "Home");}
@@ -158,6 +192,28 @@
                     }
                 });
             });
+
+            // Theme toggle initialization and persist state
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+
+            $(document).on('click', '#themeToggleBtn', function() {
+                let theme = document.documentElement.getAttribute('data-theme');
+                let targetTheme = (theme === 'dark') ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', targetTheme);
+                localStorage.setItem('theme', targetTheme);
+                updateThemeIcon(targetTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                const icon = $('#themeToggleBtn i');
+                if (theme === 'dark') {
+                    icon.removeClass('fa-moon').addClass('fa-sun').removeClass('text-primary').addClass('text-warning');
+                } else {
+                    icon.removeClass('fa-sun').addClass('fa-moon').removeClass('text-warning').addClass('text-primary');
+                }
+            }
         });
     </script>
     <script src="~/Content/Home/js/Controller/baseController.js"></script>

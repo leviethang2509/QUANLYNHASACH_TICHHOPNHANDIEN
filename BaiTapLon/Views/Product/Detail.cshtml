@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-md-8 col-lg-5 pl-0 summary entry-summary">
                             <div class="space-top-2 pl-4 pl-wd-6 px-wd-7 pb-5">
-                                <h1 class="product_title entry-title font-size-7 mb-3">@Model.Name</h1>
+                                <h1 class="product_title entry-title font-size-7 mb-3 text-main">@Model.Name</h1>
                                 <div class="font-size-2 mb-4">
                                     <span class="text-yellow-darker">
                                         <span class="fas fa-star"></span>
@@ -66,16 +66,16 @@
                                     </span>
                                     @if (Model.Soluong != 0)
                                     {
-                                        <span class="ml-3">(Còn @Model.Soluong sản phẩm)</span>
+                                        <span class="ml-3 text-muted">(Còn @Model.Soluong sản phẩm)</span>
                                     }
                                     else
                                     {
-                                        <span class="ml-3">(Tạm hết hàng)</span>
+                                        <span class="ml-3 text-danger">(Tạm hết hàng)</span>
                                     }
-                                    <span class="ml-3 font-weight-medium">Bởi (Tác Giả)</span>
-                                    <span class="ml-2 text-gray-600">@Model.TacGia</span>
+                                    <span class="ml-3 font-weight-medium text-main">Bởi (Tác Giả)</span>
+                                    <span class="ml-2 text-muted">@Model.TacGia</span>
                                 </div>
-                                <div class="woocommerce-product-details__short-description font-size-2 mb-5">
+                                <div class="woocommerce-product-details__short-description font-size-2 mb-5 text-muted">
                                     <p class="mb-0">@Model.Mota</p>
 
                                 </div>
@@ -107,9 +107,9 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="border mt-md-8">
-                                <div class="bg-white-100 py-4 px-5">
-                                    <p class="price font-size-22 font-weight-medium mb-0">
+                            <div class="border border-color rounded-md bg-card mt-md-8 shadow-sm">
+                                <div class="bg-app border-bottom border-color py-4 px-5">
+                                    <p class="price font-size-22 font-weight-medium mb-0 text-main">
                                         @{
                                             var price_saleList = 0;
                                             var price_dealList = 0;
@@ -123,19 +123,19 @@
                                         }
                                         @if (price_saleList > 0)
                                         {
-                                            <span class="woocommerce-Price-amount amount">
-                                                @price_dealList.ToString("N0")đ <span class="font-size-1 font-weight-regular text-red-1"><span class="woocommerce-Price-amount amount">Tiết kiệm @price_tietkiem.ToString("N0")đ</span></span>
+                                            <span class="woocommerce-Price-amount amount text-primary">
+                                                @price_dealList.ToString("N0")đ <span class="font-size-1 font-weight-regular text-danger ml-2"><span class="woocommerce-Price-amount amount">Tiết kiệm @price_tietkiem.ToString("N0")đ</span></span>
                                             </span>
                                         }
                                         else
                                         {
-                                            <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-amount amount text-primary">
                                                 @Model.GiaTien.ToString("N0") đ
                                             </span>
                                         }
                                     </p>
                                 </div>
-                                <div class="py-4 px-5">
+                                <div class="py-4 px-5 bg-card">
 
 
 
@@ -165,84 +165,87 @@
                                             <!-- End Quantity -->
                                         </div>
 
-                                        <a href="javascript:void(0)" onclick="addcartHome(@Model.IDContent)" name="add-to-cart" value="7145" class="btn btn-block btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt">Thêm vào giỏ</a>
-                                        <button id="borrowBookBtn" type="button" class="btn btn-block btn-primary border-0 rounded-0 p-3 mt-3" disabled data-product-id="@Model.IDContent">Mượn sách</button>
-                                        <div id="borrowBookStatus" class="font-size-2 mt-2 text-gray-600">Đang kiểm tra vị trí...</div>
+                                        <a href="javascript:void(0)" onclick="addcartHome(@Model.IDContent)" name="add-to-cart" value="7145" class="btn btn-block btn-primary border-0 rounded-md p-3 single_add_to_cart_button button alt shadow-sm hover-up text-white">Thêm vào giỏ</a>
+                                        <button id="borrowBookBtn" type="button" class="btn btn-block btn-secondary border-0 rounded-md p-3 mt-3 shadow-sm hover-up text-white" disabled data-product-id="@Model.IDContent">Mượn sách</button>
+                                        <div id="borrowBookStatus" class="font-size-2 mt-2 text-muted"><i class="fas fa-spinner fa-spin mr-1"></i> Đang kiểm tra vị trí...</div>
                                     </form>
 
-                                    <div id="rentalRequestPanel" class="border p-4 mt-4" style="display:none;">
-                                        <h3 class="font-size-3 mb-3">Thông tin mượn sách</h3>
+                                    <div id="rentalRequestPanel" class="card border border-color p-4 mt-4 shadow-md bg-app" style="display:none;">
+                                        <h3 class="font-size-3 mb-3 font-weight-bold text-primary"><i class="fas fa-info-circle mr-1"></i> Thông tin mượn sách</h3>
                                         <div class="form-group">
-                                            <label for="rentalRequestDate">Ngày yêu cầu</label>
-                                            <input id="rentalRequestDate" type="date" class="form-control rounded-0" readonly />
+                                            <label for="rentalRequestDate" class="font-weight-medium text-main">Ngày yêu cầu</label>
+                                            <input id="rentalRequestDate" type="date" class="form-control rounded-md bg-card text-main border-color" readonly />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rentalBorrowDays">Số ngày mượn</label>
-                                            <input id="rentalBorrowDays" type="number" min="1" max="30" value="7" class="form-control rounded-0" />
+                                            <label for="rentalBorrowDays" class="font-weight-medium text-main">Số ngày mượn</label>
+                                            <input id="rentalBorrowDays" type="number" min="1" max="30" value="7" class="form-control rounded-md bg-card text-main border-color" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rentalIdentityNumber">Số CMND/CCCD</label>
-                                            <input id="rentalIdentityNumber" type="text" class="form-control rounded-0 bg-light" readonly />
+                                            <label for="rentalIdentityNumber" class="font-weight-medium text-main">Số CMND/CCCD</label>
+                                            <input id="rentalIdentityNumber" type="text" class="form-control rounded-md bg-app text-muted border-color" readonly />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rentalIdentityFullName">Họ tên trên CMND/CCCD</label>
-                                            <input id="rentalIdentityFullName" type="text" class="form-control rounded-0 bg-light" readonly />
+                                            <label for="rentalIdentityFullName" class="font-weight-medium text-main">Họ tên trên CMND/CCCD</label>
+                                            <input id="rentalIdentityFullName" type="text" class="form-control rounded-md bg-app text-muted border-color" readonly />
                                         </div>
-                                        <div class="d-flex">
-                                            <button id="confirmRentalInfoBtn" type="button" class="btn btn-primary rounded-0 mr-2">Xác nhận</button>
-                                            <button id="cancelRentalInfoBtn" type="button" class="btn btn-outline-dark rounded-0">Hủy</button>
+                                        <div class="d-flex mt-3">
+                                            <button id="confirmRentalInfoBtn" type="button" class="btn btn-primary rounded-md px-4 mr-2">Xác nhận</button>
+                                            <button id="cancelRentalInfoBtn" type="button" class="btn btn-outline-secondary rounded-md px-4">Hủy</button>
                                         </div>
                                     </div>
 
                                     <div id="rentalProfilePanel" class="face-auth-modal" hidden>
-                                        <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="rentalProfileTitle">
-                                            <div class="face-auth-header">
-                                                <h3 id="rentalProfileTitle" class="face-auth-title">Cập nhật thông tin mượn sách</h3>
-                                                <button id="closeRentalProfileBtn" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+                                        <div class="face-auth-dialog card border-color shadow-lg p-0" role="dialog" aria-modal="true" aria-labelledby="rentalProfileTitle">
+                                            <div class="face-auth-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+                                                <h3 id="rentalProfileTitle" class="face-auth-title text-white mb-0 font-size-3"><i class="fas fa-id-card mr-1"></i> Cập nhật thông tin mượn sách</h3>
+                                                <button id="closeRentalProfileBtn" type="button" class="face-auth-close text-white border-0 bg-transparent font-size-5" aria-label="Đóng">&times;</button>
                                             </div>
-                                            <div class="face-auth-body">
+                                            <div class="face-auth-body p-4 bg-card">
                                                 <div class="form-group">
-                                                    <label for="rentalProfileEmail">Gmail nhận thông báo</label>
-                                                    <input id="rentalProfileEmail" type="email" class="form-control rounded-0" />
+                                                    <label for="rentalProfileEmail" class="font-weight-medium text-main">Gmail nhận thông báo</label>
+                                                    <input id="rentalProfileEmail" type="email" class="form-control rounded-md bg-card text-main border-color" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rentalProfileIdentityNumber">Số CMND/CCCD</label>
-                                                    <input id="rentalProfileIdentityNumber" type="text" class="form-control rounded-0" />
+                                                    <label for="rentalProfileIdentityNumber" class="font-weight-medium text-main">Số CMND/CCCD</label>
+                                                    <input id="rentalProfileIdentityNumber" type="text" class="form-control rounded-md bg-card text-main border-color" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rentalProfileIdentityFullName">Họ tên trên CMND/CCCD</label>
-                                                    <input id="rentalProfileIdentityFullName" type="text" class="form-control rounded-0" />
+                                                    <label for="rentalProfileIdentityFullName" class="font-weight-medium text-main">Họ tên trên CMND/CCCD</label>
+                                                    <input id="rentalProfileIdentityFullName" type="text" class="form-control rounded-md bg-card text-main border-color" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rentalProfileIdentityFrontFile">Ảnh CMND/CCCD mặt trước</label>
-                                                    <input id="rentalProfileIdentityFrontFile" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="form-control rounded-0" />
+                                                    <label for="rentalProfileIdentityFrontFile" class="font-weight-medium text-main">Ảnh CMND/CCCD mặt trước</label>
+                                                    <input id="rentalProfileIdentityFrontFile" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="form-control rounded-md bg-card text-main border-color" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rentalProfileIdentityBackFile">Ảnh CMND/CCCD mặt sau</label>
-                                                    <input id="rentalProfileIdentityBackFile" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="form-control rounded-0" />
+                                                    <label for="rentalProfileIdentityBackFile" class="font-weight-medium text-main">Ảnh CMND/CCCD mặt sau</label>
+                                                    <input id="rentalProfileIdentityBackFile" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="form-control rounded-md bg-card text-main border-color" />
                                                 </div>
-                                                <div class="font-size-2 mb-3 text-gray-600">Ảnh CMND/CCCD và OCR không bắt buộc. Nếu máy chủ chưa có Tesseract, bạn vẫn có thể nhập tay số giấy tờ và họ tên rồi lưu.</div>
-                                                <div id="rentalProfileStatus" class="font-size-2 mb-3 text-gray-600"></div>
-                                                <div class="face-auth-actions">
-                                                    <button id="ocrRentalProfileBtn" type="button" class="btn btn-outline-dark rounded-0">Đọc CMND/CCCD</button>
-                                                    <button id="saveRentalProfileBtn" type="button" class="btn btn-primary rounded-0">Lưu và tiếp tục</button>
+                                                <div class="font-size-2 mb-3 text-muted"><i class="fas fa-info-circle mr-1"></i> Ảnh CMND/CCCD và OCR không bắt buộc. Nếu máy chủ chưa có Tesseract, bạn vẫn có thể nhập tay số giấy tờ và họ tên rồi lưu.</div>
+                                                <div id="rentalProfileStatus" class="font-size-2 mb-3 text-muted"></div>
+                                                <div class="face-auth-actions d-flex justify-content-end mt-3">
+                                                    <button id="ocrRentalProfileBtn" type="button" class="btn btn-outline-secondary rounded-md mr-2"><i class="fas fa-eye mr-1"></i> Đọc CMND/CCCD</button>
+                                                    <button id="saveRentalProfileBtn" type="button" class="btn btn-primary rounded-md"><i class="fas fa-arrow-right mr-1"></i> Lưu và tiếp tục</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div id="rentalFacePanel" class="face-auth-modal" hidden>
-                                        <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="rentalFaceTitle">
-                                            <div class="face-auth-header">
-                                                <h3 id="rentalFaceTitle" class="face-auth-title">Xác nhận khuôn mặt</h3>
-                                                <button id="closeRentalFaceBtn" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+                                        <div class="face-auth-dialog card border-color shadow-lg p-0" role="dialog" aria-modal="true" aria-labelledby="rentalFaceTitle">
+                                            <div class="face-auth-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+                                                <h3 id="rentalFaceTitle" class="face-auth-title text-white mb-0 font-size-3"><i class="fas fa-user-shield mr-1"></i> Xác nhận khuôn mặt</h3>
+                                                <button id="closeRentalFaceBtn" type="button" class="face-auth-close text-white border-0 bg-transparent font-size-5" aria-label="Đóng">&times;</button>
                                             </div>
-                                            <div class="face-auth-body">
-                                                <video id="rentalFaceVideo" class="face-auth-video" autoplay muted playsinline></video>
-                                                <div id="rentalFaceStatus" class="font-size-2 mt-2 text-gray-600"></div>
-                                                <div class="face-auth-actions">
-                                                    <button id="captureRentalFaceBtn" type="button" class="btn btn-primary rounded-0">Nhận diện và xác nhận</button>
-                                                    <button id="cancelRentalFaceBtn" type="button" class="btn btn-outline-dark rounded-0">Đóng</button>
+                                            <div class="face-auth-body p-4 text-center bg-card">
+                                                <div class="face-scanner-box mx-auto mb-3" style="max-width: 320px;">
+                                                    <div class="face-scanner-line"></div>
+                                                    <video id="rentalFaceVideo" class="face-auth-video w-100 rounded-lg" style="transform: scaleX(-1);" autoplay muted playsinline></video>
+                                                </div>
+                                                <div id="rentalFaceStatus" class="font-size-2 mt-2 text-muted"></div>
+                                                <div class="face-auth-actions d-flex justify-content-center mt-3">
+                                                    <button id="captureRentalFaceBtn" type="button" class="btn btn-primary rounded-md mr-2"><i class="fas fa-camera mr-1"></i> Nhận diện và xác nhận</button>
+                                                    <button id="cancelRentalFaceBtn" type="button" class="btn btn-outline-secondary rounded-md">Đóng</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -371,18 +374,18 @@
                             }
                             else
                             {
-                                <p class="text-gray-700">Sản phẩm này chưa có video.</p>
+                                <p class="text-muted">Sản phẩm này chưa có video.</p>
                             }
                         </div>
 
                         <div class="woocommerce-Tabs-panel panel col-xl-8 offset-xl-2 entry-content wc-tab tab-pane fade pt-9" id="pills-four-example1" role="tabpanel" aria-labelledby="pills-four-example1-tab">
-                            <h4 class="font-size-3">Khách hàng đánh giá</h4>
+                            <h4 class="font-size-3 text-main">Khách hàng đánh giá</h4>
                             <div class="row mb-8">
                                 <div class="col-md-6 mb-6 mb-md-0">
                                     <div class="d-flex  align-items-center mb-4">
-                                        <span class="font-size-15 font-weight-bold">@averageRating.ToString("0.0")</span>
-                                        <div class="ml-3 h6 mb-0">
-                                            <span class="font-weight-normal">@reviewCount lượt</span>
+                                        <span class="font-size-15 font-weight-bold text-main">@averageRating.ToString("0.0")</span>
+                                        <div class="ml-3 h6 mb-0 text-main">
+                                            <span class="font-weight-normal text-muted">@reviewCount lượt</span>
                                             <div class="text-yellow-darker">
                                                 @for (var i = 1; i <= 5; i++)
                                                 {
@@ -396,8 +399,8 @@
                                     <form id="productReviewForm">
                                         <input type="hidden" name="productId" value="@Model.IDContent" />
                                         <div class="form-group">
-                                            <label>Số sao</label>
-                                            <select name="rating" class="form-control rounded-0">
+                                            <label class="text-main">Số sao</label>
+                                            <select name="rating" class="form-control rounded-md bg-card text-main border-color">
                                                 <option value="5">5 sao</option>
                                                 <option value="4">4 sao</option>
                                                 <option value="3">3 sao</option>
@@ -406,25 +409,25 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Bình luận</label>
-                                            <textarea name="comment" rows="4" class="form-control rounded-0" maxlength="1000"></textarea>
+                                            <label class="text-main">Bình luận</label>
+                                            <textarea name="comment" rows="4" class="form-control rounded-md bg-card text-main border-color" maxlength="1000"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-dark rounded-0">Gửi đánh giá</button>
-                                        <div id="productReviewStatus" class="font-size-2 mt-2 text-gray-700"></div>
+                                        <button type="submit" class="btn btn-primary text-white px-4">Gửi đánh giá</button>
+                                        <div id="productReviewStatus" class="font-size-2 mt-2 text-muted"></div>
                                     </form>
                                 </div>
                             </div>
 
-                            <h4 class="font-size-3 mb-4">Bình luận gần đây</h4>
+                            <h4 class="font-size-3 mb-4 text-main">Bình luận gần đây</h4>
 
                             <ul class="list-unstyled mb-8">
                                 @if (productReviews.Any())
                                 {
                                     foreach (var review in productReviews)
                                     {
-                                        <li class="mb-4 pb-4 border-bottom">
+                                        <li class="mb-4 pb-4 border-bottom border-color">
                                             <div class="d-flex justify-content-between">
-                                                <strong>@review.UserName</strong>
+                                                <strong class="text-main">@review.UserName</strong>
                                                 <span class="text-yellow-darker">
                                                     @for (var i = 1; i <= 5; i++)
                                                     {
@@ -432,14 +435,14 @@
                                                     }
                                                 </span>
                                             </div>
-                                            <div class="font-size-2 text-gray-700 mb-2">@review.CreatedAt.ToString("dd/MM/yyyy HH:mm")</div>
-                                            <p class="mb-0">@review.Comment</p>
+                                            <div class="font-size-2 text-muted mb-2">@review.CreatedAt.ToString("dd/MM/yyyy HH:mm")</div>
+                                            <p class="mb-0 text-main">@review.Comment</p>
                                         </li>
                                     }
                                 }
                                 else
                                 {
-                                    <li class="mb-4 pb-5 border-bottom">Chưa có bình luận nào cho sách này.</li>
+                                    <li class="mb-4 pb-5 border-bottom border-color text-muted">Chưa có bình luận nào cho sách này.</li>
                                 }
                             </ul>
                         </div>
@@ -508,21 +511,21 @@
                                             <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                                <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@item.TacGia</a></div>
+                                                <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-muted">@item.TacGia</a></div>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     @if (price_salecategory > 0)
                                                     {
-                                                        <ins class="text-decoration-none mr-2">@price_dealList_category.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <ins class="text-decoration-none mr-2 text-primary">@price_dealList_category.ToString("N0")</ins>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                     }
                                                     else
                                                     {
-                                                        <ins class="text-decoration-none mr-2">@item.GiaTien.ToString("N0")đ</ins>
+                                                        <ins class="text-decoration-none mr-2 text-primary">@item.GiaTien.ToString("N0")đ</ins>
                                                     }
                                                 </div>
                                             </div>
-                                            <div class="product__hover d-flex align-items-center">
-                                                <a href="javascript:void(0)" onclick="addcartHome(@item.IDContent)" class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
+                                            <div class="product__hover d-flex align-items-center bg-card">
+                                                <a href="javascript:void(0)" onclick="addcartHome(@item.IDContent)" class="text-uppercase text-main h-dark font-weight-medium mr-auto">
                                                     <span class="product__add-to-cart">Thêm Vào Giỏ</span>
                                                     <span class="product__add-to-cart-icon font-size-4"><i class="flaticon-icon-126515"></i></span>
                                                 </a>

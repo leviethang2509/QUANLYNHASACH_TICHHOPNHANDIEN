@@ -35,8 +35,8 @@
         <div class="row">
             <div class="col-xl-5 col-wd-4 mb-8 mb-xl-0">
                 <div class="products">
-                    <div class="product product__card product__card-v2">
-                        <div class="px-md-5 py-md-6 p-4 border border-primary border-width-2">
+                    <div class="product product__card product__card-v2 bg-card border-color">
+                        <div class="px-md-5 py-md-6 p-4 border border-primary border-width-2 rounded-md">
                             <div class="woocommerce-loop-product__thumbnail py-8 position-relative">
                                 <div class="width-100 height-100 bg-primary rounded-circle d-flex align-items-center flex-wrap justify-content-center text-white position-absolute right-0 top-0">
                                     <div class="text-center">
@@ -48,12 +48,12 @@
                             </div>
                             <div class="woocommerce-loop-product__body">
                                 <div class="mb-3">
-                                    <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url_deal">Bìa Mềm</a></div>
-                                    <h2 class="woocommerce-loop-product__title font-size-3 text-lh-md mb-2 text-height-2 crop-text-2 h-dark"><a href="@url_deal">@itemdeal.Name</a></h2>
-                                    <div class="font-size-2 text-gray-700 mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">Kim Đồng</a></div>
-                                    <div class="price d-flex align-items-center font-weight-medium font-size-22">
-                                        <ins class="text-decoration-none mr-2">@price_deal.ToString("N0")</ins>
-                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@itemdeal.GiaTien.ToString("N0") đ</span></del>
+                                    <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url_deal" class="text-muted">Bìa Mềm</a></div>
+                                    <h2 class="woocommerce-loop-product__title font-size-3 text-lh-md mb-2 text-height-2 crop-text-2 h-dark"><a href="@url_deal" class="text-main">@itemdeal.Name</a></h2>
+                                    <div class="font-size-2 text-muted mb-1 text-truncate"><a href="../others/authors-single.html" class="text-muted">Kim Đồng</a></div>
+                                    <div class="price d-flex align-items-center font-weight-medium font-size-22 text-main">
+                                        <ins class="text-decoration-none mr-2 text-primary">@price_deal.ToString("N0")</ins>
+                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@itemdeal.GiaTien.ToString("N0") đ</span></del>
                                     </div>
                                 </div>
                                 <div class="countdown-timer mb-5">
@@ -104,7 +104,7 @@
                                 var price_dealList = (itemSale.GiaTien - itemSale.GiaTien / 100 * (price_saleList));
                                 var url = "/chi-tiet/" + itemSale.MetaTitle + "-" + itemSale.IDContent;
                                 <li class="col">
-                                    <div class="product product__space border bg-white mb-5">
+                                    <div class="product product__space border border-color bg-card mb-5">
                                         <div class="product__inner overflow-hidden p-3 p-md-4d875">
                                             <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                                 <div class="woocommerce-loop-product__thumbnail">
@@ -113,13 +113,13 @@
                                                         -@price_saleList%
                                                     </span>
                                                 </div>
-                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                                     <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                     <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@itemSale.Name</a></h2>
-                                                    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@itemSale.TacGia</a></div>
+                                                    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-muted">@itemSale.TacGia</a></div>
                                                     <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                         <ins class="text-decoration-none mr-2">@price_dealList.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@itemSale.GiaTien.ToString("N0")đ</span></del>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@itemSale.GiaTien.ToString("N0")đ</span></del>
                                                     </div>
 
                                                 </div>
@@ -157,7 +157,7 @@
                                 var price_deal_new = (itemNew.GiaTien - itemNew.GiaTien / 100 * (price_sale_new));
                                 var url = "/chi-tiet/" + itemNew.MetaTitle + "-" + itemNew.IDContent;
                                 <li class="col">
-                                    <div class="product product__space border bg-white mb-5">
+                                    <div class="product product__space border border-color bg-card mb-5">
                                         <div class="product__inner overflow-hidden p-3 p-md-4d875">
                                             <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                                 <div class="woocommerce-loop-product__thumbnail">
@@ -169,15 +169,15 @@
                                                         </span>
                                                     }
                                                 </div>
-                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                                     <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                     <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@itemNew.Name</a></h2>
-                                                    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@itemNew.TacGia</a></div>
+                                                    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-muted">@itemNew.TacGia</a></div>
                                                     <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                         @if (price_sale_new > 0)
                                                         {
                                                             <ins class="text-decoration-none mr-2">@price_deal_new.ToString("N0")</ins>
-                                                            <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@itemNew.GiaTien.ToString("N0")đ</span></del>
+                                                            <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@itemNew.GiaTien.ToString("N0")đ</span></del>
                                                         }
                                                         else
                                                         {
@@ -220,7 +220,7 @@
                                 var price_deal_sell = (itemSell.GiaTien - itemSell.GiaTien / 100 * (price_sale_sell));
                                 var url = "/chi-tiet/" + itemSell.MetaTitle + "-" + itemSell.IDContent;
                                 <li class="col">
-                                    <div class="product product__space border bg-white mb-5">
+                                    <div class="product product__space border border-color bg-card mb-5">
                                         <div class="product__inner overflow-hidden p-3 p-md-4d875">
                                             <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                                 <div class="woocommerce-loop-product__thumbnail">
@@ -232,15 +232,15 @@
                                                         </span>
                                                     }
                                                 </div>
-                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                                     <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                     <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@itemSell.Name</a></h2>
-                                                    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@itemSell.TacGia</a></div>
+                                                    <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-muted">@itemSell.TacGia</a></div>
                                                     <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                         @if (price_sale_sell > 0)
                                                         {
                                                             <ins class="text-decoration-none mr-2">@price_deal_sell.ToString("N0")</ins>
-                                                            <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@itemSell.GiaTien.ToString("N0")đ</span></del>
+                                                            <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@itemSell.GiaTien.ToString("N0")đ</span></del>
                                                         }
                                                         else
                                                         {
@@ -320,7 +320,7 @@
                    var url = "/chi-tiet/" + item.MetaTitle + "-" + item.IDContent;
           
 
-                <li class="product border product__space bg-white">
+                <li class="product border border-color product__space bg-card">
                     <div class="product__inner overflow-hidden p-3 p-md-4d875">
                         <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                             <div class="woocommerce-loop-product__thumbnail">
@@ -334,15 +334,15 @@
                                     </span>
                                 }
                             </div>
-                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                            <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@item.TacGia</a></div>
+                                <div class="font-size-2  mb-1 text-truncate"><a href="../others/authors-single.html" class="text-muted">@item.TacGia</a></div>
                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                     @if (price_sale_sell_top > 0)
                                     {
                                         <ins class="text-decoration-none mr-2">@price_deal_sell__top.ToString("N0")</ins>
-                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                     }
                                     else
                                     {
@@ -406,7 +406,7 @@
 
                     </div>
                     <h2 class="font-size-26 mb-4">Gợi Ý</h2>
-                    <div class="px-4 pt-4 border mb-5">
+                    <div class="px-4 pt-4 border border-color bg-card mb-5">
                         @foreach (var item in listGoiY)
                         {
                             var topGoiY = 0;
@@ -424,7 +424,7 @@
                                     <h6 class="crop-text-2 text-lh-md font-weight-normal">
                                         <a href="@url">@item.Name</a>
                                     </h6>
-                                    <span class="text-secondary-gray-700 font-size-2">21,658 Lượt Xem</span>
+                                    <span class="text-muted font-size-2">21,658 Lượt Xem</span>
                                 </div>
                                 
                             </div>
@@ -445,7 +445,7 @@
                             var price_deal_feature = (item.GiaTien - item.GiaTien / 100 * (price_sale_feature));
                             var url = "/chi-tiet/" + item.MetaTitle + "-" + item.IDContent;
                             <div class="col mb-5">
-                                <div class="product border product__space bg-white">
+                                <div class="product border border-color product__space bg-card">
                                     <div class="product__inner overflow-hidden p-3 p-md-4d875">
                                         <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                             <div class="woocommerce-loop-product__thumbnail">
@@ -457,15 +457,15 @@
                                                     </span>
                                                 }
                                             </div>
-                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
+                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     @if (price_sale_feature > 0)
                                                     {
                                                         <ins class="text-decoration-none mr-2">@price_deal_feature.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                     }
                                                     else
                                                     {
@@ -561,15 +561,15 @@
                                                     </span>
                                                 }
                                             </div>
-                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
+                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     @if (price_sale_tab1 > 0)
                                                     {
                                                         <ins class="text-decoration-none mr-2">@price_deal_tab1.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                     }
                                                     else
                                                     {
@@ -642,15 +642,15 @@
                                                     </span>
                                                 }
                                             </div>
-                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
+                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     @if (price_sale_tab2 > 0)
                                                     {
                                                         <ins class="text-decoration-none mr-2">@price_deal_tab2.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                     }
                                                     else
                                                     {
@@ -722,15 +722,15 @@
                                                 </span>
                                             }
                                         </div>
-                                        <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                        <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                             <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                            <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
+                                            <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
                                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                 @if (price_sale_tab3 > 0)
                                                 {
                                                     <ins class="text-decoration-none mr-2">@price_deal_tab3.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                 }
                                                 else
                                                 {
@@ -801,15 +801,15 @@
                                                 </span>
                                             }
                                         </div>
-                                        <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                        <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
                                             <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                             <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                            <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
+                                            <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
                                             <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                 @if (price_sale_tab4 > 0)
                                                 {
                                                     <ins class="text-decoration-none mr-2">@price_deal_tab4.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                 }
                                                 else
                                                 {
@@ -881,19 +881,19 @@
                     }
                     var price_deal_tab1 = (item.GiaTien - item.GiaTien / 100 * (price_sale_tab1));
                     var url = "/chi-tiet/" + item.Metatile + "-" + item.IDContent;
-                    <div class="product product__card border-0">
-                        <div class="media p-3 p-md-4d875 bg-white border">
+                    <div class="product product__card border-0 bg-card">
+                        <div class="media p-3 p-md-4d875 bg-card border border-color">
                             <a href="@url" class="d-block"><img src="@item.Images" width="120" height="180" alt="image-description"></a>
                             
                             <div class="media-body ml-4d875">
                                 <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
                                 <h2 class="woocommerce-loop-product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                <div class="font-size-2 mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
+                                <div class="font-size-2 mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                     @if (price_sale_tab1 > 0)
                                     {
                                         <ins class="text-decoration-none mr-2">@price_deal_tab1.ToString("N0")</ins>
-                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                     }
                                     else
                                     {

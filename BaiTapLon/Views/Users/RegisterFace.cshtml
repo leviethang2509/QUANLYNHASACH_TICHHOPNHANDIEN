@@ -4,13 +4,22 @@
 }
 
 <div class="container py-6">
-    <h2>Xác thực khuôn mặt</h2>
-    <p class="mb-4">Vui lòng nhìn thẳng vào camera, sau đó bấm xác thực để hoàn tất đăng ký tài khoản.</p>
-    <video id="faceVideo" class="face-auth-video" autoplay muted playsinline></video>
-    <div class="mt-3">
-        <button id="captureBtn" type="button" class="btn btn-primary rounded-0">Xác thực khuôn mặt</button>
+    <div class="card shadow-lg p-5 bg-card border-color rounded-md max-w-600 mx-auto text-center">
+        <h2 class="font-weight-bold text-main mb-2"><i class="fas fa-user-shield text-primary mr-2"></i>Đăng Ký Khuôn Mặt</h2>
+        <p class="text-muted mb-4">Vui lòng nhìn thẳng vào camera, sau đó bấm nút bên dưới để hoàn tất đăng ký tài khoản.</p>
+        
+        <div class="face-scanner-box mx-auto mb-4" style="max-width: 360px; border: 4px solid var(--primary); border-radius: var(--radius-lg); overflow: hidden; position: relative;">
+            <div class="face-scanner-line" style="position: absolute; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, var(--success), transparent); animation: scan 2.5s linear infinite; z-index: 10;"></div>
+            <video id="faceVideo" class="face-auth-video w-100 bg-dark" style="transform: scaleX(-1); object-fit: cover; aspect-ratio: 4/3;" autoplay muted playsinline></video>
+        </div>
+
+        <div class="mt-3">
+            <button id="captureBtn" type="button" class="btn btn-primary rounded-md px-5 py-3 hover-up shadow-md font-weight-bold w-100 max-w-360">
+                <i class="fas fa-camera mr-2"></i>Xác thực khuôn mặt
+            </button>
+        </div>
+        <div id="faceStatus" class="mt-3 font-weight-medium"></div>
     </div>
-    <div id="faceStatus" class="mt-2"></div>
 </div>
 
 <script src="/Scripts/FaceCapture.js"></script>

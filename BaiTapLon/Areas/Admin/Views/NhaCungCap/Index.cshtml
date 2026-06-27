@@ -1,88 +1,109 @@
-﻿
-@model X.PagedList.IPagedList<Mood.NhaCungCapModel.NhaCungCapModelView>
+﻿@model X.PagedList.IPagedList<Mood.NhaCungCapModel.NhaCungCapModelView>
 @using X.PagedList.Mvc;
 @{
     ViewBag.Title = "Danh Sách Nhà Cung Cấp";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<ol class="breadcrumb">
+<!-- Breadcrumbs-->
+<ol class="breadcrumb bg-card border border-color rounded-md py-2 px-3 shadow-sm mb-4">
     <li class="breadcrumb-item">
-        <a href="/Admin/Homes">Trang Chủ</a>
+        <a href="/Admin/Homes" class="text-primary font-weight-semibold">Trang Chủ</a>
     </li>
-    <li class="breadcrumb-item active">Quản lý nhà cung cấp</li>
+    <li class="breadcrumb-item active text-muted">Quản lý nhà cung cấp</li>
 </ol>
-@using (Html.BeginForm("Index", "NhaCungCap", FormMethod.Get))
-{
-    <div class="row">
-        <div class="col-md-6">
-            <input class="form-control" type="text" name="searchString" placeholder="Nhập từ khóa cần tìm kiếm..." />
 
-        </div>
-        <button type="submit" class="btn-danger btn-sm"><i class="fas fa-search"></i> Tìm kiếm</button>
-        <div class="col-md-2">
-            <a href="/Admin/NhaCungCap/Create" class="btn btn-success"><i class="fas fa-plus"></i> Thêm nhà cung cấp</a>
-        </div>
-    </div>
-}
-<br />
-<table class="table table-hover table-striped table-bordered">
-    <thead>
-        <tr class="text-center">
-            <th>Tên Nhà Cung Cấp</th>
-            <th>Địa chỉ</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th>Người Tạo</th>
-            <th>Ngày Tạo</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody class="text-center">
-        @foreach (var item in Model)
+<div class="card bg-card border-color shadow-sm rounded-lg mb-4">
+    <div class="card-body p-3">
+        @using (Html.BeginForm("Index", "NhaCungCap", FormMethod.Get, new { @class = "m-0" }))
         {
-            <tr id="row_@item.IDNCC">
-                <td>@item.TenNCC</td>
-                <td>@item.DiaChi</td>
-                <td>@item.SoDienThoai</td>
-                <td>@item.Email</td>
-                <td>@item.NguoiTao</td>
-                <td>@item.NgayTao</td>
-                <td>
-                    @if (item.Status)
-                    {
-                        <i class="fas fa-lock-open"></i>
-                        <p>Hoạt động</p>
-                    }
-                    else
-                    {
-                        <i class="fas fa-lock"></i>
-                        <p>Đã khóa</p>
-                    }
-
-                </td>
-                <td>
-                    <a href="/Admin/NhaCungCap/Edit/@item.IDNCC" class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i> Sửa </a>
-                    @Ajax.ActionLink(" Xóa", "Delete", new { @id = item.IDNCC }, new AjaxOptions
-               {
-                   Confirm = "Bạn có muốn xóa thể loại này?",
-                   OnComplete = "$('#row_" + item.IDNCC + "').remove()",
-                   HttpMethod = "Delete"
-               }, new { @class = "btn btn-danger btn-sm far fa-trash-alt" })
-                </td>
-            </tr>
+            <div class="row align-items-center">
+                <div class="col-md-8 col-sm-12 mb-2 mb-md-0">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-app border-color text-muted">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <input class="form-control bg-app border-color text-main rounded-right-md" type="text" name="searchString" placeholder="Nhập từ khóa cần tìm kiếm..." />
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 text-md-right">
+                    <button type="submit" class="btn btn-primary px-4 rounded-md mr-2">
+                        <i class="fas fa-search mr-1"></i> Tìm kiếm
+                    </button>
+                    <a href="/Admin/NhaCungCap/Create" class="btn btn-success rounded-md">
+                        <i class="fas fa-plus mr-1"></i> Thêm nhà cung cấp
+                    </a>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
 
+<div class="card bg-card border-color shadow-sm rounded-lg overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped border-0 mb-0">
+            <thead>
+                <tr class="bg-app text-muted font-size-2 border-bottom border-color text-uppercase font-weight-bold text-center">
+                    <th class="px-4 py-3 border-0">Tên Nhà Cung Cấp</th>
+                    <th class="px-4 py-3 border-0">Địa chỉ</th>
+                    <th class="px-4 py-3 border-0">Số điện thoại</th>
+                    <th class="px-4 py-3 border-0">Email</th>
+                    <th class="px-4 py-3 border-0">Người Tạo</th>
+                    <th class="px-4 py-3 border-0">Ngày Tạo</th>
+                    <th class="px-4 py-3 border-0 text-center">Trạng thái</th>
+                    <th class="px-4 py-3 border-0 text-center">Hành động</th>
+                </tr>
+            </thead>
+            <tbody class="text-main font-size-2 align-middle text-center">
+                @foreach (var item in Model)
+                {
+                    <tr id="row_@item.IDNCC" class="border-bottom border-color">
+                        <td class="px-4 py-3 border-0 font-weight-semibold text-left">@item.TenNCC</td>
+                        <td class="px-4 py-3 border-0 text-muted text-left">@item.DiaChi</td>
+                        <td class="px-4 py-3 border-0">@item.SoDienThoai</td>
+                        <td class="px-4 py-3 border-0">@item.Email</td>
+                        <td class="px-4 py-3 border-0">@item.NguoiTao</td>
+                        <td class="px-4 py-3 border-0">@item.NgayTao</td>
+                        <td class="px-4 py-3 border-0 text-center">
+                            @if (item.Status)
+                            {
+                                <span class="badge bg-success-light text-success px-2.5 py-1 rounded-full font-weight-bold">
+                                    <i class="fas fa-lock-open mr-1"></i> Hoạt động
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger-light text-danger px-2.5 py-1 rounded-full font-weight-bold">
+                                    <i class="fas fa-lock mr-1"></i> Đã khóa
+                                </span>
+                            }
+                        </td>
+                        <td class="px-4 py-3 border-0 text-center">
+                            <div class="d-inline-flex" style="gap: 5px;">
+                                <a href="/Admin/NhaCungCap/Edit/@item.IDNCC" class="btn btn-sm btn-outline-info rounded-md" title="Chỉnh sửa"><i class="fas fa-user-edit"></i> Sửa</a>
+                                @Ajax.ActionLink(" Xóa", "Delete", new { @id = item.IDNCC }, new AjaxOptions
+                                {
+                                    Confirm = "Bạn có muốn xóa nhà cung cấp này?",
+                                    OnComplete = "$('#row_" + item.IDNCC + "').remove()",
+                                    HttpMethod = "Delete"
+                                }, new { @class = "btn btn-sm btn-outline-danger rounded-md far fa-trash-alt" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
-                    new PagedListRenderOptions
-                    {
-                        LiElementClasses = new string[] { "page-item" },
-                        LinkToPreviousPageFormat = "Trước",
-                        LinkToNextPageFormat = "Kế Tiếp",
-                        PageClasses = new string[] { "page-link" }
-                    })
-
-
+<div class="d-flex justify-content-center mt-4">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+        new PagedListRenderOptions
+        {
+            LiElementClasses = new string[] { "page-item" },
+            LinkToPreviousPageFormat = "<i class='fas fa-chevron-left'></i> Trước",
+            LinkToNextPageFormat = "Kế Tiếp <i class='fas fa-chevron-right'></i>",
+            PageClasses = new string[] { "page-link bg-card border-color text-main rounded-md mx-1 font-size-2" }
+        })
+</div>

@@ -29,25 +29,25 @@
                         <form id="loginFormMobile">
                             <div id="login1" data-target-group="idForm1">
                                 <!-- Title -->
-                                <header class="border-bottom px-4 px-md-6 py-4">
-                                    <h2 class="font-size-3 mb-0 d-flex align-items-center"><i class="flaticon-user mr-3 font-size-5"></i>Tài khoản</h2>
+                                <header class="border-bottom border-color px-4 px-md-6 py-4">
+                                    <h2 class="font-size-3 mb-0 d-flex align-items-center text-main"><i class="flaticon-user mr-3 font-size-5"></i>Tài khoản</h2>
                                 </header>
                                 <!-- End Title -->
-
-                                <div class="p-4 p-md-6">
+                                
+                                <div class="p-4 p-md-6 bg-card">
                                     <!-- Form Group -->
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinEmailLabel" class="form-label" for="signinEmail">Tài khoản *</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="UserName" id="loginUserNameMobile" required>
+                                            <label id="signinEmailLabel" class="form-label text-main" for="signinEmail">Tài khoản *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="UserName" id="loginUserNameMobile" required>
                                         </div>
                                     </div>
                                     <!-- End Form Group -->
                                     <!-- Form Group -->
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinPasswordLabel" class="form-label" for="signinPassword">Mật khẩu *</label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4" name="password" id="signinPassword" placeholder="" aria-label="" aria-describedby="signinPasswordLabel" required>
+                                            <label id="signinPasswordLabel" class="form-label text-main" for="signinPassword">Mật khẩu *</label>
+                                            <input type="password" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="password" id="signinPassword" placeholder="" aria-label="" aria-describedby="signinPasswordLabel" required>
                                         </div>
                                     </div>
                                     <!-- End Form Group -->
@@ -58,47 +58,50 @@
                                             <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
                                                 <input type="checkbox" class="custom-control-input" id="termsCheckbox1" name="termsCheckbox1">
                                                 <label class="custom-control-label" for="termsCheckbox1">
-                                                    <span class="font-size-2 text-secondary-gray-700">
+                                                    <span class="font-size-2 text-muted">
                                                         Lưu tài khoản
                                                     </span>
                                                 </label>
                                             </div>
                                         </div>
                                         <!-- End Checkbox -->
-
-                                        <a class="js-animation-link text-dark font-size-2 t-d-u link-muted font-weight-medium" href="javascript:;"
+                                        
+                                        <a class="js-animation-link text-muted font-size-2 t-d-u link-muted font-weight-medium" href="javascript:;"
                                            data-target="#forgotPassword1"
                                            data-link-group="idForm1"
                                            data-animation-in="fadeIn">Quên Mật Khẩu?</a>
                                     </div>
-
+                                    
                                     <div class="mb-4d75">
-                                        <a href="javascript:void(0)" onclick="loginMobile()" class="btn btn-block py-3 rounded-0 btn-dark">Đăng Nhập</a>
+                                        <a href="javascript:void(0)" onclick="loginMobile()" class="btn btn-block py-3 rounded-md btn-primary text-white shadow-sm hover-up">Đăng Nhập</a>
                                     </div>
                                     <div class="mb-4d75">
-                                        <button id="showFaceLoginMobile" type="button" class="btn btn-block py-3 rounded-0 btn-outline-dark">Đăng nhập bằng khuôn mặt</button>
+                                        <button id="showFaceLoginMobile" type="button" class="btn btn-block py-3 rounded-md btn-secondary text-white shadow-sm hover-up"><i class="fas fa-user-shield mr-2"></i> Đăng nhập bằng khuôn mặt</button>
                                     </div>
                                     <div id="faceLoginPanelMobile" class="face-auth-modal" hidden>
-                                        <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="faceLoginTitleMobile">
-                                            <div class="face-auth-header">
-                                                <h3 id="faceLoginTitleMobile" class="face-auth-title">Đăng nhập bằng khuôn mặt</h3>
-                                                <button id="closeFaceLoginMobile" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+                                        <div class="face-auth-dialog card border-color shadow-lg p-0" role="dialog" aria-modal="true" aria-labelledby="faceLoginTitleMobile">
+                                            <div class="face-auth-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+                                                <h3 id="faceLoginTitleMobile" class="face-auth-title text-white mb-0 font-size-3"><i class="fas fa-camera mr-1"></i> Đăng nhập bằng khuôn mặt</h3>
+                                                <button id="closeFaceLoginMobile" type="button" class="face-auth-close text-white border-0 bg-transparent font-size-5" aria-label="Đóng">&times;</button>
                                             </div>
-                                            <div class="face-auth-body">
-                                                <video id="faceLoginVideoMobile" class="face-auth-video" autoplay muted playsinline></video>
+                                            <div class="face-auth-body p-4 text-center bg-card">
+                                                <div class="face-scanner-box mx-auto mb-3" style="max-width: 320px;">
+                                                    <div class="face-scanner-line"></div>
+                                                    <video id="faceLoginVideoMobile" class="face-auth-video w-100 rounded-lg" style="transform: scaleX(-1);" autoplay muted playsinline></video>
+                                                </div>
                                                 <div id="faceLoginStatusMobile" class="font-size-2 mt-2 text-muted"></div>
-                                                <div class="face-auth-actions">
-                                                    <button id="faceLoginButtonMobile" type="button" class="btn py-3 rounded-0 btn-dark">Nhận diện và đăng nhập</button>
-                                                    <button type="button" class="btn py-3 rounded-0 btn-outline-dark" data-face-close="closeFaceLoginMobile">Đóng</button>
+                                                <div class="face-auth-actions d-flex justify-content-center mt-3">
+                                                    <button id="faceLoginButtonMobile" type="button" class="btn py-3 rounded-md btn-primary mr-2"><i class="fas fa-sign-in-alt mr-1"></i> Nhận diện và đăng nhập</button>
+                                                    <button type="button" class="btn py-3 rounded-md btn-outline-secondary" data-face-close="closeFaceLoginMobile">Đóng</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-4d75">
-                                        <a href="/Users/LoginFacebook" class="btn btn-block py-3 rounded-0 btn-info">Vào bằng Facebook <i class="fab fa-facebook"></i></a>
+                                        <a href="/Users/LoginFacebook" class="btn btn-block py-3 rounded-md btn-info text-white">Vào bằng Facebook <i class="fab fa-facebook"></i></a>
                                     </div>
                                     <div class="mb-2">
-                                        <a href="javascript:;" class="js-animation-link btn btn-block py-3 rounded-0 btn-outline-dark font-weight-medium"
+                                        <a href="javascript:;" class="js-animation-link btn btn-block py-3 rounded-md btn-outline-secondary font-weight-medium"
                                            data-target="#signup1"
                                            data-link-group="idForm1"
                                            data-animation-in="fadeIn">Tạo tài khoản mới</a>
@@ -111,99 +114,99 @@
                         <form id="Sigup1">
                             <div id="signup1" style="display: none; opacity: 0;" data-target-group="idForm1">
                                 <!-- Title -->
-                                <header class="border-bottom px-4 px-md-6 py-4">
-                                    <h2 class="font-size-3 mb-0 d-flex align-items-center"><i class="flaticon-resume mr-3 font-size-5"></i>Tạo tài khoản mới</h2>
+                                <header class="border-bottom border-color px-4 px-md-6 py-4">
+                                    <h2 class="font-size-3 mb-0 d-flex align-items-center text-main"><i class="flaticon-resume mr-3 font-size-5"></i>Tạo tài khoản mới</h2>
                                 </header>
                                 <!-- End Title -->
-
-                                <div class="p-4 p-md-6">
+                                
+                                <div class="p-4 p-md-6 bg-card text-main">
                                         <!-- Form Group -->
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Tên đăng nhập *</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="UserName" required>
+                                                <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Tên đăng nhập *</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="UserName" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinPasswordLabel1" class="form-label" for="signinPassword1">Mật khẩu *</label>
-                                                <input type="password" class="form-control rounded-0 height-4 px-4" name="PassWord" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
+                                                <label id="signinPasswordLabel1" class="form-label text-main" for="signinPassword1">Mật khẩu *</label>
+                                                <input type="password" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="PassWord" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
                                             </div>
                                         </div>
-
+                                        
                                         <!-- End Form Group -->
                                         <!-- Form Group -->
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinPasswordLabel1" class="form-label" for="signinPassword1">Nhập lại mật khẩu *</label>
-                                                <input type="password" class="form-control rounded-0 height-4 px-4" name="ConfirmPass" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
+                                                <label id="signinPasswordLabel1" class="form-label text-main" for="signinPassword1">Nhập lại mật khẩu *</label>
+                                                <input type="password" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="ConfirmPass" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Họ Tên *</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="Name" required>
+                                                <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Họ Tên *</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="Name" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Địa Chỉ *</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="Address" required>
+                                                <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Địa Chỉ *</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="Address" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Số Điện Thoại *</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="Phone" required>
+                                                <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Số Điện Thoại *</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="Phone" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label class="form-label">Gmail nhận thông báo *</label>
-                                                <input type="email" class="form-control rounded-0 height-4 px-4" name="NotificationEmail" required>
+                                                <label class="form-label text-main">Gmail nhận thông báo *</label>
+                                                <input type="email" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="NotificationEmail" required>
                                             </div>
                                         </div>
                                         <div class="mb-3 signup-general-actions">
-                                            <button type="button" onclick="ShowSignupIdentityStep('#Sigup1', '#signupStatusMobile')" class="btn btn-block py-3 rounded-0 btn-dark">Tiếp theo</button>
+                                            <button type="button" onclick="ShowSignupIdentityStep('#Sigup1', '#signupStatusMobile')" class="btn btn-block py-3 rounded-md btn-primary text-white">Tiếp theo</button>
                                         </div>
-                                        <div class="border p-3 mb-4 signup-identity-step" style="display:none;">
-                                            <div class="font-weight-medium mb-3">Thông tin CMND/CCCD (không bắt buộc)</div>
+                                        <div class="border border-color p-3 mb-4 signup-identity-step" style="display:none;">
+                                            <div class="font-weight-medium mb-3 text-main">Thông tin CMND/CCCD (không bắt buộc)</div>
                                             <div class="form-group mb-3">
                                                 <div class="row">
                                                     <div class="col-md-6 mb-3">
-                                                        <label class="d-block border text-center p-3" for="signupMobileIdentityFrontFile">
-                                                            <span class="d-block font-weight-medium mb-2">Mặt trước</span>
+                                                        <label class="d-block border border-color text-center p-3 bg-app" for="signupMobileIdentityFrontFile">
+                                                            <span class="d-block font-weight-medium mb-2 text-main">Mặt trước</span>
                                                             <img id="signupMobileIdentityFrontPreview" alt="Ảnh CMND/CCCD mặt trước" class="img-fluid d-none" style="max-height:160px;" />
-                                                            <span id="signupMobileIdentityFrontPlaceholder" class="text-gray-600">Bấm để tải ảnh</span>
+                                                            <span id="signupMobileIdentityFrontPlaceholder" class="text-muted">Bấm để tải ảnh</span>
                                                         </label>
                                                         <input id="signupMobileIdentityFrontFile" type="file" class="d-none js-identity-preview" name="IdentityOcrFrontFile" data-preview="#signupMobileIdentityFrontPreview" data-placeholder="#signupMobileIdentityFrontPlaceholder" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
                                                     </div>
                                                     <div class="col-md-6 mb-3">
-                                                        <label class="d-block border text-center p-3" for="signupMobileIdentityBackFile">
-                                                            <span class="d-block font-weight-medium mb-2">Mặt sau</span>
+                                                        <label class="d-block border border-color text-center p-3 bg-app" for="signupMobileIdentityBackFile">
+                                                            <span class="d-block font-weight-medium mb-2 text-main">Mặt sau</span>
                                                             <img id="signupMobileIdentityBackPreview" alt="Ảnh CMND/CCCD mặt sau" class="img-fluid d-none" style="max-height:160px;" />
-                                                            <span id="signupMobileIdentityBackPlaceholder" class="text-gray-600">Bấm để tải ảnh</span>
+                                                            <span id="signupMobileIdentityBackPlaceholder" class="text-muted">Bấm để tải ảnh</span>
                                                         </label>
                                                         <input id="signupMobileIdentityBackFile" type="file" class="d-none js-identity-preview" name="IdentityOcrBackFile" data-preview="#signupMobileIdentityBackPreview" data-placeholder="#signupMobileIdentityBackPlaceholder" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
                                                     </div>
                                                 </div>
-                                                <button type="button" onclick="UploadSignupIdentityCard('#Sigup1', '#signupStatusMobile')" class="btn btn-outline-dark rounded-0 mt-2">Đọc CMND/CCCD</button>
+                                                <button type="button" onclick="UploadSignupIdentityCard('#Sigup1', '#signupStatusMobile')" class="btn btn-outline-secondary rounded-md mt-2">Đọc CMND/CCCD</button>
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Số CMND/CCCD</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="IdentityNumber">
+                                                <label class="form-label text-main">Số CMND/CCCD</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityNumber">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Họ tên trên CMND/CCCD</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="IdentityFullName">
+                                                <label class="form-label text-main">Họ tên trên CMND/CCCD</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityFullName">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Ngày sinh</label>
-                                                <input type="date" class="form-control rounded-0 height-4 px-4" name="IdentityDateOfBirth">
+                                                <label class="form-label text-main">Ngày sinh</label>
+                                                <input type="date" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityDateOfBirth">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Địa chỉ trên CMND/CCCD</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="IdentityAddress">
+                                                <label class="form-label text-main">Địa chỉ trên CMND/CCCD</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityAddress">
                                             </div>
                                             <input type="hidden" name="IdentityPlaceOfBirth">
                                             <input type="hidden" name="IdentityGender">
@@ -212,18 +215,18 @@
                                             <input type="hidden" name="IdentityIssuingAuthority">
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="form-label">Ngày cấp</label>
-                                                    <input type="date" class="form-control rounded-0 height-4 px-4" name="IdentityIssueDate">
+                                                    <label class="form-label text-main">Ngày cấp</label>
+                                                    <input type="date" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityIssueDate">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="form-label">Nơi cấp</label>
-                                                    <input class="form-control rounded-0 height-4 px-4" name="IdentityIssuePlace">
+                                                    <label class="form-label text-main">Nơi cấp</label>
+                                                    <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityIssuePlace">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mb-3 signup-identity-step" style="display:none;">
-                                            <button type="button" onclick="SigupMobile()" class="btn btn-block py-3 rounded-0 btn-dark">Tiếp theo: xác thực khuôn mặt</button>
-                                            <button type="button" onclick="ShowSignupGeneralStep('#Sigup1', '#signupStatusMobile')" class="btn btn-block py-3 rounded-0 btn-outline-dark mt-2">Quay lại thông tin chung</button>
+                                            <button type="button" onclick="SigupMobile()" class="btn btn-block py-3 rounded-md btn-primary text-white">Tiếp theo: xác thực khuôn mặt</button>
+                                            <button type="button" onclick="ShowSignupGeneralStep('#Sigup1', '#signupStatusMobile')" class="btn btn-block py-3 rounded-md btn-outline-secondary mt-2">Quay lại thông tin chung</button>
                                         </div>
                                         <div id="signupStatusMobile" class="font-size-2 mt-2" role="alert"></div>
 
@@ -245,36 +248,36 @@
                         <form id="retesPass1">
                             <div id="forgotPassword1" style="display: none; opacity: 0;" data-target-group="idForm1">
                                 <!-- Title -->
-                                <header class="border-bottom px-4 px-md-6 py-4">
-                                    <h2 class="font-size-3 mb-0 d-flex align-items-center"><i class="flaticon-question mr-3 font-size-5"></i>Quên Mật Khẩu?</h2>
+                                <header class="border-bottom border-color px-4 px-md-6 py-4">
+                                    <h2 class="font-size-3 mb-0 d-flex align-items-center text-main"><i class="flaticon-question mr-3 font-size-5"></i>Quên Mật Khẩu?</h2>
                                 </header>
                                 <!-- End Title -->
-
-                                <div class="p-4 p-md-6">
+                                
+                                <div class="p-4 p-md-6 bg-card text-main">
                                         <!-- Form Group -->
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel3" class="form-label" for="signinEmail3">Tài khoản cấp lại mật khẩu *</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="userRetestPass" required>
+                                                <label id="signinEmailLabel3" class="form-label text-main" for="signinEmail3">Tài khoản cấp lại mật khẩu *</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="userRetestPass" required>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="form-group mb-4">
                                             <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel3" class="form-label" for="signinEmail3">Email cấp lại mật khẩu *</label>
-                                                <input type="email" class="form-control rounded-0 height-4 px-4" name="emailRetestPass" id="signinEmail3" placeholder="creativelayers088@gmail.com" aria-label="creativelayers088@gmail.com" aria-describedby="signinEmailLabel3" required>
+                                                <label id="signinEmailLabel3" class="form-label text-main" for="signinEmail3">Email cấp lại mật khẩu *</label>
+                                                <input type="email" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="emailRetestPass" id="signinEmail3" placeholder="creativelayers088@gmail.com" aria-label="creativelayers088@gmail.com" aria-describedby="signinEmailLabel3" required>
                                             </div>
                                         </div>
                                         <!-- End Form Group -->
-
+                                        
                                         <div class="mb-3">
-                                            <a href="javascript:void(0)" onclick="retestPassMobile()" class="btn btn-block py-3 rounded-0 btn-dark">Lấy lại mật khẩu</a>
+                                            <a href="javascript:void(0)" onclick="retestPassMobile()" class="btn btn-block py-3 rounded-md btn-primary text-white">Lấy lại mật khẩu</a>
                                         </div>
-
-
+                                        
+                                        
                                         <div class="text-center mb-4">
                                             <span class="small text-muted">Lưu mật khẩu?</span>
-                                            <a class="js-animation-link small" href="javascript:;"
+                                            <a class="js-animation-link small text-primary" href="javascript:;"
                                                data-target="#login1"
                                                data-link-group="idForm1"
                                                data-animation-in="fadeIn">
@@ -319,29 +322,29 @@
                 <div class="js-scrollbar u-sidebar__body">
                     <div class="u-sidebar__content u-header-sidebar__content">
                         
-                            <!-- Login -->
+                        <!-- Login -->
                         <form id="loginForm">
                             <div id="login" data-target-group="idForm">
                                 <!-- Title -->
-                                <header class="border-bottom px-4 px-md-6 py-4">
-                                    <h2 class="font-size-3 mb-0 d-flex align-items-center"><i class="flaticon-user mr-3 font-size-5"></i>Tài khoản</h2>
+                                <header class="border-bottom border-color px-4 px-md-6 py-4">
+                                    <h2 class="font-size-3 mb-0 d-flex align-items-center text-main"><i class="flaticon-user mr-3 font-size-5"></i>Tài khoản</h2>
                                 </header>
                                 <!-- End Title -->
 
-                                <div class="p-4 p-md-6">
+                                <div class="p-4 p-md-6 bg-card text-main">
                                     <!-- Form Group -->
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinEmailLabel" class="form-label" for="signinEmail">Tài khoản *</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="UserName" id="loginUserName" required>
+                                            <label id="signinEmailLabel" class="form-label text-main" for="signinEmail">Tài khoản *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="UserName" id="loginUserName" required>
                                         </div>
                                     </div>
                                     <!-- End Form Group -->
                                     <!-- Form Group -->
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinPasswordLabel" class="form-label" for="signinPassword">Mật khẩu *</label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4" name="password" id="signinPassword" placeholder="" aria-label="" aria-describedby="signinPasswordLabel" required>
+                                            <label id="signinPasswordLabel" class="form-label text-main" for="signinPassword">Mật khẩu *</label>
+                                            <input type="password" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="password" id="signinPassword" placeholder="" aria-label="" aria-describedby="signinPasswordLabel" required>
                                         </div>
                                     </div>
                                     <!-- End Form Group -->
@@ -352,7 +355,7 @@
                                             <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
                                                 <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox">
                                                 <label class="custom-control-label" for="termsCheckbox">
-                                                    <span class="font-size-2 text-secondary-gray-700">
+                                                    <span class="font-size-2 text-muted">
                                                         Lưu tài khoản
                                                     </span>
                                                 </label>
@@ -360,39 +363,42 @@
                                         </div>
                                         <!-- End Checkbox -->
 
-                                        <a class="js-animation-link text-dark font-size-2 t-d-u link-muted font-weight-medium" href="javascript:;"
+                                        <a class="js-animation-link text-muted font-size-2 t-d-u link-muted font-weight-medium" href="javascript:;"
                                            data-target="#forgotPassword"
                                            data-link-group="idForm"
                                            data-animation-in="fadeIn">Quên Mật Khẩu?</a>
                                     </div>
 
                                     <div class="mb-4d75">
-                                        <a href="javascript:void(0)" onclick="login()" class="btn btn-block py-3 rounded-0 btn-dark">Đăng Nhập</a>
+                                        <a href="javascript:void(0)" onclick="login()" class="btn btn-block py-3 rounded-md btn-primary text-white shadow-sm hover-up">Đăng Nhập</a>
                                     </div>
                                     <div class="mb-4d75">
-                                        <button id="showFaceLogin" type="button" class="btn btn-block py-3 rounded-0 btn-outline-dark">Đăng nhập bằng khuôn mặt</button>
+                                        <button id="showFaceLogin" type="button" class="btn btn-block py-3 rounded-md btn-secondary text-white shadow-sm hover-up"><i class="fas fa-user-shield mr-2"></i> Đăng nhập bằng khuôn mặt</button>
                                     </div>
                                     <div id="faceLoginPanel" class="face-auth-modal" hidden>
-                                        <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="faceLoginTitle">
-                                            <div class="face-auth-header">
-                                                <h3 id="faceLoginTitle" class="face-auth-title">Đăng nhập bằng khuôn mặt</h3>
-                                                <button id="closeFaceLogin" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+                                        <div class="face-auth-dialog card border-color shadow-lg p-0" role="dialog" aria-modal="true" aria-labelledby="faceLoginTitle">
+                                            <div class="face-auth-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+                                                <h3 id="faceLoginTitle" class="face-auth-title text-white mb-0 font-size-3"><i class="fas fa-camera mr-1"></i> Đăng nhập bằng khuôn mặt</h3>
+                                                <button id="closeFaceLogin" type="button" class="face-auth-close text-white border-0 bg-transparent font-size-5" aria-label="Đóng">&times;</button>
                                             </div>
-                                            <div class="face-auth-body">
-                                                <video id="faceLoginVideo" class="face-auth-video" autoplay muted playsinline></video>
+                                            <div class="face-auth-body p-4 text-center bg-card">
+                                                <div class="face-scanner-box mx-auto mb-3" style="max-width: 320px;">
+                                                    <div class="face-scanner-line"></div>
+                                                    <video id="faceLoginVideo" class="face-auth-video w-100 rounded-lg" style="transform: scaleX(-1);" autoplay muted playsinline></video>
+                                                </div>
                                                 <div id="faceLoginStatus" class="font-size-2 mt-2 text-muted"></div>
-                                                <div class="face-auth-actions">
-                                                    <button id="faceLoginButton" type="button" class="btn py-3 rounded-0 btn-dark">Nhận diện và đăng nhập</button>
-                                                    <button type="button" class="btn py-3 rounded-0 btn-outline-dark" data-face-close="closeFaceLogin">Đóng</button>
+                                                <div class="face-auth-actions d-flex justify-content-center mt-3">
+                                                    <button id="faceLoginButton" type="button" class="btn py-3 rounded-md btn-primary mr-2"><i class="fas fa-sign-in-alt mr-1"></i> Nhận diện và đăng nhập</button>
+                                                    <button type="button" class="btn py-3 rounded-md btn-outline-secondary" data-face-close="closeFaceLogin">Đóng</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-4d75">
-                                        <a href="/Users/LoginFacebook" class="btn btn-block py-3 rounded-0 btn-info">Đăng nhập bằng Facebook <i class="fab fa-facebook"></i></a>
+                                        <a href="/Users/LoginFacebook" class="btn btn-block py-3 rounded-md btn-info text-white">Đăng nhập bằng Facebook <i class="fab fa-facebook"></i></a>
                                     </div>
                                     <div class="mb-2">
-                                        <a href="javascript:;" class="js-animation-link btn btn-block py-3 rounded-0 btn-outline-dark font-weight-medium"
+                                        <a href="javascript:;" class="js-animation-link btn btn-block py-3 rounded-md btn-outline-secondary font-weight-medium"
                                            data-target="#signup"
                                            data-link-group="idForm"
                                            data-animation-in="fadeIn">Tạo tài khoản mới</a>
@@ -402,27 +408,27 @@
                         </form>
                         <!--End login-->
                         
-                            <!-- Signup -->
-                            <form id="Sigup">
+                        <!-- Signup -->
+                        <form id="Sigup">
                             <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
                                 <!-- Title -->
-                                <header class="border-bottom px-4 px-md-6 py-4">
-                                    <h2 class="font-size-3 mb-0 d-flex align-items-center"><i class="flaticon-resume mr-3 font-size-5"></i>Tạo tài khoản mới</h2>
+                                <header class="border-bottom border-color px-4 px-md-6 py-4">
+                                    <h2 class="font-size-3 mb-0 d-flex align-items-center text-main"><i class="flaticon-resume mr-3 font-size-5"></i>Tạo tài khoản mới</h2>
                                 </header>
                                 <!-- End Title -->
 
-                                <div class="p-4 p-md-6">
+                                <div class="p-4 p-md-6 bg-card text-main">
                                     <!-- Form Group -->
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Tên đăng nhập *</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="UserName" required>
+                                            <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Tên đăng nhập *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="UserName" required>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinPasswordLabel1" class="form-label" for="signinPassword1">Mật khẩu *</label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4" name="PassWord" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
+                                            <label id="signinPasswordLabel1" class="form-label text-main" for="signinPassword1">Mật khẩu *</label>
+                                            <input type="password" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="PassWord" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
                                         </div>
                                     </div>
 
@@ -430,75 +436,75 @@
                                     <!-- Form Group -->
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinPasswordLabel1" class="form-label" for="signinPassword1">Nhập lại mật khẩu *</label>
-                                            <input type="password" class="form-control rounded-0 height-4 px-4" name="ConfirmPass" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
+                                            <label id="signinPasswordLabel1" class="form-label text-main" for="signinPassword1">Nhập lại mật khẩu *</label>
+                                            <input type="password" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="ConfirmPass" id="signinPassword1" placeholder="" aria-label="" aria-describedby="signinPasswordLabel1" required>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Họ Tên *</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="Name" required>
+                                            <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Họ Tên *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Địa Chỉ *</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="Address" required>
+                                            <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Địa Chỉ *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="Address" required>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label id="signinEmailLabel1" class="form-label" for="signinEmail1">Số Điện Thoại *</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="Phone" required>
+                                            <label id="signinEmailLabel1" class="form-label text-main" for="signinEmail1">Số Điện Thoại *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="Phone" required>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <div class="js-form-message js-focus-state">
-                                            <label class="form-label">Gmail nhận thông báo *</label>
-                                            <input type="email" class="form-control rounded-0 height-4 px-4" name="NotificationEmail" required>
+                                            <label class="form-label text-main">Gmail nhận thông báo *</label>
+                                            <input type="email" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="NotificationEmail" required>
                                         </div>
                                     </div>
                                     <div class="mb-3 signup-general-actions">
-                                        <button type="button" onclick="ShowSignupIdentityStep('#Sigup', '#signupStatus')" class="btn btn-block py-3 rounded-0 btn-dark">Tiếp theo</button>
+                                        <button type="button" onclick="ShowSignupIdentityStep('#Sigup', '#signupStatus')" class="btn btn-block py-3 rounded-md btn-primary text-white">Tiếp theo</button>
                                     </div>
-                                    <div class="border p-3 mb-4 signup-identity-step" style="display:none;">
-                                        <div class="font-weight-medium mb-3">Thông tin CMND/CCCD (không bắt buộc)</div>
+                                    <div class="border border-color p-3 mb-4 signup-identity-step" style="display:none;">
+                                        <div class="font-weight-medium mb-3 text-main">Thông tin CMND/CCCD (không bắt buộc)</div>
                                         <div class="form-group mb-3">
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="d-block border text-center p-3" for="signupIdentityFrontFile">
-                                                        <span class="d-block font-weight-medium mb-2">Mặt trước</span>
+                                                    <label class="d-block border border-color text-center p-3 bg-app" for="signupIdentityFrontFile">
+                                                        <span class="d-block font-weight-medium mb-2 text-main">Mặt trước</span>
                                                         <img id="signupIdentityFrontPreview" alt="Ảnh CMND/CCCD mặt trước" class="img-fluid d-none" style="max-height:160px;" />
-                                                        <span id="signupIdentityFrontPlaceholder" class="text-gray-600">Bấm để tải ảnh</span>
+                                                        <span id="signupIdentityFrontPlaceholder" class="text-muted">Bấm để tải ảnh</span>
                                                     </label>
                                                     <input id="signupIdentityFrontFile" type="file" class="d-none js-identity-preview" name="IdentityOcrFrontFile" data-preview="#signupIdentityFrontPreview" data-placeholder="#signupIdentityFrontPlaceholder" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="d-block border text-center p-3" for="signupIdentityBackFile">
-                                                        <span class="d-block font-weight-medium mb-2">Mặt sau</span>
+                                                    <label class="d-block border border-color text-center p-3 bg-app" for="signupIdentityBackFile">
+                                                        <span class="d-block font-weight-medium mb-2 text-main">Mặt sau</span>
                                                         <img id="signupIdentityBackPreview" alt="Ảnh CMND/CCCD mặt sau" class="img-fluid d-none" style="max-height:160px;" />
-                                                        <span id="signupIdentityBackPlaceholder" class="text-gray-600">Bấm để tải ảnh</span>
+                                                        <span id="signupIdentityBackPlaceholder" class="text-muted">Bấm để tải ảnh</span>
                                                     </label>
                                                     <input id="signupIdentityBackFile" type="file" class="d-none js-identity-preview" name="IdentityOcrBackFile" data-preview="#signupIdentityBackPreview" data-placeholder="#signupIdentityBackPlaceholder" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
                                                 </div>
                                             </div>
-                                            <button type="button" onclick="UploadSignupIdentityCard('#Sigup', '#signupStatus')" class="btn btn-outline-dark rounded-0 mt-2">Đọc CMND/CCCD</button>
+                                            <button type="button" onclick="UploadSignupIdentityCard('#Sigup', '#signupStatus')" class="btn btn-outline-secondary rounded-md mt-2">Đọc CMND/CCCD</button>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Số CMND/CCCD</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="IdentityNumber">
+                                            <label class="form-label text-main">Số CMND/CCCD</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityNumber">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Họ tên trên CMND/CCCD</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="IdentityFullName">
+                                            <label class="form-label text-main">Họ tên trên CMND/CCCD</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityFullName">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Ngày sinh</label>
-                                            <input type="date" class="form-control rounded-0 height-4 px-4" name="IdentityDateOfBirth">
+                                            <label class="form-label text-main">Ngày sinh</label>
+                                            <input type="date" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityDateOfBirth">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Địa chỉ trên CMND/CCCD</label>
-                                            <input class="form-control rounded-0 height-4 px-4" name="IdentityAddress">
+                                            <label class="form-label text-main">Địa chỉ trên CMND/CCCD</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityAddress">
                                         </div>
                                         <input type="hidden" name="IdentityPlaceOfBirth">
                                         <input type="hidden" name="IdentityGender">
@@ -507,24 +513,24 @@
                                         <input type="hidden" name="IdentityIssuingAuthority">
                                         <div class="form-row">
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label">Ngày cấp</label>
-                                                <input type="date" class="form-control rounded-0 height-4 px-4" name="IdentityIssueDate">
+                                                <label class="form-label text-main">Ngày cấp</label>
+                                                <input type="date" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityIssueDate">
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label">Nơi cấp</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="IdentityIssuePlace">
+                                                <label class="form-label text-main">Nơi cấp</label>
+                                                <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="IdentityIssuePlace">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 signup-identity-step" style="display:none;">
-                                        <button type="button" onclick="Sigup()" class="btn btn-block py-3 rounded-0 btn-dark">Tiếp theo: xác thực khuôn mặt</button>
-                                        <button type="button" onclick="ShowSignupGeneralStep('#Sigup', '#signupStatus')" class="btn btn-block py-3 rounded-0 btn-outline-dark mt-2">Quay lại thông tin chung</button>
+                                        <button type="button" onclick="Sigup()" class="btn btn-block py-3 rounded-md btn-primary text-white">Tiếp theo: xác thực khuôn mặt</button>
+                                        <button type="button" onclick="ShowSignupGeneralStep('#Sigup', '#signupStatus')" class="btn btn-block py-3 rounded-md btn-outline-secondary mt-2">Quay lại thông tin chung</button>
                                     </div>
                                     <div id="signupStatus" class="font-size-2 mt-2" role="alert"></div>
 
                                     <div class="text-center mb-4">
                                         <span class="small text-muted">Đã có tài khoản?</span>
-                                        <a class="js-animation-link small" href="javascript:;"
+                                        <a class="js-animation-link small text-primary" href="javascript:;"
                                            data-target="#login"
                                            data-link-group="idForm"
                                            data-animation-in="fadeIn">
@@ -534,51 +540,51 @@
                                 </div>
                             </div>
                         </form>
-                                <!-- End Signup -->
+                        <!-- End Signup -->
                            
-                            <!-- Forgot Password -->
-                            <form id="retesPass">
-                                <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
-                                    <!-- Title -->
-                                    <header class="border-bottom px-4 px-md-6 py-4">
-                                        <h2 class="font-size-3 mb-0 d-flex align-items-center"><i class="flaticon-question mr-3 font-size-5"></i>Quên Mật Khẩu?</h2>
-                                    </header>
-                                    <!-- End Title -->
+                        <!-- Forgot Password -->
+                        <form id="retesPass">
+                            <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
+                                <!-- Title -->
+                                <header class="border-bottom border-color px-4 px-md-6 py-4">
+                                    <h2 class="font-size-3 mb-0 d-flex align-items-center text-main"><i class="flaticon-question mr-3 font-size-5"></i>Quên Mật Khẩu?</h2>
+                                </header>
+                                <!-- End Title -->
 
-                                    <div class="p-4 p-md-6">
-                                        <!-- Form Group -->
-                                        <div class="form-group mb-4">
-                                            <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel3" class="form-label" for="signinEmail3">Tài khoản cấp lại mật khẩu *</label>
-                                                <input class="form-control rounded-0 height-4 px-4" name="userRetestPass" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-4">
-                                            <div class="js-form-message js-focus-state">
-                                                <label id="signinEmailLabel3" class="form-label" for="signinEmail3">Email cấp lại mật khẩu *</label>
-                                                <input type="email" class="form-control rounded-0 height-4 px-4" name="emailRetestPass" id="signinEmail3" placeholder="creativelayers088@gmail.com" aria-label="creativelayers088@gmail.com" aria-describedby="signinEmailLabel3" required>
-                                            </div>
-                                        </div>
-                                        <!-- End Form Group -->
-
-                                        <div class="mb-3">
-                                            <a href="javascript:void(0)" onclick="retestPass()" class="btn btn-block py-3 rounded-0 btn-dark">Lấy lại mật khẩu</a>
-                                        </div>
-
-                                        <div class="text-center mb-4">
-                                            <span class="small text-muted">Lưu mật khẩu?</span>
-                                            <a class="js-animation-link small" href="javascript:;"
-                                               data-target="#login"
-                                               data-link-group="idForm"
-                                               data-animation-in="fadeIn">
-                                                Đăng Nhập
-                                            </a>
+                                <div class="p-4 p-md-6 bg-card text-main">
+                                    <!-- Form Group -->
+                                    <div class="form-group mb-4">
+                                        <div class="js-form-message js-focus-state">
+                                            <label id="signinEmailLabel3" class="form-label text-main" for="signinEmail3">Tài khoản cấp lại mật khẩu *</label>
+                                            <input class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="userRetestPass" required>
                                         </div>
                                     </div>
+
+                                    <div class="form-group mb-4">
+                                        <div class="js-form-message js-focus-state">
+                                            <label id="signinEmailLabel3" class="form-label text-main" for="signinEmail3">Email cấp lại mật khẩu *</label>
+                                            <input type="email" class="form-control rounded-md height-4 px-4 bg-card text-main border-color" name="emailRetestPass" id="signinEmail3" placeholder="creativelayers088@gmail.com" aria-label="creativelayers088@gmail.com" aria-describedby="signinEmailLabel3" required>
+                                        </div>
+                                    </div>
+                                    <!-- End Form Group -->
+
+                                    <div class="mb-3">
+                                        <a href="javascript:void(0)" onclick="retestPass()" class="btn btn-block py-3 rounded-md btn-primary text-white">Lấy lại mật khẩu</a>
+                                    </div>
+
+                                    <div class="text-center mb-4">
+                                        <span class="small text-muted">Lưu mật khẩu?</span>
+                                        <a class="js-animation-link small text-primary" href="javascript:;"
+                                           data-target="#login"
+                                           data-link-group="idForm"
+                                           data-animation-in="fadeIn">
+                                            Đăng Nhập
+                                        </a>
+                                    </div>
                                 </div>
-                            </form>
-                            <!-- End Forgot Password -->
+                            </div>
+                        </form>
+                        <!-- End Forgot Password -->
                         
                     </div>
                 </div>
@@ -589,17 +595,20 @@
 </aside>
 <!-- End Account Sidebar Navigation - Desktop -->
 <div id="registerFacePanel" class="face-auth-modal" hidden>
-    <div class="face-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="registerFaceTitle">
-        <div class="face-auth-header">
-            <h3 id="registerFaceTitle" class="face-auth-title">Xác thực khuôn mặt</h3>
-            <button id="closeRegisterFace" type="button" class="face-auth-close" aria-label="Đóng">&times;</button>
+    <div class="face-auth-dialog card border-color shadow-lg p-0" role="dialog" aria-modal="true" aria-labelledby="registerFaceTitle">
+        <div class="face-auth-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+            <h3 id="registerFaceTitle" class="face-auth-title text-white mb-0 font-size-3"><i class="fas fa-camera mr-1"></i> Xác thực khuôn mặt</h3>
+            <button id="closeRegisterFace" type="button" class="face-auth-close text-white border-0 bg-transparent font-size-5" aria-label="Đóng">&times;</button>
         </div>
-        <div class="face-auth-body">
-            <video id="registerFaceVideo" class="face-auth-video" autoplay muted playsinline></video>
+        <div class="face-auth-body p-4 text-center bg-card text-main">
+            <div class="face-scanner-box mx-auto mb-3" style="max-width: 320px;">
+                <div class="face-scanner-line"></div>
+                <video id="registerFaceVideo" class="face-auth-video w-100 rounded-lg" style="transform: scaleX(-1);" autoplay muted playsinline></video>
+            </div>
             <div id="registerFaceStatus" class="font-size-2 mt-2 text-muted"></div>
-            <div class="face-auth-actions">
-                <button id="registerFaceButton" type="button" class="btn py-3 rounded-0 btn-dark">Xác thực khuôn mặt</button>
-                <button type="button" class="btn py-3 rounded-0 btn-outline-dark" data-face-close="closeRegisterFace">Đóng</button>
+            <div class="face-auth-actions d-flex justify-content-center mt-3">
+                <button id="registerFaceButton" type="button" class="btn py-3 rounded-md btn-primary mr-2"><i class="fas fa-user-check mr-1"></i> Xác thực khuôn mặt</button>
+                <button type="button" class="btn py-3 rounded-md btn-outline-secondary" data-face-close="closeRegisterFace">Đóng</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,29 @@
+# Rules for Development
+
+- **Rule 1: Split Tasks to Avoid Blockage (Chia nhỏ task để tránh bị nghẽn)**
+  Always break large tasks down into smaller, self-contained subtasks. Execute them incrementally to ensure stability, avoid reaching context window limits, and prevent processing timeouts.
+
+- **Rule 2: Automated Update, Verify, and Fix Workflows for NHANDIENKHUONMAT-new07040226_fix and QLNhaSacha**
+  When updating, checking, fixing errors, or adding new automated features:
+  1. **Audit Dependencies and Mappings**: Ensure endpoint names, parameter types, file keys (e.g. `front_file` vs `frontFile`, `userId` vs `user_id`), and response types are aligned character-for-character between Python Flask (`app.py`) and C# ASP.NET MVC (`FaceAuthApiClient.cs`).
+  2. **Standardize Environments**: Standardize service ports across microservices. Currently, the Face Authentication API is bound to port `8082`. Keep configuration files like `Web.config` mapped to the correct environment port.
+  3. **Liveness & OCR Integrity**: Validate liveness action classification conditions (yaw, pitch, mouth_open, smile ratios) and OCR document parsing anchors (MRZ check, CCCD validations) using helper functions before saving records or processing transactions.
+  4. **Utilize Tooling**: Leverage cloned supporting repositories like `repomix` to inspect, pack, or package source files for code reviews, and reference `OpenHands` design patterns when creating autonomous agent scripts or automated tests.
+  5. **Auto-Verify Changes**: Perform system port listener checks (e.g., via `netstat` and CLI curls) and code compiles after any functional updates to confirm integration safety before completion.
+
+- **Rule 3: Task Planning and Execution History Logging (Lập kế hoạch thực hiện và ghi lại lịch sử thực hiện cho mỗi Task)**
+  For any task or feature development step:
+  1. **Create an Implementation Plan**: Outline concrete subtasks, files to be modified, and architectural decisions before writing code.
+  2. **Maintain an Execution History File**: Always document the completed steps, verification methods, test results, and final parameters in an execution history log (e.g., `LichSu.md` or `LICHSU_THUCHIEN.md`) to maintain traceability and state for subsequent development loops.
+
+- **Rule 4: Split Tasks to Avoid Model Bottlenecks/Congestion (Chia nhỏ nhiệm vụ để tránh nghẽn mô hình AI)**
+  To prevent the AI model from running out of context window limits, experiencing latency spikes, or failing to process massive changes:
+  1. **Chunk Changes**: Break down file modifications, updates, or feature additions into modular, minor revisions (e.g., updating one helper function, route, or file configuration at a time).
+  2. **Incremental Testing**: Compile, run local tests, or check port bindings after each small change before proceeding to the next chunk of work.
+  3. **Save and Check State**: Commit intermediate progress or record history steps to maintain a lightweight state during execution.
+
+- **Rule 5: UI and Interface Requirements utilizing Aider (Các yêu cầu giao diện sử dụng Aider hỗ trợ)**
+  When modifying user interfaces, templates (HTML, CSHTML), styles, or scripts:
+  1. **Utilize Aider Code Patterns**: Use `aider`'s differential search/replace code editing format to apply precise edits to UI files, ensuring that styling frameworks (like Bootstrap, Tailwind, or custom CSS) are updated cleanly without breaking overall layouts.
+  2. **Preserve Layout Structure**: Keep main layouts intact (e.g., `_LayoutHome.cshtml`). Place scripts in `@section Scripts` and styles in dedicated tags or style sections to maintain a separation of concerns.
+  3. **Test UI Interactivity**: After editing front-end files (e.g. `FaceCapture.js`, capturing layouts, and forms), check script bindings and ensure that errors (e.g., webcam permission failures, invalid inputs) are handled elegantly with clean UI error dialogs or alerts.

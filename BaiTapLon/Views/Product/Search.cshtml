@@ -206,9 +206,9 @@
                                                                 <form class="form-inline my-2 overflow-hidden">
                                                                     <div class="input-group flex-nowrap w-100">
                                                                         <div class="input-group-prepend">
-                                                                            <i class="glph-icon flaticon-loupe py-2d75 bg-white-100 border-white-100 text-dark pl-3 pr-0 rounded-0"></i>
+                                                                            <i class="glph-icon flaticon-loupe py-2d75 bg-card border-color text-main pl-3 pr-0 rounded-0"></i>
                                                                         </div>
-                                                                        <input class="form-control bg-white-100 py-2d75 height-4 border-white-100 rounded-0" type="search" placeholder="Search" aria-label="Search">
+                                                                        <input class="form-control bg-card py-2d75 height-4 border-color text-main rounded-0" type="search" placeholder="Search" aria-label="Search">
                                                                     </div>
                                                                     <button class="btn btn-outline-success my-2 my-sm-0 sr-only" type="submit">Tìm</button>
                                                                 </form>
@@ -545,15 +545,15 @@
                                                     </span>
                                                 }
                                             </div>
-                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                                <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
-                                                <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url">@item.Name</a></h2>
-                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-gray-700">@item.TacGia</a></div>
-                                                <div class="price d-flex align-items-center font-weight-medium font-size-3">
+                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-card">
+                                                <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url" class="text-muted">Bìa Mềm</a></div>
+                                                <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark"><a href="@url" class="text-main">@item.Name</a></h2>
+                                                <div class="font-size-2  mb-1 text-truncate"><a href="@url" class="text-muted">@item.TacGia</a></div>
+                                                <div class="price d-flex align-items-center font-weight-medium font-size-3 text-main">
                                                     @if (price_sale_product_all > 0)
                                                     {
-                                                        <ins class="text-decoration-none mr-2">@price_deal_product_all.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <ins class="text-decoration-none mr-2 text-primary">@price_deal_product_all.ToString("N0")</ins>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                     }
                                                     else
                                                     {
@@ -611,16 +611,16 @@
                                                     -@price_sale_product_all1%
                                                 </span>
                                             }
-                                            <div class="col-md woocommerce-loop-product__body product__body pt-3 bg-white mb-3 mb-md-0">
-                                                <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url">Bìa Mềm</a></div>
-                                                <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 crop-text-2 h-dark"><a href="@url" tabindex="0">@item.Name</a></h2>
-                                                <div class="font-size-2  mb-2 text-truncate"><a href="../others/authors-single.html" class="text-gray-700">@item.TacGia</a></div>
-                                                <p class="font-size-2 mb-2 crop-text-2">@item.Mota</p>
-                                                <div class="price d-flex align-items-center font-weight-medium font-size-3">
+                                            <div class="col-md woocommerce-loop-product__body product__body pt-3 bg-card mb-3 mb-md-0">
+                                                <div class="text-uppercase font-size-1 mb-1 text-truncate"><a href="@url" class="text-muted">Bìa Mềm</a></div>
+                                                <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 crop-text-2 h-dark"><a href="@url" tabindex="0" class="text-main">@item.Name</a></h2>
+                                                <div class="font-size-2  mb-2 text-truncate"><a href="../others/authors-single.html" class="text-muted">@item.TacGia</a></div>
+                                                <p class="font-size-2 mb-2 crop-text-2 text-muted">@item.Mota</p>
+                                                <div class="price d-flex align-items-center font-weight-medium font-size-3 text-main">
                                                     @if (price_sale_product_all1 > 0)
                                                     {
-                                                        <ins class="text-decoration-none mr-2">@price_deal_product_all1.ToString("N0")</ins>
-                                                        <del class="font-size-1 font-weight-regular text-gray-700"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
+                                                        <ins class="text-decoration-none mr-2 text-primary">@price_deal_product_all1.ToString("N0")</ins>
+                                                        <del class="font-size-1 font-weight-regular text-muted"><span class="woocommerce-Price-amount amount">@item.GiaTien.ToString("N0")đ</span></del>
                                                     }
                                                     else
                                                     {

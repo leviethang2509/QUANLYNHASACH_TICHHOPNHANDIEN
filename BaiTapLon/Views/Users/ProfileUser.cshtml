@@ -13,84 +13,103 @@
 }
 @if (session != null)
 {
-    <main id="content">
+    <main id="content" class="bg-app text-main py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 border-right">
-                    <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8  mb-5 mb-lg-7">Thông tin tài khoản</h6>
-                    <div class="tab-wrapper">
+                <div class="col-md-3 border-right border-color mb-5">
+                    <h6 class="font-weight-medium font-size-5 pt-3 mb-4 text-main">Thông tin tài khoản</h6>
+                    <div class="tab-wrapper card shadow-sm p-3 bg-card border-color">
                         <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0 active" href="/tong-quan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Tổng quan</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/tong-quan-@session.userId">
+                                    <i class="fas fa-th-large mr-2 text-muted"></i>
+                                    <span>Tổng quan</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/danh-sach-don-hang-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Đơn hàng</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/danh-sach-don-hang-@session.userId">
+                                    <i class="fas fa-shopping-bag mr-2 text-muted"></i>
+                                    <span>Đơn hàng</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/tin-nhan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Thông báo (@session.tolMes)</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/tin-nhan-@session.userId">
+                                    <i class="fas fa-bell mr-2 text-muted"></i>
+                                    <span>Thông báo <span class="badge badge-primary badge-pill ml-auto">@session.tolMes</span></span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/phan-hoi-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Phản Hồi (@session.tolRep)</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/phan-hoi-@session.userId">
+                                    <i class="fas fa-comment-alt mr-2 text-muted"></i>
+                                    <span>Phản Hồi <span class="badge badge-info badge-pill ml-auto">@session.tolRep</span></span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/thong-tin-ca-nhan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Thông tin cá nhân</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded active bg-primary-light" href="/thong-tin-ca-nhan-@session.userId">
+                                    <i class="fas fa-user mr-2 text-primary"></i>
+                                    <span class="font-weight-medium text-primary">Thông tin cá nhân</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/yeu-thich-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Sách yêu thích</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/yeu-thich-@session.userId">
+                                    <i class="fas fa-heart mr-2 text-muted"></i>
+                                    <span>Sách yêu thích</span>
                                 </a>
                             </li>
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/Users/Logout">
-                                    <span class="font-weight-normal text-gray-600">Thoát</span>
+                            <li class="nav-item mx-0 py-1 border-top border-color mt-2 pt-2">
+                                <a class="nav-link d-flex align-items-center px-2 text-danger hover-up rounded" href="/Users/Logout">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>
+                                    <span>Thoát</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9">
-                        <div class="border-bottom mb-6 pb-6 mb-lg-8 pb-lg-9">
-                            <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9">
-                                <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">Thông tin cá nhân</h6>
-                                <div class="font-weight-medium font-size-22 mb-4 pb-xl-1">Sửa thông tin</div>
+                        <div class="mb-5">
+                            <div class="pl-md-4">
+                                <h6 class="font-weight-medium font-size-6 mb-4 text-main border-bottom pb-2 border-color">Thông tin cá nhân</h6>
+                                <div class="font-weight-medium font-size-4 mb-3 text-main">Cập nhật thông tin tài khoản</div>
                                 @if (identityProfileLocked)
                                 {
-                                    <div class="alert alert-info rounded-0 mb-4">Tài khoản đã có đủ ảnh CMND/CCCD hai mặt. Các thông tin đã được khóa, bạn chỉ có thể cập nhật lại ảnh CMND/CCCD.</div>
+                                    <div class="alert alert-info rounded-md mb-4 shadow-sm border-0">
+                                        <i class="fas fa-lock mr-2"></i>Tài khoản đã có đủ ảnh CMND/CCCD hai mặt. Các thông tin đã được khóa, bạn chỉ có thể cập nhật lại ảnh CMND/CCCD.
+                                    </div>
                                 }
                                 <div class="mb-4">
                                     <form id="IdentityCardUploadForm" class="mt-3" enctype="multipart/form-data">
-                                        <div class="border p-4">
-                                            <div class="font-weight-medium mb-3">Ảnh CMND/CCCD</div>
+                                        <div class="card p-4 bg-card border-color shadow-sm rounded-md">
+                                            <div class="font-weight-bold text-main mb-3"><i class="far fa-id-card mr-2 text-primary"></i>Ảnh CMND/CCCD xác thực</div>
                                             <div class="row">
                                                 <div class="col-md-6 mb-4">
-                                                    <label class="identity-upload-box d-block border text-center p-3" for="profileIdentityFrontFile">
-                                                        <span class="d-block font-weight-medium mb-2">Mặt trước</span>
-                                                        <img id="profileIdentityFrontPreview" src="@(string.IsNullOrWhiteSpace(identityFrontImage) ? "" : "/" + identityFrontImage)" alt="Ảnh CMND/CCCD mặt trước" class="img-fluid @(string.IsNullOrWhiteSpace(identityFrontImage) ? "d-none" : "")" style="max-height:180px;" />
-                                                        <span id="profileIdentityFrontPlaceholder" class="text-gray-600 @(string.IsNullOrWhiteSpace(identityFrontImage) ? "" : "d-none")">Bấm để tải ảnh mặt trước</span>
+                                                    <label class="identity-upload-box d-flex flex-column align-items-center justify-content-center border rounded-md text-center p-3 hover-up bg-app border-color cursor-pointer" for="profileIdentityFrontFile" style="height: 220px; border: 2px dashed var(--border-color) !important;">
+                                                        <span class="d-block font-weight-medium mb-2 text-main">Mặt trước CMND/CCCD</span>
+                                                        <img id="profileIdentityFrontPreview" src="@(string.IsNullOrWhiteSpace(identityFrontImage) ? "" : "/" + identityFrontImage)" alt="Ảnh CMND/CCCD mặt trước" class="img-fluid rounded @(string.IsNullOrWhiteSpace(identityFrontImage) ? "d-none" : "")" style="max-height:140px;" />
+                                                        <div id="profileIdentityFrontPlaceholder" class="text-muted d-flex flex-column align-items-center @(string.IsNullOrWhiteSpace(identityFrontImage) ? "" : "d-none")">
+                                                            <i class="fas fa-cloud-upload-alt font-size-5 mb-2 text-primary"></i>
+                                                            <span class="font-size-2">Bấm để tải ảnh mặt trước</span>
+                                                        </div>
                                                     </label>
                                                     <input id="profileIdentityFrontFile" type="file" class="d-none js-identity-preview" name="front_file" data-preview="#profileIdentityFrontPreview" data-placeholder="#profileIdentityFrontPlaceholder" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
                                                 </div>
                                                 <div class="col-md-6 mb-4">
-                                                    <label class="identity-upload-box d-block border text-center p-3" for="profileIdentityBackFile">
-                                                        <span class="d-block font-weight-medium mb-2">Mặt sau</span>
-                                                        <img id="profileIdentityBackPreview" src="@(string.IsNullOrWhiteSpace(identityBackImage) ? "" : "/" + identityBackImage)" alt="Ảnh CMND/CCCD mặt sau" class="img-fluid @(string.IsNullOrWhiteSpace(identityBackImage) ? "d-none" : "")" style="max-height:180px;" />
-                                                        <span id="profileIdentityBackPlaceholder" class="text-gray-600 @(string.IsNullOrWhiteSpace(identityBackImage) ? "" : "d-none")">Bấm để tải ảnh mặt sau</span>
+                                                    <label class="identity-upload-box d-flex flex-column align-items-center justify-content-center border rounded-md text-center p-3 hover-up bg-app border-color cursor-pointer" for="profileIdentityBackFile" style="height: 220px; border: 2px dashed var(--border-color) !important;">
+                                                        <span class="d-block font-weight-medium mb-2 text-main">Mặt sau CMND/CCCD</span>
+                                                        <img id="profileIdentityBackPreview" src="@(string.IsNullOrWhiteSpace(identityBackImage) ? "" : "/" + identityBackImage)" alt="Ảnh CMND/CCCD mặt sau" class="img-fluid rounded @(string.IsNullOrWhiteSpace(identityBackImage) ? "d-none" : "")" style="max-height:140px;" />
+                                                        <div id="profileIdentityBackPlaceholder" class="text-muted d-flex flex-column align-items-center @(string.IsNullOrWhiteSpace(identityBackImage) ? "" : "d-none")">
+                                                            <i class="fas fa-cloud-upload-alt font-size-5 mb-2 text-primary"></i>
+                                                            <span class="font-size-2">Bấm để tải ảnh mặt sau</span>
+                                                        </div>
                                                     </label>
                                                     <input id="profileIdentityBackFile" type="file" class="d-none js-identity-preview" name="back_file" data-preview="#profileIdentityBackPreview" data-placeholder="#profileIdentityBackPlaceholder" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
                                                 </div>
                                             </div>
-                                            <button id="profileIdentityOcrBtn" type="button" onclick="UploadIdentityCard()" class="btn btn-outline-dark rounded-0">Đọc thông tin</button>
-                                            <div id="identityCardUploadStatus" class="font-size-2 mt-3 text-gray-600"></div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                <button id="profileIdentityOcrBtn" type="button" onclick="UploadIdentityCard()" class="btn btn-primary rounded-md px-4 py-2 hover-up shadow-sm">
+                                                    <i class="fas fa-qrcode mr-2"></i>Đọc thông tin tự động (OCR)
+                                                </button>
+                                                <div id="identityCardUploadStatus" class="font-size-2 text-muted mt-2 mt-md-0"></div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -99,54 +118,54 @@
                                         <input type="hidden" name="IDUser" value="@Model.IDUser" />
                                         <input type="hidden" name="Name" value="@Model.Name" />
                                         <div class="col-md-12 mb-4">
-                                            <div class="border p-4">
-                                                <div class="font-weight-medium font-size-3 mb-3">Thông tin CMND/CCCD</div>
+                                            <div class="card p-4 bg-card border-color shadow-sm rounded-md">
+                                                <div class="font-weight-bold text-main mb-3"><i class="fas fa-info-circle mr-2 text-primary"></i>Thông tin CMND/CCCD trích xuất</div>
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-4">
-                                                        <label>Số CMND/CCCD</label>
-                                                        <input type="text" class="form-control rounded-0" name="IdentityNumber" value="@Model.IdentityNumber" @identityLockedAttr>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="text-muted mb-1 font-size-2">Số CMND/CCCD</label>
+                                                        <input type="text" class="form-control rounded-md border-color px-3" name="IdentityNumber" value="@Model.IdentityNumber" @identityLockedAttr>
                                                     </div>
-                                                    <div class="col-md-6 mb-4">
-                                                        <label>Họ tên trên CMND/CCCD</label>
-                                                        <input type="text" class="form-control rounded-0" name="IdentityFullName" value="@Model.IdentityFullName" @identityLockedAttr>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="text-muted mb-1 font-size-2">Họ tên trên CMND/CCCD</label>
+                                                        <input type="text" class="form-control rounded-md border-color px-3" name="IdentityFullName" value="@Model.IdentityFullName" @identityLockedAttr>
                                                     </div>
-                                                    <div class="col-md-6 mb-4">
-                                                        <label>Ngày sinh</label>
-                                                        <input type="date" class="form-control rounded-0" name="IdentityDateOfBirth" value="@(Model.IdentityDateOfBirth.HasValue ? Model.IdentityDateOfBirth.Value.ToString("yyyy-MM-dd") : "")" @identityLockedAttr>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="text-muted mb-1 font-size-2">Ngày sinh</label>
+                                                        <input type="date" class="form-control rounded-md border-color px-3" name="IdentityDateOfBirth" value="@(Model.IdentityDateOfBirth.HasValue ? Model.IdentityDateOfBirth.Value.ToString("yyyy-MM-dd") : "")" @identityLockedAttr>
                                                     </div>
-                                                    <div class="col-md-6 mb-4">
-                                                        <label>Ngày cấp</label>
-                                                        <input type="date" class="form-control rounded-0" name="IdentityIssueDate" value="@(Model.IdentityIssueDate.HasValue ? Model.IdentityIssueDate.Value.ToString("yyyy-MM-dd") : "")" @identityLockedAttr>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="text-muted mb-1 font-size-2">Ngày cấp</label>
+                                                        <input type="date" class="form-control rounded-md border-color px-3" name="IdentityIssueDate" value="@(Model.IdentityIssueDate.HasValue ? Model.IdentityIssueDate.Value.ToString("yyyy-MM-dd") : "")" @identityLockedAttr>
                                                     </div>
-                                                    <div class="col-md-12 mb-4">
-                                                        <label>Địa chỉ trên CMND/CCCD</label>
-                                                        <input type="text" class="form-control rounded-0" name="IdentityAddress" value="@Model.IdentityAddress" @identityLockedAttr>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="text-muted mb-1 font-size-2">Địa chỉ trên CMND/CCCD</label>
+                                                        <input type="text" class="form-control rounded-md border-color px-3" name="IdentityAddress" value="@Model.IdentityAddress" @identityLockedAttr>
                                                     </div>
                                                     <input type="hidden" name="IdentityPlaceOfBirth" value="@Model.IdentityPlaceOfBirth">
                                                     <input type="hidden" name="IdentityGender" value="@Model.IdentityGender">
                                                     <input type="hidden" name="IdentityNationality" value="@Model.IdentityNationality">
                                                     <input type="hidden" name="IdentityExpiryDate" value="@(Model.IdentityExpiryDate.HasValue ? Model.IdentityExpiryDate.Value.ToString("yyyy-MM-dd") : "")">
                                                     <input type="hidden" name="IdentityIssuingAuthority" value="@Model.IdentityIssuingAuthority">
-                                                    <div class="col-md-12 mb-4">
-                                                        <label>Nơi cấp</label>
-                                                        <input type="text" class="form-control rounded-0" name="IdentityIssuePlace" value="@Model.IdentityIssuePlace" @identityLockedAttr>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label class="text-muted mb-1 font-size-2">Nơi cấp</label>
+                                                        <input type="text" class="form-control rounded-md border-color px-3" name="IdentityIssuePlace" value="@Model.IdentityIssuePlace" @identityLockedAttr>
                                                     </div>
                                                     @if (!string.IsNullOrWhiteSpace(identityFrontImage) || !string.IsNullOrWhiteSpace(identityBackImage))
                                                     {
-                                                        <div class="col-md-12 mb-4">
-                                                            <label>Ảnh CMND/CCCD đã lưu</label>
-                                                            <div>
+                                                        <div class="col-md-12 mt-3 pt-3 border-top border-color">
+                                                            <label class="text-muted d-block font-size-2">Ảnh CMND/CCCD đã lưu</label>
+                                                            <div class="d-flex align-items-center flex-wrap" style="gap:15px;">
                                                                 @if (!string.IsNullOrWhiteSpace(identityFrontImage))
                                                                 {
-                                                                    <a href="/@identityFrontImage" target="_blank">Xem mặt trước</a>
+                                                                    <a href="/@identityFrontImage" target="_blank" class="btn btn-sm btn-outline-primary rounded-md"><i class="far fa-image mr-1"></i>Xem mặt trước</a>
                                                                 }
                                                                 @if (!string.IsNullOrWhiteSpace(identityBackImage))
                                                                 {
-                                                                    <a class="ml-3" href="/@identityBackImage" target="_blank">Xem mặt sau</a>
+                                                                    <a href="/@identityBackImage" target="_blank" class="btn btn-sm btn-outline-primary rounded-md"><i class="far fa-image mr-1"></i>Xem mặt sau</a>
                                                                 }
                                                                 @if (Model.IdentityFaceConfidence.HasValue)
                                                                 {
-                                                                    <span class="text-muted ml-2">Độ khớp khuôn mặt: @Model.IdentityFaceConfidence.Value.ToString("0.##")</span>
+                                                                    <span class="text-muted font-size-2 ml-md-auto"><i class="fas fa-check-circle text-success mr-1"></i>Độ khớp khuôn mặt: <strong>@Model.IdentityFaceConfidence.Value.ToString("0.##")</strong></span>
                                                                 }
                                                             </div>
                                                         </div>
@@ -154,68 +173,67 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mb-4">
+                                        
+                                        <div class="col-md-12 mb-3">
                                             <div class="js-form-message">
-                                                <label>Số điện thoại</label>
-                                                <input type="text" class="form-control rounded-0 pl-3 placeholder-color-3" name="Phone" value="@Model.Phone" @identityLockedAttr>
+                                                <label class="text-main mb-1 font-size-2">Số điện thoại</label>
+                                                <input type="text" class="form-control rounded-md border-color px-3" name="Phone" value="@Model.Phone" @identityLockedAttr>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <div class="js-form-message">
+                                                <label class="text-main mb-1 font-size-2">Nơi ở hiện tại</label>
+                                                <input type="text" class="form-control rounded-md border-color px-3" name="Adress" value="@Model.Adress" @identityLockedAttr>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mb-4">
                                             <div class="js-form-message">
-                                                <label>Nơi ở</label>
-                                                <input type="text" class="form-control rounded-0" name="Adress" value="@Model.Adress" @identityLockedAttr>
+                                                <label class="text-main mb-1 font-size-2">Gmail nhận thông báo</label>
+                                                <input type="email" class="form-control rounded-md border-color px-3" name="NotificationEmail" value="@(string.IsNullOrWhiteSpace(Model.NotificationEmail) ? Model.Email : Model.NotificationEmail)" @identityLockedAttr>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mb-4">
-                                            <div class="js-form-message">
-                                                <label>Gmail nhận thông báo</label>
-                                                <input type="email" class="form-control rounded-0" name="NotificationEmail" value="@(string.IsNullOrWhiteSpace(Model.NotificationEmail) ? Model.Email : Model.NotificationEmail)" @identityLockedAttr>
-                                            </div>
-                                        </div>
-                                        <div class="ml-3">
-                                            <a href="javascript:void(0)" onclick="ChangeUserProfile()" class="btn btn-wide btn-dark text-white rounded-0 transition-3d-hover height-60 width-390 @(identityProfileLocked ? "disabled" : "")" aria-disabled="@identityProfileLocked.ToString().ToLowerInvariant()">Lưu thông tin</a>
+                                        <div class="col-12 mt-2">
+                                            <a href="javascript:void(0)" onclick="ChangeUserProfile()" class="btn btn-primary rounded-md px-5 py-3 hover-up shadow-md font-weight-bold @(identityProfileLocked ? "disabled" : "")" aria-disabled="@identityProfileLocked.ToString().ToLowerInvariant()"><i class="fas fa-save mr-2"></i>Lưu thông tin</a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-
-                        <div class="pl-md-5 pl-lg-9 space-bottom-2 space-bottom-lg-3">
-                            <div class="d-flex align-items-center justify-content-between mb-4 pb-xl-1">
-                                <div class="font-weight-medium font-size-22">Bảo mật tài khoản</div>
-                                <button class="btn btn-outline-dark rounded-0" type="button" data-toggle="collapse" data-target="#changePass" aria-expanded="false" aria-controls="changePass">
-                                    Đổi mật khẩu
+                        <div class="pl-md-4 mt-5 pt-4 border-top border-color">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <div class="font-weight-medium font-size-4 text-main">Bảo mật tài khoản</div>
+                                <button class="btn btn-outline-primary rounded-md px-3 py-2 hover-up shadow-sm" type="button" data-toggle="collapse" data-target="#changePass" aria-expanded="false" aria-controls="changePass">
+                                    <i class="fas fa-key mr-2"></i>Đổi mật khẩu
                                 </button>
                             </div>
-                            <form id="changePass" class="collapse">
+                            <form id="changePass" class="collapse card p-4 bg-card border-color shadow-sm rounded-md">
                                 <div class="row">
-                                    <div class="col-md-12 mb-4">
+                                    <div class="col-md-12 mb-3">
                                         <div class="js-form-message">
-                                            <label for="exampleFormControlInput5">Mật khẩu hiện tại</label>
-                                            <input type="password" class="form-control rounded-0" name="oldPassWord">
+                                            <label class="text-main mb-1 font-size-2">Mật khẩu hiện tại</label>
+                                            <input type="password" class="form-control rounded-md border-color px-3" name="oldPassWord">
                                             <input type="hidden" name="IDUser" value="@Model.IDUser" />
                                         </div>
                                     </div>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="js-form-message">
+                                            <label class="text-main mb-1 font-size-2">Mật khẩu mới</label>
+                                            <input type="password" class="form-control rounded-md border-color px-3" name="newPassWorrd">
+                                        </div>
+                                    </div>
                                     <div class="col-md-12 mb-4">
                                         <div class="js-form-message">
-                                            <label for="exampleFormControlInput6">Mật khẩu mới</label>
-                                            <input type="password" class="form-control rounded-0" name="newPassWorrd">
+                                            <label class="text-main mb-1 font-size-2">Nhập lại mật khẩu mới</label>
+                                            <input type="password" class="form-control rounded-md border-color px-3" name="confinrmPass">
                                         </div>
                                     </div>
-                                    <div class="col-md-12 mb-5">
-                                        <div class="js-form-message">
-                                            <label for="exampleFormControlInput7">Nhập lại mật khẩu mới</label>
-                                            <input type="password" class="form-control rounded-0" name="confinrmPass">
-                                        </div>
-                                    </div>
-                                    <div class="ml-3">
-                                        <a href="javascript:void(0)" onclick="ChangePass()" class="btn btn-wide btn-dark text-white rounded-0 transition-3d-hover height-60 width-390">Lưu thay đổi</a>
+                                    <div class="col-12">
+                                        <a href="javascript:void(0)" onclick="ChangePass()" class="btn btn-primary rounded-md px-4 py-2 hover-up shadow-sm font-weight-bold">Lưu thay đổi</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
 
                     </div>
                 </div>
@@ -224,11 +242,12 @@
 }
 else
 {
-    <main id="content">
-        <div class="container py-6">
-            <h1 class="font-size-7 mb-3">Thông tin cá nhân</h1>
-            <p class="font-size-2 text-gray-700">Bạn cần đăng nhập để xem và cập nhật thông tin cá nhân.</p>
-            <a href="/dang-nhap" class="btn btn-dark rounded-0">Đăng nhập</a>
+    <main id="content" class="bg-app text-main py-6">
+        <div class="container text-center py-5 card shadow-sm bg-card border-color rounded-md max-w-500 mx-auto">
+            <i class="fas fa-exclamation-circle text-warning font-size-10 mb-3"></i>
+            <h1 class="font-size-5 mb-2 text-main">Thông tin cá nhân</h1>
+            <p class="font-size-2 text-muted mb-4">Bạn cần đăng nhập để xem và cập nhật thông tin cá nhân.</p>
+            <a href="/dang-nhap" class="btn btn-primary rounded-md px-5 py-2 shadow-md hover-up font-weight-bold">Đăng nhập ngay</a>
         </div>
     </main>
 }

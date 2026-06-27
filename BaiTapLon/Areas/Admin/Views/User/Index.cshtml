@@ -4,93 +4,113 @@
     ViewBag.Title = "Quản lí người dùng";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
- <!-- Breadcrumbs-->
-<ol class="breadcrumb">
+<!-- Breadcrumbs-->
+<ol class="breadcrumb bg-card border border-color rounded-md py-2 px-3 shadow-sm mb-4">
     <li class="breadcrumb-item">
-        <a href="/Admin/Homes">Trang Chủ</a>
+        <a href="/Admin/Homes" class="text-primary font-weight-semibold">Trang Chủ</a>
     </li>
-    <li class="breadcrumb-item active">Quản lý người dùng</li>
+    <li class="breadcrumb-item active text-muted">Quản lý người dùng</li>
 </ol>
 @section jsFooter{
-        <script src="/Content/js/Controller/Usercontroller.js"></script>
-    }
-@using (Html.BeginForm("Index", "User", FormMethod.Get))
-{
-    <div class="row">
-            <div class="col-md-6">
-                <input class="form-control" type="text" name="searhString" placeholder="Nhập từ khóa cần tìm kiếm..." />
-                
-            </div>      
-            <button type="submit" class="btn-danger btn-sm"><i class="fas fa-search"></i> Tìm kiếm</button>
-    </div>
+    <script src="/Content/js/Controller/Usercontroller.js"></script>
 }
-<br />
-<table class="table table-hover table-striped table-bordered">
-    <thead>
-        <tr class="text-center">
-            <th>Tài Khoản</th>
-            <th>Họ Tên</th>
-            <th>Địa chỉ</th>
-            <th>Email</th>
-            <th>Số điện thoại</th>
-            <th>Chức danh</th>
-            <th>Trạng thái</th>
 
-            <th>Hành động</th>
-            
-        </tr>
-    </thead>
-    <tbody class="text-center">
-        @foreach (var item in Model)
+<div class="card bg-card border-color shadow-sm rounded-lg mb-4">
+    <div class="card-body p-3">
+        @using (Html.BeginForm("Index", "User", FormMethod.Get, new { @class = "m-0" }))
         {
-
-            <tr id="row_@item.IDUser">
-
-                <td>@item.UserName</td>
-                <td>@item.Name</td>
-                <td>@item.Adress</td>
-                <td>@item.Email</td>
-                <td>@item.Phone</td>
-                <td>@item.TenQuyen</td>
-                <td>
-                    @if (item.Status)
-                    {
-                        
-                        <a href="#" class="btn-active" data-id="@item.IDUser">
-                             Hoạt động
-                        </a>
-                    }
-                    else
-                    {
-                       
-                        <a href="#" class="btn-active" data-id="@item.IDUser">
-                             Đã khóa
-                        </a>
-                    }
-                </td>
-                <td>
-                    <a href="/Admin/User/Edit/@item.IDUser" class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i> Sửa </a>
-                    @Ajax.ActionLink(" Xóa", "Delete", new { @id = item.IDUser }, new AjaxOptions
-               {
-                   Confirm = "Bạn có muốn xóa tài khoản này  ?",
-                   OnComplete = "$('#row_" + item.IDUser + "').remove()",
-                   HttpMethod = "Delete"
-               },new { @class = "btn btn-danger btn-sm far fa-trash-alt" })
-    
-                </td>
-            </tr>
-
+            <div class="row align-items-center">
+                <div class="col-md-8 col-sm-12 mb-2 mb-md-0">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-app border-color text-muted">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <input class="form-control bg-app border-color text-main rounded-right-md" type="text" name="searhString" placeholder="Nhập từ khóa cần tìm kiếm (Tên, Tài khoản, Email...)..." />
+                    </div>
+                </div>      
+                <div class="col-md-4 col-sm-12 text-md-right">
+                    <button type="submit" class="btn btn-primary px-4 rounded-md mr-2">
+                        <i class="fas fa-filter mr-1"></i> Lọc
+                    </button>
+                    <a href="/Admin/User/Create" class="btn btn-success rounded-md">
+                        <i class="fas fa-user-plus mr-1"></i> Thêm Mới
+                    </a>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
-<!--Ngay dưới table là hiện thị thông tin trang-->
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
-                    new PagedListRenderOptions
-                    {
-                        LiElementClasses = new string[] { "page-item" },
-                        LinkToPreviousPageFormat = "Trước",
-                        LinkToNextPageFormat = "Kế Tiếp",
-                        PageClasses = new string[] { "page-link" }
-                    })
+    </div>
+</div>
 
+<div class="card bg-card border-color shadow-sm rounded-lg overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped border-0 mb-0">
+            <thead>
+                <tr class="bg-app text-muted font-size-2 border-bottom border-color text-uppercase font-weight-bold">
+                    <th class="px-4 py-3 border-0">Tài Khoản</th>
+                    <th class="px-4 py-3 border-0">Họ Tên</th>
+                    <th class="px-4 py-3 border-0">Địa chỉ</th>
+                    <th class="px-4 py-3 border-0">Email</th>
+                    <th class="px-4 py-3 border-0">Số điện thoại</th>
+                    <th class="px-4 py-3 border-0">Chức danh</th>
+                    <th class="px-4 py-3 border-0 text-center">Trạng thái</th>
+                    <th class="px-4 py-3 border-0 text-center">Hành động</th>
+                </tr>
+            </thead>
+            <tbody class="text-main font-size-2 align-middle">
+                @foreach (var item in Model)
+                {
+                    <tr id="row_@item.IDUser" class="border-bottom border-color">
+                        <td class="px-4 py-3 border-0 font-weight-semibold">@item.UserName</td>
+                        <td class="px-4 py-3 border-0">@item.Name</td>
+                        <td class="px-4 py-3 border-0 text-muted">@item.Adress</td>
+                        <td class="px-4 py-3 border-0">@item.Email</td>
+                        <td class="px-4 py-3 border-0">@item.Phone</td>
+                        <td class="px-4 py-3 border-0">
+                            <span class="badge bg-app text-primary border border-primary-light px-2.5 py-1 rounded-full font-weight-bold">
+                                @item.TenQuyen
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 border-0 text-center">
+                            @if (item.Status)
+                            {
+                                <a href="#" class="btn-active badge bg-success-light text-success px-2.5 py-1 rounded-full border-0 font-weight-bold" data-id="@item.IDUser">
+                                    <i class="fas fa-check-circle mr-1"></i> Hoạt động
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" class="btn-active badge bg-danger-light text-danger px-2.5 py-1 rounded-full border-0 font-weight-bold" data-id="@item.IDUser">
+                                    <i class="fas fa-times-circle mr-1"></i> Đã khóa
+                                </a>
+                            }
+                        </td>
+                        <td class="px-4 py-3 border-0 text-center">
+                            <div class="d-inline-flex" style="gap: 5px;">
+                                <a href="/Admin/User/Edit/@item.IDUser" class="btn btn-sm btn-outline-info rounded-md" title="Chỉnh sửa"><i class="fas fa-user-edit"></i> Sửa</a>
+                                @Ajax.ActionLink(" Xóa", "Delete", new { @id = item.IDUser }, new AjaxOptions
+                                {
+                                    Confirm = "Bạn có muốn xóa tài khoản này?",
+                                    OnComplete = "$('#row_" + item.IDUser + "').remove()",
+                                    HttpMethod = "Delete"
+                                }, new { @class = "btn btn-sm btn-outline-danger rounded-md far fa-trash-alt" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
+<div class="d-flex justify-content-center mt-4">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+        new PagedListRenderOptions
+        {
+            LiElementClasses = new string[] { "page-item" },
+            LinkToPreviousPageFormat = "<i class='fas fa-chevron-left'></i> Trước",
+            LinkToNextPageFormat = "Kế Tiếp <i class='fas fa-chevron-right'></i>",
+            PageClasses = new string[] { "page-link bg-card border-color text-main rounded-md mx-1 font-size-2" }
+        })
+</div>

@@ -1,76 +1,70 @@
-﻿
-@{
-    
+﻿@{
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<ol class="breadcrumb">
+<ol class="breadcrumb bg-card border border-color rounded-md py-2 px-3 shadow-sm mb-4">
     <li class="breadcrumb-item">
-        <a href="/Admin/Homes">Trang Chủ</a>
+        <a href="/Admin/Homes" class="text-primary font-weight-semibold">Trang Chủ</a>
     </li>
-    <li class="breadcrumb-item active">Tổng quan</li>
+    <li class="breadcrumb-item active text-muted">Tổng quan</li>
 </ol>
 <div class="row">
-    <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card text-white bg-primary o-hidden h-100">
-            <div class="card-body">
-                <div class="card-body-icon">
+    <div class="col-xl-3 col-sm-6 mb-4">
+        <div class="card bg-card border-color h-100 shadow-sm hover-up transition-all rounded-lg overflow-hidden">
+            <div class="card-body p-4 position-relative">
+                <div class="position-absolute text-primary opacity-2" style="right: 1.5rem; top: 1.5rem; font-size: 2.5rem;">
                     <i class="fas fa-fw fa-comments"></i>
                 </div>
-                <div class="mr-5">@ViewBag.coutFeedBack Liên Hệ Mới!</div>
+                <h6 class="text-muted text-uppercase tracking-wider font-size-1 mb-2 font-weight-bold">Liên Hệ Mới</h6>
+                <h2 class="text-main font-weight-extrabold mb-0">@ViewBag.coutFeedBack</h2>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="/Admin/FeedBack/Index">
-                <span class="float-left">Xem Ngay</span>
-                <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                </span>
+            <a class="card-footer bg-card border-top border-color text-primary font-weight-bold clearfix font-size-2 d-flex align-items-center justify-content-between py-3 hover-bg-light" href="/Admin/FeedBack/Index">
+                <span>Xem Chi Tiết</span>
+                <i class="fas fa-angle-right"></i>
             </a>
         </div>
     </div>
-    <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card text-white bg-warning o-hidden h-100">
-            <div class="card-body">
-                <div class="card-body-icon">
-                    <i class="fas fa-fw fa-list"></i>
+    <div class="col-xl-3 col-sm-6 mb-4">
+        <div class="card bg-card border-color h-100 shadow-sm hover-up transition-all rounded-lg overflow-hidden">
+            <div class="card-body p-4 position-relative">
+                <div class="position-absolute text-warning opacity-2" style="right: 1.5rem; top: 1.5rem; font-size: 2.5rem;">
+                    <i class="fas fa-fw fa-users"></i>
                 </div>
-                <div class="mr-5">@ViewBag.coutUser Người dùng!</div>
+                <h6 class="text-muted text-uppercase tracking-wider font-size-1 mb-2 font-weight-bold">Người Dùng</h6>
+                <h2 class="text-main font-weight-extrabold mb-0">@ViewBag.coutUser</h2>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="/Admin/User/Index">
-                <span class="float-left">Xem Ngay</span>
-                <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                </span>
+            <a class="card-footer bg-card border-top border-color text-warning font-weight-bold clearfix font-size-2 d-flex align-items-center justify-content-between py-3 hover-bg-light" href="/Admin/User/Index">
+                <span>Xem Chi Tiết</span>
+                <i class="fas fa-angle-right"></i>
             </a>
         </div>
     </div>
-    <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card text-white bg-success o-hidden h-100">
-            <div class="card-body">
-                <div class="card-body-icon">
+    <div class="col-xl-3 col-sm-6 mb-4">
+        <div class="card bg-card border-color h-100 shadow-sm hover-up transition-all rounded-lg overflow-hidden">
+            <div class="card-body p-4 position-relative">
+                <div class="position-absolute text-success opacity-2" style="right: 1.5rem; top: 1.5rem; font-size: 2.5rem;">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                 </div>
-                <div class="mr-5">@ViewBag.coutOrder Đơn Hàng Mới!</div>
+                <h6 class="text-muted text-uppercase tracking-wider font-size-1 mb-2 font-weight-bold">Đơn Hàng Mới</h6>
+                <h2 class="text-main font-weight-extrabold mb-0">@ViewBag.coutOrder</h2>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="/Admin/HoaDon/XacNhan">
-                <span class="float-left">Xem Ngay</span>
-                <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                </span>
+            <a class="card-footer bg-card border-top border-color text-success font-weight-bold clearfix font-size-2 d-flex align-items-center justify-content-between py-3 hover-bg-light" href="/Admin/HoaDon/XacNhan">
+                <span>Xem Chi Tiết</span>
+                <i class="fas fa-angle-right"></i>
             </a>
         </div>
     </div>
-    <div class="col-xl-3 col-sm-6 mb-3">
-        <div class="card text-white bg-danger o-hidden h-100">
-            <div class="card-body">
-                <div class="card-body-icon">
-                    <i class="fas fa-fw fa-life-ring"></i>
+    <div class="col-xl-3 col-sm-6 mb-4">
+        <div class="card bg-card border-color h-100 shadow-sm hover-up transition-all rounded-lg overflow-hidden">
+            <div class="card-body p-4 position-relative">
+                <div class="position-absolute text-danger opacity-2" style="right: 1.5rem; top: 1.5rem; font-size: 2.5rem;">
+                    <i class="fas fa-fw fa-file-invoice"></i>
                 </div>
-                <div class="mr-5">@ViewBag.coutNhapHang Phiếu Nhập Mới!</div>
+                <h6 class="text-muted text-uppercase tracking-wider font-size-1 mb-2 font-weight-bold">Phiếu Nhập Mới</h6>
+                <h2 class="text-main font-weight-extrabold mb-0">@ViewBag.coutNhapHang</h2>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="/Admin/NhapHang/Index">
-                <span class="float-left">Xem Ngay</span>
-                <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                </span>
+            <a class="card-footer bg-card border-top border-color text-danger font-weight-bold clearfix font-size-2 d-flex align-items-center justify-content-between py-3 hover-bg-light" href="/Admin/NhapHang/Index">
+                <span>Xem Chi Tiết</span>
+                <i class="fas fa-angle-right"></i>
             </a>
         </div>
     </div>
