@@ -19,7 +19,7 @@
 
 
  <!-- ====== MAIN CONTENT ===== -->
-<main id="content">
+<main id="content" class="bg-app text-main py-5">
     <div class="py-3 py-lg-7">
         <h6 class="font-weight-medium font-size-7 text-center my-1">Liên hệ chúng tôi</h6>
     </div>
@@ -28,7 +28,7 @@
         <div class="space-bottom-1 space-bottom-lg-2">
             <div class="pb-4">
                 <div class="col-lg-8 mx-auto">
-                    <div class="bg-white mt-n10 mt-md-n13 pt-5 pt-lg-7 px-3 px-md-5 pl-xl-10 pr-xl-3">
+                    <div class="card bg-card border-color shadow-lg mt-n10 mt-md-n13 p-4 p-md-5" style="border-radius: var(--radius-lg) !important; background-color: var(--bg-card) !important; border: 1px solid var(--border-color) !important;">
                         <div class="ml-xl-4">
                             <div class="mb-4 mb-lg-7">
                                 <h6 class="font-weight medium font-size-10 mb-4 mb-lg-7">Thông tin liên lạc</h6>
@@ -63,7 +63,7 @@
                                 <h6 class="font-size-4 font-weight-medium">Truyền Thông Xã Hội</h6>
                                 <ul class="list-unstyled mb-0 d-flex">
                                     <li class="btn pl-0">
-                                        <a class="link-black-100" href="#">
+                                        <a class="text-primary hover-up" href="#">
                                             <span class="fab fa-instagram"></span>
                                         </a>
                                     </li>
@@ -99,7 +99,7 @@
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput1">Họ và tên</label>
-                                                    <input id="userName" type="text" class="form-control rounded-0" value="@userLoginContact.Name" name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
+                                                    <input id="userName" type="text" class="form-control rounded-md border-color bg-card text-main" value="@userLoginContact.Name" name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
                                                     
                                                 </div>
                                             </div>
@@ -108,14 +108,14 @@
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput2">Số điện thoại</label>
-                                                    <input id="userPhone" value="@userLoginContact.Phone" class="form-control rounded-0" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <input id="userPhone" value="@userLoginContact.Phone" class="form-control rounded-md border-color bg-card text-main" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                             <!-- Input -->
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput1">Địa chỉ</label>
-                                                    <input id="userAddress" type="text" class="form-control rounded-0" value="@userLoginContact.Adress" name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
+                                                    <input id="userAddress" type="text" class="form-control rounded-md border-color bg-card text-main" value="@userLoginContact.Adress" name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
 
                                                 </div>
                                             </div>
@@ -124,21 +124,21 @@
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput2">Email</label>
-                                                    <input id="userEmail" value="@userLoginContact.Email" class="form-control rounded-0" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <input id="userEmail" value="@userLoginContact.Email" class="form-control rounded-md border-color bg-card text-main" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                         <!-- End Input -->
                                             <div class="col-sm-12 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput3">Tiêu đề</label>
-                                                    <input id="userTieuDe" type="text" class="form-control rounded-0" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <input id="userTieuDe" type="text" class="form-control rounded-md border-color bg-card text-main" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-5">
                                                 <div class="js-form-message">
                                                     <div class="input-group flex-column">
                                                         <label for="exampleFormControlInput4">Thông tin chi tiết xin vui lòng! Đánh giá của bạn giúp ích cho những người mua sắm khác.</label>
-                                                        <textarea id="userMsg" class="form-control rounded-0 pl-3 font-size-2 placeholder-color-3" rows="6" cols="77" name="text" placeholder="Bạn thích và không thích điều gì?" aria-label="Hi there, I would like to ..." required="" data-msg="Please enter a reason." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
+                                                        <textarea id="userMsg" class="form-control rounded-md border-color bg-card text-main pl-3 font-size-2 placeholder-color-3" rows="6" cols="77" name="text" placeholder="Bạn thích và không thích điều gì?" aria-label="Hi there, I would like to ..." required="" data-msg="Please enter a reason." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,7 +150,7 @@
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput1">Họ và tên</label>
-                                                    <input id="userName" type="text" class="form-control rounded-0" value="" name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
+                                                    <input id="userName" type="text" class="form-control rounded-md border-color bg-card text-main" value="" name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                         <!-- End Input -->
@@ -158,14 +158,14 @@
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput2">Số điện thoại</label>
-                                                    <input id="userPhone"  class="form-control rounded-0" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <input id="userPhone"  class="form-control rounded-md border-color bg-card text-main" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                             <!-- Input -->
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput1">Địa chỉ</label>
-                                                    <input id="userAddress" type="text" class="form-control rounded-0"  name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
+                                                    <input id="userAddress" type="text" class="form-control rounded-md border-color bg-card text-main"  name="name" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
 
                                                 </div>
                                             </div>
@@ -173,21 +173,21 @@
                                             <div class="col-sm-6 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput2">Email</label>
-                                                    <input id="userEmail" value="" class="form-control rounded-0" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <input id="userEmail" value="" class="form-control rounded-md border-color bg-card text-main" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                         <!-- End Input -->
                                             <div class="col-sm-12 mb-5">
                                                 <div class="js-form-message">
                                                     <label for="exampleFormControlInput3">Tiêu đề</label>
-                                                    <input id="userTieuDe" type="text" class="form-control rounded-0" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <input id="userTieuDe" type="text" class="form-control rounded-md border-color bg-card text-main" name="email" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-5">
                                                 <div class="js-form-message">
                                                     <div class="input-group flex-column">
                                                         <label for="exampleFormControlInput4">Thông tin chi tiết xin vui lòng! Đánh giá của bạn giúp ích cho những người mua sắm khác.</label>
-                                                        <textarea id="userMsg" class="form-control rounded-0 pl-3 font-size-2 placeholder-color-3" rows="6" cols="77" name="text" placeholder="Bạn thích và không thích điều gì?" aria-label="Hi there, I would like to ..." required="" data-msg="Please enter a reason." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
+                                                        <textarea id="userMsg" class="form-control rounded-md border-color bg-card text-main pl-3 font-size-2 placeholder-color-3" rows="6" cols="77" name="text" placeholder="Bạn thích và không thích điều gì?" aria-label="Hi there, I would like to ..." required="" data-msg="Please enter a reason." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
