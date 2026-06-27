@@ -1,4 +1,4 @@
-﻿using Common.Repositories;
+using Common.Repositories;
 using Mood.EF2;
 using BaiTapLon.Services;
 using System;
@@ -129,6 +129,12 @@ namespace BaiTapLon.Controllers
 
         private long ResolveUserId(int requestUserId)
         {
+            var userSession = Session[BaiTapLon.Common.Constant.USER_SESSION] as BaiTapLon.Common.UserLogin;
+            if (userSession != null && userSession.userId > 0)
+            {
+                return userSession.userId;
+            }
+
             long authenticatedUserId;
             if (User != null && User.Identity != null && User.Identity.IsAuthenticated && long.TryParse(User.Identity.Name, out authenticatedUserId))
             {
@@ -137,7 +143,6 @@ namespace BaiTapLon.Controllers
 
             return requestUserId;
         }
-
         private class StoreDistance
         {
             public StoreLocation Store { get; set; }

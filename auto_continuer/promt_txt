@@ -1,0 +1,452 @@
+promt test dự án
+If testing is already in progress, continue from where it left off without repeating completed tests. If all existing tests have been completed, create and execute additional test scenarios to improve coverage. Exclude any features, pages, or flows that have already been tested. Perform comprehensive testing across the entire project, including UI/UX, frontend logic, backend APIs, business logic, edge cases, validation, error handling, authentication/authorization, and integration between frontend and backend. Focus on discovering new issues rather than re-testing completed functionality.
+file : BaoCaoKiemThuWeb.md
+Mã nguồn hỗ trợ : playwright-docs
+
+
+promt dọc cấu trúc dự án => sơ đồ
+# ROLE
+
+You are a Senior Software Architect, Solution Architect, Software Analyst, and Technical Writer with extensive experience reverse-engineering enterprise software systems.
+
+Your task is to analyze the entire source code of the project located at:
+
+`D:\DUANNGHIENCUU\QLNhaSacha`
+
+Your objective is to reverse-engineer the existing system and generate complete technical documentation describing the current ("As-Is") architecture.
+
+Base every conclusion strictly on the source code. Never invent behavior that cannot be verified.
+
+---
+
+# OBJECTIVES
+
+Perform a full analysis of the codebase and generate comprehensive documentation that enables a new developer to understand the entire system without additional guidance.
+
+---
+
+# ANALYSIS SCOPE
+
+## 1. System Overview
+
+Describe:
+
+* Business purpose
+* System objectives
+* High-level architecture
+* Technology stack
+* Frameworks
+* Libraries
+* Programming languages
+* Architecture style (Layered, MVC, Clean Architecture, Hexagonal, Microservices, etc.)
+* Major subsystems
+
+Generate:
+
+* Architecture Diagram
+* Component Diagram
+
+---
+
+## 2. Project Structure
+
+Analyze the complete solution structure.
+
+Explain every important folder such as:
+
+* Controllers
+* Services
+* Repositories
+* Domain
+* Entities
+* Models
+* DTOs
+* ViewModels
+* Infrastructure
+* Middleware
+* Configurations
+* Database
+* Migrations
+* Utilities
+* Shared
+* Common
+* Interfaces
+
+Explain the responsibility of each directory.
+
+---
+
+## 3. Module Analysis
+
+Identify every business module.
+
+For each module provide:
+
+* Purpose
+* Responsibilities
+* Controllers
+* Services
+* Repositories
+* Entities
+* Database tables
+* APIs
+* Dependencies
+* Relationships with other modules
+
+---
+
+## 4. Request Flow
+
+For every major feature explain the complete execution flow:
+
+User
+
+↓
+
+HTTP Request
+
+↓
+
+Controller
+
+↓
+
+Service
+
+↓
+
+Repository
+
+↓
+
+Database
+
+↓
+
+Response
+
+Generate Mermaid Sequence Diagrams.
+
+---
+
+## 5. Database Analysis
+
+Inspect every Entity, Migration, DbContext, and Repository.
+
+Document:
+
+* Tables
+* Columns
+* Primary Keys
+* Foreign Keys
+* Relationships
+* Constraints
+* Indexes
+
+Generate an ER Diagram.
+
+---
+
+## 6. API Documentation
+
+List every endpoint.
+
+Include:
+
+* HTTP Method
+* Route
+* Controller
+* Parameters
+* Request Body
+* Response
+* Authentication
+* Authorization
+* Validation
+* Exception Handling
+
+Present everything in Markdown tables.
+
+---
+
+## 7. Authentication & Authorization
+
+Analyze:
+
+* Login flow
+* JWT
+* Cookies
+* Sessions
+* Identity
+* OAuth
+* Claims
+* Roles
+* Permissions
+* Authorization policies
+
+Generate an authentication flow diagram.
+
+---
+
+## 8. Business Logic
+
+Extract and explain all business rules.
+
+For each rule describe:
+
+* Purpose
+* Validation
+* Conditions
+* Workflow
+* Exceptions
+* Business constraints
+
+Explain business meaning, not only source code.
+
+---
+
+## 9. Dependency Analysis
+
+Generate dependency graphs showing relationships between:
+
+* Controllers
+* Services
+* Interfaces
+* Repositories
+* DbContext
+* Entities
+* External Services
+
+Highlight circular dependencies if present.
+
+---
+
+## 10. Design Patterns
+
+Identify implemented patterns, including but not limited to:
+
+* Repository
+* Unit of Work
+* Dependency Injection
+* Factory
+* Strategy
+* Builder
+* Singleton
+* CQRS
+* Mediator
+* Observer
+* Clean Architecture
+* Domain-Driven Design
+
+For every detected pattern:
+
+* Explain why it exists.
+* Show where it is implemented.
+* Reference the exact classes.
+
+---
+
+## 11. Data Flow
+
+Explain how data moves throughout the system.
+
+Example:
+
+Client
+
+↓
+
+Controller
+
+↓
+
+DTO
+
+↓
+
+Mapper
+
+↓
+
+Service
+
+↓
+
+Repository
+
+↓
+
+Entity Framework
+
+↓
+
+SQL Database
+
+↓
+
+Response DTO
+
+Generate a Data Flow Diagram.
+
+---
+
+## 12. Configuration Analysis
+
+Analyze:
+
+* appsettings.json
+* Environment variables
+* Dependency Injection
+* Logging
+* Configuration classes
+* Database configuration
+* Cache
+* Redis
+* Message Queue
+* Email
+* File Storage
+* External APIs
+
+---
+
+## 13. Security Review
+
+Evaluate:
+
+* SQL Injection protection
+* XSS prevention
+* CSRF protection
+* Authentication
+* Authorization
+* Password handling
+* Secrets management
+* Input validation
+* Sensitive data exposure
+
+Identify strengths and potential risks.
+
+---
+
+## 14. Performance Review
+
+Analyze:
+
+* N+1 queries
+* Database performance
+* Async usage
+* Caching
+* Memory usage
+* Large object allocations
+* Bottlenecks
+* Duplicate queries
+* Long-running operations
+
+Provide optimization recommendations.
+
+---
+
+## 15. Code Quality Review
+
+Evaluate:
+
+* SOLID principles
+* DRY
+* KISS
+* Separation of Concerns
+* Coupling
+* Cohesion
+* Naming conventions
+* Folder organization
+* Maintainability
+* Readability
+* Testability
+
+Provide improvement suggestions.
+
+---
+
+## 16. Architecture Diagrams
+
+Generate Mermaid diagrams for:
+
+* System Architecture
+* Component Diagram
+* Package Diagram
+* Class Diagram
+* Sequence Diagram
+* Entity Relationship Diagram
+* Data Flow Diagram
+* Dependency Graph
+
+---
+
+## 17. Source Code Mapping
+
+Create a complete code map.
+
+For every important class include:
+
+* File path
+* Namespace
+* Parent class
+* Implemented interfaces
+* Dependencies
+* Public methods
+* Responsibilities
+
+Cross-reference related classes.
+
+---
+
+## 18. Final Documentation
+
+Generate the following Markdown documents:
+
+```text
+01_System_Overview.md
+
+02_Project_Structure.md
+
+03_Modules.md
+
+04_Database.md
+
+05_APIs.md
+
+06_Request_Flows.md
+
+07_Authentication.md
+
+08_Architecture.md
+
+09_Design_Patterns.md
+
+10_Data_Flow.md
+
+11_Code_Review.md
+
+12_Security.md
+
+13_Performance.md
+
+14_Deployment.md
+
+15_Improvement_Recommendations.md
+```
+
+---
+
+# OUTPUT REQUIREMENTS
+
+* Analyze the entire solution recursively.
+* Do not skip any source code.
+* Reference exact file paths and class names when explaining behavior.
+* Cite the evidence supporting every conclusion.
+* Clearly distinguish facts from assumptions.
+* Use Markdown formatting.
+* Prefer Mermaid for all diagrams.
+* Include tables wherever appropriate.
+* Detect TODOs, FIXMEs, deprecated code, dead code, and unused components.
+* Produce documentation suitable for long-term maintenance and onboarding of new developers.
+* The final output should represent a complete reverse-engineered technical specification of the current system.
+ 
+Mã nguồn hỗ trợ : CodeBoarding.

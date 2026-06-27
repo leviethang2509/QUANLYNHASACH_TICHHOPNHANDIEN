@@ -23,6 +23,12 @@ namespace BaiTapLon
             );
 
             routes.MapRoute(
+                name: "TimKiem",
+                url: "tim-kiem",
+                defaults: new { controller = "Product", action = "Search" }
+            );
+
+            routes.MapRoute(
                 name: "TongQuanTaiKhoan",
                 url: "tong-quan-{id}",
                 defaults: new { controller = "Users", action = "Dashboard" },
@@ -37,6 +43,12 @@ namespace BaiTapLon
             );
 
             routes.MapRoute(
+                name: "LienHe",
+                url: "Lien-He",
+                defaults: new { controller = "Contact", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "DanhSachDonHang",
                 url: "danh-sach-don-hang-{id}",
                 defaults: new { controller = "Users", action = "DanhSachHang" },
@@ -48,6 +60,18 @@ namespace BaiTapLon
                 url: "tin-nhan-{id}",
                 defaults: new { controller = "Users", action = "MessengerUser" },
                 constraints: new { id = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "ThanhToanTrucTuyen",
+                url: "thanh-toan-truc-tuyen",
+                defaults: new { controller = "Cart", action = "PaymentMoMo" }
+            );
+
+            routes.MapRoute(
+                name: "GioHang",
+                url: "gio-hang",
+                defaults: new { controller = "Cart", action = "Index" }
             );
 
             routes.MapRoute(

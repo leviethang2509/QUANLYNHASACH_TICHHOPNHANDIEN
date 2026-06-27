@@ -11,8 +11,8 @@
     60
   ],
   "click_coords_1": [
-    218,
-    901
+    148,
+    894
   ],
   "click_coords_2": [
     165,
@@ -36,5 +36,5 @@
   "periodic_send_enabled": true,
   "periodic_send_interval_seconds": 300,
   "detect_error_enabled": false,
-  "continue_message": "Continue the current task if it is not yet complete. If the current task has already been completed, analyze the project and automatically implement the next meaningful feature that best fits the existing architecture and roadmap. Ensure the new feature is fully integrated, follows the project's coding style, does not break existing functionality, and includes all necessary code, tests, and documentation where applicable. Repeat this workflow until no further meaningful improvements can be identified"
+  "continue_message": "If testing is already in progress, continue from where it left off without repeating completed tests. If all existing tests have been completed, create and execute additional test scenarios to improve coverage. Exclude any features, pages, or flows that have already been tested. Perform comprehensive testing across the entire project, including UI/UX, frontend logic, backend APIs, business logic, edge cases, validation, error handling, authentication/authorization, and integration between frontend and backend. Focus on discovering new issues rather than re-testing completed functionality."
 }

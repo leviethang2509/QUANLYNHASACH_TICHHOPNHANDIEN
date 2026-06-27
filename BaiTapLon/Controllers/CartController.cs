@@ -81,6 +81,7 @@ namespace BaiTapLon.Controllers
                     item.countCart = list.Count();
                     var cartCount1 = list.Count();
                     //Gán vào session
+                    Session[CartSession] = list;
                     
                     return Json(
                         new

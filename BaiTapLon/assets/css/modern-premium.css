@@ -308,3 +308,45 @@ html {
 .border-color {
   border-color: var(--border-color) !important;
 }
+
+/* Modern Sidebar Overrides */
+.sidebar {
+  background-color: var(--bg-card) !important;
+}
+
+.sidebar .nav-item .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.sidebar .nav-item .nav-link i {
+  color: var(--text-muted) !important;
+  transition: var(--transition);
+}
+
+.sidebar .nav-item .nav-link:hover,
+.sidebar .nav-item .nav-link:hover i,
+.sidebar .nav-item.show .nav-link,
+.sidebar .nav-item.show .nav-link i,
+.sidebar .nav-item.active .nav-link,
+.sidebar .nav-item.active .nav-link i {
+  color: var(--primary) !important;
+}
+
+.sidebar .nav-item .dropdown-menu {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.sidebar .nav-item .dropdown-item {
+  color: var(--text-main) !important;
+  transition: var(--transition);
+}
+
+.sidebar .nav-item .dropdown-item:hover {
+  background-color: var(--primary-light) !important;
+  color: var(--primary) !important;
+}
