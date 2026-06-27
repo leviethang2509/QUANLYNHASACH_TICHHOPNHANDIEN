@@ -9,17 +9,17 @@
 
 <!-- ====== MAIN CONTENT ===== -->
 <main id="content">
-    <div class="bg-gray-200 space-bottom-3">
+    <div class="bg-app text-main py-5" style="min-height: 80vh;">
         <div class="container">
             <div class="py-5 py-lg-7">
                 <h6 class="font-weight-medium font-size-7 text-center mt-lg-1">Đã Nhận Đơn Hàng</h6>
             </div>
             <div class="max-width-890 mx-auto">
-                <div class="bg-white pt-6 border">
+                <div class="card bg-card border-color shadow-md rounded-md overflow-hidden" style="border-radius: var(--radius-lg) !important; background-color: var(--bg-card) !important; border: 1px solid var(--border-color) !important;">
                     <h6 class="font-size-3 font-weight-medium text-center mb-4 pb-xl-1">Đã nhận được đơn đặt hàng của bạn chúng tôi sẽ liên hệ bạn để xác mình và gửi hàng đến bạn.</h6>
-                    <div class="border-bottom mb-5 pb-5 overflow-auto overflow-md-visible">
+                    <div class="border-bottom border-color mb-4 pb-4 overflow-auto overflow-md-visible">
                         <div class="pl-3">
-                            <table class="table table-borderless mb-0 ml-1">
+                            <table class="table table-borderless mb-0 ml-1 text-main">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="font-size-2 font-weight-normal py-0">Mã đơn:</th>
@@ -39,7 +39,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="border-bottom mb-5 pb-6">
+                    <div class="border-bottom border-color mb-4 pb-4">
                         <div class="px-3 px-md-4">
                             <div class="ml-md-2">
                                 <h6 class="font-size-3 on-weight-medium mb-4 pb-1">Chi tiết đơn hàng</h6>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-bottom mb-5 pb-5">
+                    <div class="border-bottom border-color mb-4 pb-4">
                         <ul class="list-unstyled px-3 pl-md-5 pr-md-4 mb-0">
                             <li class="d-flex justify-content-between py-2">
                                 <span class="font-weight-medium font-size-2">Tổng phụ:</span>
@@ -83,7 +83,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="border-bottom mb-5 pb-4">
+                    <div class="border-bottom border-color mb-4 pb-4">
                         <div class="px-3 pl-md-5 pr-md-4">
                             <div class="d-flex justify-content-between">
                                 <span class="font-size-2 font-weight-medium">Tổng Tiền</span>
@@ -99,7 +99,7 @@
                                         Địa chỉ thanh toán
                                     </h6>
                                     <address class="d-flex flex-column mb-0">
-                                        <span class="text-gray-600 font-size-2">@Model.ShipAddress</span>
+                                        <span class="text-muted font-size-2">@Model.ShipAddress</span>
                                         
                                     </address>
                                 </div>
@@ -109,7 +109,7 @@
                                     Đia chỉ nhận hàng
                                 </h6>
                                 <address class="d-flex flex-column mb-0">
-                                    <span class="text-gray-600 font-size-2">@Model.ShipAddress</span>
+                                    <span class="text-muted font-size-2">@Model.ShipAddress</span>
                                 </address>
                             </div>
                         </div>
