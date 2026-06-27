@@ -15,43 +15,43 @@
     <main id="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 border-right">
+                <div class="col-md-3 border-right border-color mb-5">
                     <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8  mb-5 mb-lg-7">Thông tin tài khoản</h6>
-                    <div class="tab-wrapper">
+                    <div class="tab-wrapper card shadow-sm p-3 bg-card border-color" style="border-radius: var(--radius-md) !important; background-color: var(--bg-card) !important; border: 1px solid var(--border-color) !important;">
                         <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
-                            <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0 active" href="tong-quan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Tổng quan</span>
+                            <li class="nav-item mx-0 py-1">
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/tong-quan-@session.userId">
+                                    <span>Tổng quan</span>
                                 </a>
                             </li>
                             <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/danh-sach-don-hang-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Đơn hàng</span>
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/danh-sach-don-hang-@session.userId">
+                                    <span>Đơn hàng</span>
                                 </a>
                             </li>
                             <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/tin-nhan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Thông báo (@session.tolMes)</span>
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/tin-nhan-@session.userId">
+                                    <span>Thông báo <span class="badge badge-primary badge-pill ml-auto">@session.tolMes</span></span>
                                 </a>
                             </li>
                             <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/phan-hoi-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Phản Hồi (@session.tolRep)</span>
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded active bg-primary-light" style="background-color: var(--primary-light) !important;" href="/phan-hoi-@session.userId">
+                                    <span class="font-weight-medium text-primary">Phản Hồi <span class="badge badge-info badge-pill ml-auto">@session.tolRep</span></span>
                                 </a>
                             </li>
                             <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/thong-tin-ca-nhan-@session.userId">
-                                    <span class="font-weight-normal text-gray-600">Thông tin cá nhân</span>
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/thong-tin-ca-nhan-@session.userId">
+                                    <span>Thông tin cá nhân</span>
                                 </a>
                             </li>
                             <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" id="pills-six-example1-tab" data-toggle="pill" href="#pills-six-example1" role="tab" aria-controls="pills-six-example1" aria-selected="false">
-                                    <span class="font-weight-normal text-gray-600">Sách yêu thích</span>
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/yeu-thich-@session.userId" role="tab" aria-controls="pills-six-example1" aria-selected="false">
+                                    <span>Sách yêu thích</span>
                                 </a>
                             </li>
                             <li class="nav-item mx-0">
-                                <a class="nav-link d-flex align-items-center px-0" href="/Users/Logout">
-                                    <span class="font-weight-normal text-gray-600">Thoát</span>
+                                <a class="nav-link d-flex align-items-center px-2 text-main hover-up rounded" href="/Users/Logout">
+                                    <span>Thoát</span>
                                 </a>
                             </li>
                         </ul>
